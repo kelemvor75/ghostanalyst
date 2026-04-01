@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ghost Analyst — Independent Equity Research</title>
-<style>
-:root{--navy:#1B2A4A;--blue:#2E75B6;--green:#16A34A;--orange:#EA580C;--red:#DC2626;--gray:#6B7280;--yellow:#CA8A04}
+<style>:root{--navy:#1B2A4A;--blue:#2E75B6;--green:#16A34A;--orange:#EA580C;--red:#DC2626;--gray:#6B7280;--yellow:#CA8A04}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:#F8FAFC;color:#1F2937}
 .hero{background:var(--navy);color:white;padding:48px 24px;text-align:center}
-.hero h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:1px;margin-bottom:8px}
-.hero p{font-size:16px;opacity:.8;max-width:520px;margin:0 auto}
+.brand-large{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:1px;margin-bottom:8px}
+.tagline{font-size:16px;opacity:.85;margin-bottom:8px}
+.sub-tagline{font-size:13px;opacity:.6;max-width:640px;margin:0 auto;line-height:1.5}
 .container{max-width:800px;margin:0 auto;padding:32px 20px}
 .section-title{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--gray);font-weight:700;margin-bottom:16px}
 .card{background:white;border-radius:10px;padding:24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s;cursor:pointer}
@@ -24,265 +24,55 @@ body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:#F8FAFC;co
 .score{font-size:12px;color:var(--gray);margin-top:4px}
 .divider{border:none;border-top:1px solid #E5E7EB;margin:24px 0}
 .footer{text-align:center;padding:32px 20px;font-size:12px;color:var(--gray);border-top:1px solid #E5E7EB;margin-top:32px;line-height:1.6}
-@media(max-width:500px){.card{flex-wrap:wrap;gap:12px}.card-rating,.card-target{min-width:auto}}
-</style>
+@media(max-width:500px){.card{flex-wrap:wrap;gap:12px}.card-rating,.card-target{min-width:auto}}</style>
 </head>
 <body>
-<div class="landing">
-  <div class="hero">
-    <div class="brand-large">GHOST ANALYST</div>
-    <div class="tagline">Independent Equity Research &nbsp;|&nbsp; AI Infrastructure & Energy</div>
-    <div class="sub-tagline">Quantitative scoring model validated on 103 stocks across 32 rolling windows (2018-2026)<br>
-    Out-of-sample: 100% consistency rate &nbsp;|&nbsp; +31.4% avg Q1/Q4 spread &nbsp;|&nbsp; 2.26 Information Ratio</div>
-  </div>
-  <div class="cards-container">
-    <div class="section-title">AI Semiconductors & Memory</div>
-<a class="card" href="SNDK_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">SNDK</div>
-<div class="card-name">SanDisk Corporation</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 92/100</div>
+<div class="hero">
+  <div class="brand-large">GHOST ANALYST</div>
+  <div class="tagline">Independent Equity Research &nbsp;|&nbsp; AI Infrastructure & Energy</div>
+  <div class="sub-tagline">Quantitative scoring model validated on 103 stocks across 32 rolling windows (2018-2026)<br>
+  Out-of-sample: 100% consistency rate &nbsp;|&nbsp; +31.4% avg Q1/Q4 spread &nbsp;|&nbsp; 2.26 Information Ratio</div>
 </div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">STRONG BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$877</div></div>
-</a>
-<a class="card" href="NVDA_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">NVDA</div>
-<div class="card-name">NVIDIA Corporation</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 85/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$245</div></div>
-</a>
-<a class="card" href="MU_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">MU</div>
-<div class="card-name">Micron Technology</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 84/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">STRONG BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$700</div></div>
-</a>
-<a class="card" href="TSM_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">TSM</div>
-<div class="card-name">Taiwan Semiconductor Mfg.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 83/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$410</div></div>
-</a>
-<a class="card" href="ASML_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">ASML</div>
-<div class="card-name">ASML Holding N.V.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 79/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$1,500</div></div>
-</a>
-<a class="card" href="AMD_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">AMD</div>
-<div class="card-name">Advanced Micro Devices</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 78/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$269</div></div>
-</a>
-<a class="card" href="WDC_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">WDC</div>
-<div class="card-name">Western Digital Corp.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 77/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$306</div></div>
-</a>
+<div class="container">
+<div class="section-title">AI Semiconductors & Memory</div>
+<a class="card" href="SNDK_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">SNDK</div><div class="card-name">SanDisk Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 92/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">STRONG BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$877</div></div></a>
+<a class="card" href="NVDA_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">NVDA</div><div class="card-name">NVIDIA Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 85/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$245</div></div></a>
+<a class="card" href="MU_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">MU</div><div class="card-name">Micron Technology</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 84/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">STRONG BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$700</div></div></a>
+<a class="card" href="TSM_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TSM</div><div class="card-name">Taiwan Semiconductor Mfg.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 83/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$410</div></div></a>
+<a class="card" href="ASML_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ASML</div><div class="card-name">ASML Holding N.V.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 79/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,500</div></div></a>
+<a class="card" href="AMD_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">AMD</div><div class="card-name">Advanced Micro Devices</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$269</div></div></a>
+<a class="card" href="WDC_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">WDC</div><div class="card-name">Western Digital Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 77/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$306</div></div></a>
 <hr class="divider">
 <div class="section-title">AI Networking & Photonics</div>
-<a class="card" href="LITE_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">LITE</div>
-<div class="card-name">Lumentum Holdings Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 90/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$750</div></div>
-</a>
-<a class="card" href="CIEN_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">CIEN</div>
-<div class="card-name">Ciena Corporation</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 88/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$435</div></div>
-</a>
-<a class="card" href="COHR_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">COHR</div>
-<div class="card-name">Coherent Corp.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 82/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$297</div></div>
-</a>
-<a class="card" href="TTMI_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">TTMI</div>
-<div class="card-name">TTM Technologies, Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 76/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$120</div></div>
-</a>
+<a class="card" href="LITE_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">LITE</div><div class="card-name">Lumentum Holdings Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 90/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$750</div></div></a>
+<a class="card" href="CIEN_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CIEN</div><div class="card-name">Ciena Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 88/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$435</div></div></a>
+<a class="card" href="COHR_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">COHR</div><div class="card-name">Coherent Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 82/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$297</div></div></a>
+<a class="card" href="TTMI_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TTMI</div><div class="card-name">TTM Technologies, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$120</div></div></a>
 <hr class="divider">
 <div class="section-title">Data Center Infrastructure</div>
-<a class="card" href="CLS_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">CLS</div>
-<div class="card-name">Celestica Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 80/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$370</div></div>
-</a>
-<a class="card" href="VRT_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">VRT</div>
-<div class="card-name">Vertiv Holdings Co</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 80/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$290</div></div>
-</a>
-<a class="card" href="FIX_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">FIX</div>
-<div class="card-name">Comfort Systems USA</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 78/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$1,550</div></div>
-</a>
-<a class="card" href="STRL_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">STRL</div>
-<div class="card-name">Sterling Infrastructure</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 77/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$450</div></div>
-</a>
-<a class="card" href="Q_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">Q</div>
-<div class="card-name">Qnity Electronics, Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 74/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$140</div></div>
-</a>
+<a class="card" href="CLS_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CLS</div><div class="card-name">Celestica Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 80/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$370</div></div></a>
+<a class="card" href="VRT_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">VRT</div><div class="card-name">Vertiv Holdings Co</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 80/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$290</div></div></a>
+<a class="card" href="FIX_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">FIX</div><div class="card-name">Comfort Systems USA</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,550</div></div></a>
+<a class="card" href="STRL_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">STRL</div><div class="card-name">Sterling Infrastructure</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 77/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$450</div></div></a>
+<a class="card" href="Q_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">Q</div><div class="card-name">Qnity Electronics, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 74/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$140</div></div></a>
 <hr class="divider">
 <div class="section-title">Energy & Nuclear Power</div>
-<a class="card" href="VST_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">VST</div>
-<div class="card-name">Vistra Corp.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 78/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$230</div></div>
-</a>
-<a class="card" href="CEG_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">CEG</div>
-<div class="card-name">Constellation Energy</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 76/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$400</div></div>
-</a>
-<a class="card" href="GEV_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">GEV</div>
-<div class="card-name">GE Vernova Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 75/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$900</div></div>
-</a>
-<a class="card" href="CCJ_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">CCJ</div>
-<div class="card-name">Cameco Corporation</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 72/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$127</div></div>
-</a>
+<a class="card" href="VST_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">VST</div><div class="card-name">Vistra Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$230</div></div></a>
+<a class="card" href="CEG_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CEG</div><div class="card-name">Constellation Energy</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$400</div></div></a>
+<a class="card" href="GEV_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">GEV</div><div class="card-name">GE Vernova Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 75/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$900</div></div></a>
+<a class="card" href="CCJ_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CCJ</div><div class="card-name">Cameco Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 72/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$127</div></div></a>
 <hr class="divider">
 <div class="section-title">Defense & Aerospace</div>
-<a class="card" href="ATI_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">ATI</div>
-<div class="card-name">ATI Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 76/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$177</div></div>
-</a>
-<a class="card" href="RKLB_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">RKLB</div>
-<div class="card-name">Rocket Lab USA, Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: 75/100</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$95</div></div>
-</a>
+<a class="card" href="ATI_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ATI</div><div class="card-name">ATI Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$177</div></div></a>
+<a class="card" href="RKLB_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">RKLB</div><div class="card-name">Rocket Lab USA, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 75/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$95</div></div></a>
 <hr class="divider">
 <div class="section-title">Coverage Under Review</div>
-<a class="card" href="TSLA_Ghost_Analyst_Report.html">
-<div class="card-left">
-<div class="card-ticker">TSLA</div>
-<div class="card-name">Tesla, Inc.</div>
-<div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div>
-<div class="score">Conviction: NOT RATED</div>
-</div>
-<div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div>
-<div class="card-target"><div class="label">Target</div><div class="value">$305</div></div>
-</a>
+<a class="card" href="TSLA_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TSLA</div><div class="card-name">Tesla, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: NOT RATED</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$305</div></div></a>
 
-  </div>
-  <div class="footer">
-    <div>23 stocks covered &nbsp;|&nbsp; 22 BUY &nbsp;|&nbsp; 1 HOLD &nbsp;|&nbsp; 0 SELL</div>
-    <div style="margin-top:4px;font-size:11px;opacity:0.6;">Reports generated April 1, 2026 &nbsp;|&nbsp; Not investment advice</div>
-  </div>
+<div class="footer">
+<div>23 stocks covered &nbsp;|&nbsp; 22 BUY &nbsp;|&nbsp; 1 HOLD &nbsp;|&nbsp; 0 SELL</div>
+<div style="margin-top:4px;font-size:11px;opacity:0.6;">Reports generated April 1, 2026 &nbsp;|&nbsp; Not investment advice</div>
+</div>
 </div>
 </body>
 </html>
