@@ -59,7 +59,7 @@ tr:nth-child(even) td{background:#FAFBFC}
 .tag{display:inline-block;background:var(--lblue);color:var(--blue);font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px;margin-left:6px}
 .src{font-size:11px;color:var(--gray);font-style:italic;margin-top:4px}
 
-/* ===== DARK MODE HARD LOCK — forces light rendering everywhere ===== */
+/* ===== DARK MODE HARD LOCK — forces light rendering for ALL readers ===== */
 html{color-scheme:light !important;background:#F8FAFC !important;-webkit-text-fill-color:initial !important}
 body,.wrap,.container,.sec,p,li,td,th,div,span,h1,h2,h3{forced-color-adjust:none !important}
 .wrap{background:#ffffff !important}
@@ -76,9 +76,18 @@ th{background:#1B2A4A !important;color:#ffffff !important;-webkit-text-fill-colo
 .callout{color:#1F2937 !important;-webkit-text-fill-color:#1F2937 !important}
 .thesis{background:#EAF2FB !important}
 .src{color:#6B7280 !important;-webkit-text-fill-color:#6B7280 !important}
-/* preserve intentional colors */
 .pos,td.pos{color:#16A34A !important;-webkit-text-fill-color:#16A34A !important}
 .neg,td.neg{color:#DC2626 !important;-webkit-text-fill-color:#DC2626 !important}
+/* Risk matrix cells — must override the generic td white-background rule above */
+td.risk-hi{background:#FEE2E2 !important;color:#DC2626 !important;-webkit-text-fill-color:#DC2626 !important;font-weight:600}
+td.risk-md{background:#FEF3C7 !important;color:#B45309 !important;-webkit-text-fill-color:#B45309 !important;font-weight:600}
+td.risk-lo{background:#DCFCE7 !important;color:#16A34A !important;-webkit-text-fill-color:#16A34A !important;font-weight:600}
+tr:nth-child(even) td.risk-hi{background:#FEE2E2 !important}
+tr:nth-child(odd) td.risk-hi{background:#FEE2E2 !important}
+tr:nth-child(even) td.risk-md{background:#FEF3C7 !important}
+tr:nth-child(odd) td.risk-md{background:#FEF3C7 !important}
+tr:nth-child(even) td.risk-lo{background:#DCFCE7 !important}
+tr:nth-child(odd) td.risk-lo{background:#DCFCE7 !important}
 /* ===== END HARD LOCK ===== */
 </style></head>
 <body><div class="wrap">
