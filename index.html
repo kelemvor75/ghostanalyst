@@ -4,114 +4,303 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ghost Analyst — Independent Equity Research</title>
-<style>:root{--navy:#1B2A4A;--blue:#2E75B6;--green:#16A34A;--orange:#EA580C;--red:#DC2626;--gray:#6B7280;--yellow:#CA8A04}
+<style>
+:root{
+  --navy:#1B2A4A; --navy-2:#243a63; --navy-deep:#16233f; --blue:#2E75B6; --lblue:#EAF2FB;
+  --green:#16A34A; --green-soft:#34D399; --green-deep:#15803D; --orange:#EA580C; --red:#DC2626;
+  --gray:#6B7280; --yellow:#CA8A04;
+  --bg:#F8FAFC; --card:#ffffff; --line:#E5E7EB; --line-soft:#EDF1F5;
+  --ink:#1F2937; --ink-dim:#6B7280;
+  --sans:-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono','Segoe UI Mono',Menlo,Consolas,monospace;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#E8ECF1;font-family:-apple-system,'Segoe UI',Arial,sans-serif;color:#1F2937}
-.hero{background:var(--navy);color:white;padding:48px 24px;text-align:center}
-.brand-large{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:1px;margin-bottom:8px}
-.tagline{font-size:16px;opacity:.85;margin-bottom:8px}
-.sub-tagline{font-size:13px;opacity:.6;max-width:640px;margin:0 auto;line-height:1.5}
-.container{max-width:960px;margin:0 auto;padding:32px 24px}
-.section-title{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--gray);font-weight:700;margin-bottom:16px}
-.card{background:#FFFFFF;border:1px solid #E5E7EB;border-radius:10px;padding:20px 28px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s;cursor:pointer}
-.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.12);transform:translateY(-2px);border-color:#2E75B6}
-.card-left{flex:1}.card-ticker{font-size:22px;font-weight:800;color:var(--navy)}
-.card-name{font-size:14px;color:var(--gray);margin-top:2px}
-.card-meta{font-size:13px;color:var(--gray);margin-top:8px}.card-meta span{margin-right:16px}
-.card-rating,.card-target{text-align:center;min-width:80px}
-.card-rating .label,.card-target .label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--gray);font-weight:700}
-.card-rating .value{font-size:24px;font-weight:800}.card-target .value{font-size:20px;font-weight:700;color:var(--navy)}
-.score{font-size:12px;color:var(--gray);margin-top:4px}
-.divider{border:none;border-top:1px solid #E5E7EB;margin:24px 0}
-.footer{text-align:center;padding:32px 20px;font-size:12px;color:var(--gray);border-top:1px solid #E5E7EB;margin-top:32px;line-height:1.6}
-@media(max-width:500px){.card{flex-wrap:wrap;gap:12px}.card-rating,.card-target{min-width:auto}}</style>
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;background:var(--card);box-shadow:0 1px 6px rgba(0,0,0,.08);min-height:100vh;overflow:hidden}
+
+/* ===== Ticker tape ===== */
+.tape{background:var(--navy-deep);border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative;height:38px;display:flex;align-items:center}
+.tape::before,.tape::after{content:"";position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none}
+.tape::before{left:0;background:linear-gradient(90deg,var(--navy-deep),transparent)}
+.tape::after{right:0;background:linear-gradient(270deg,var(--navy-deep),transparent)}
+.tape-track{display:flex;align-items:center;white-space:nowrap;animation:scroll 80s linear infinite;will-change:transform}
+.tape:hover .tape-track{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tk{display:inline-flex;align-items:center;gap:8px;padding:0 18px;font-family:var(--mono);font-size:12px;border-right:1px solid rgba(255,255,255,.07)}
+.tk-sym{color:#fff;font-weight:700;letter-spacing:.3px}
+.tk-dot{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
+.tk-tgt{color:#94A3B8;font-weight:500}
+.d-buy{background:var(--green-soft)} .d-hold{background:#FBBF24} .d-sell{background:#F87171}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;padding:36px 40px 0;position:relative}
+.hero-grid{position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;mask-image:radial-gradient(ellipse 70% 80% at 70% 0%,#000,transparent)}
+.hero-inner{position:relative;z-index:1}
+.brand{font-size:11px;letter-spacing:3px;opacity:.7;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.ghost-mark{width:20px;height:20px;opacity:.95}
+.hero-cols{display:grid;grid-template-columns:1.25fr .9fr;gap:36px;align-items:end}
+.hero h1{font-size:clamp(25px,3.3vw,36px);font-weight:800;letter-spacing:-.4px;line-height:1.1;max-width:640px}
+.hero h1 .em{color:var(--green-soft)}
+.hero .sub{font-size:14px;opacity:.82;margin-top:13px;max-width:560px;line-height:1.55}
+
+/* conviction distribution */
+.dist{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px 10px}
+.dist-cap{font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;opacity:.6;margin-bottom:12px;display:flex;justify-content:space-between}
+.dist-bars{display:flex;align-items:flex-end;gap:7px;height:64px}
+.dist-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end}
+.dist-bar{width:100%;border-radius:3px 3px 0 0;min-height:3px;transition:height .8s cubic-bezier(.2,.7,.3,1);position:relative}
+.dist-ct{font-family:var(--mono);font-size:11px;font-weight:700;opacity:.95}
+.dist-lbl{font-family:var(--mono);font-size:9px;opacity:.5;letter-spacing:.2px}
+
+/* stat band */
+.stat-band{display:flex;gap:0;margin-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.hm{flex:1;padding:16px 4px 20px;border-right:1px solid rgba(255,255,255,.08);text-align:left}
+.hm:first-child{padding-left:0} .hm:last-child{border-right:none}
+.hm .v{font-size:24px;font-weight:800;letter-spacing:-.5px;font-variant-numeric:tabular-nums;line-height:1}
+.hm .v.g{color:var(--green-soft)} .hm .v.y{color:#FCD34D}
+.hm .l{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;opacity:.6;margin-top:7px}
+
+/* ===== Controls ===== */
+.controls{padding:20px 40px 0;position:sticky;top:0;background:var(--card);z-index:40;border-bottom:1px solid transparent;transition:box-shadow .2s,border-color .2s}
+.controls.stuck{box-shadow:0 4px 16px rgba(0,0,0,.06);border-bottom-color:var(--line)}
+.controls-inner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-bottom:16px}
+.search-wrap{flex:1;min-width:200px;position:relative;display:flex;align-items:center}
+.search-wrap svg{position:absolute;left:12px;width:15px;height:15px;color:var(--gray);pointer-events:none}
+#search{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-family:var(--sans);font-size:14px;padding:10px 12px 10px 35px;outline:none;transition:border-color .15s,box-shadow .15s}
+#search:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,117,182,.15)}
+#search::placeholder{color:#9AA4B2}
+.ctrl-group{display:flex;align-items:center;gap:8px}
+.ctrl-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);font-weight:700}
+select{appearance:none;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:600;padding:10px 30px 10px 12px;outline:none;cursor:pointer;transition:border-color .15s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
+select:hover{border-color:#CBD5E1} select:focus{border-color:var(--blue)}
+
+.chips{padding:16px 40px 0;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:12px;letter-spacing:.2px;padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:var(--card);color:var(--ink-dim);cursor:pointer;transition:all .15s;white-space:nowrap;font-weight:600}
+.chip:hover{border-color:#CBD5E1;color:var(--ink);background:#F8FAFC}
+.chip.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip .ct{opacity:.55;margin-left:5px;font-variant-numeric:tabular-nums}
+.chip.active .ct{opacity:.8}
+
+.board{padding:18px 40px 50px}
+.thead{display:grid;grid-template-columns:42px 1.7fr 1fr 104px 104px 92px;gap:14px;padding:0 14px 9px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);font-weight:700;border-bottom:2px solid var(--lblue)}
+.thead .sortable{cursor:pointer;user-select:none;display:flex;align-items:center;gap:5px;transition:color .15s}
+.thead .sortable:hover{color:var(--blue)}
+.thead .arrow{font-size:9px;opacity:0;transition:opacity .15s}
+.thead .sortable.act{color:var(--blue)} .thead .sortable.act .arrow{opacity:1}
+.col-r{justify-content:flex-end;text-align:right} .col-c{justify-content:center;text-align:center}
+
+#rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:42px 1.7fr 1fr 104px 104px 92px;gap:14px;align-items:center;padding:14px;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;transition:background .14s;position:relative}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .14s}
+.row:hover{background:#F8FAFC} .row:hover::before{background:var(--blue)}
+.r-rank{font-family:var(--mono);font-size:12px;color:#A8B2C4;font-weight:500}
+.r-name{display:flex;flex-direction:column;gap:2px;min-width:0}
+.r-ticker{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.2px;color:var(--navy)}
+.r-company{font-size:12.5px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r-sector{font-size:10.5px;color:#9AA4B2;letter-spacing:.2px}
+.r-date-cell{display:flex;flex-direction:column;gap:2px}
+.r-date{font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
+.r-type{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:#9AA4B2;font-weight:600}
+.conv{display:flex;align-items:center;gap:9px;justify-content:flex-end}
+.conv-num{font-family:var(--mono);font-size:14px;font-weight:700;width:22px;text-align:right}
+.conv-bar{width:40px;height:7px;border-radius:4px;background:var(--line-soft);overflow:hidden;flex:0 0 auto}
+.conv-fill{height:100%;border-radius:4px}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.3px;padding:5px 9px;border-radius:6px;text-align:center;white-space:nowrap;border:1px solid transparent}
+.b-strongbuy{background:#DCFCE7;color:#15803D;border-color:#86EFAC}
+.b-buy{background:#F0FDF4;color:var(--green);border-color:#BBF7D0}
+.b-hold{background:#FEF3C7;color:#A16207;border-color:#FDE68A}
+.b-sell{background:#FEE2E2;color:var(--red);border-color:#FCA5A5}
+.b-na{background:#F1F5F9;color:var(--gray);border-color:var(--line)}
+.r-target{font-family:var(--mono);font-size:15px;font-weight:700;text-align:right;color:var(--navy)}
+.empty{text-align:center;padding:60px 20px;color:var(--gray);font-size:14px}
+
+.foot{background:var(--navy);color:#cbd5e1;padding:24px 40px;font-size:11.5px;line-height:1.7;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot a{color:#93c5fd;text-decoration:none} .foot .strong{color:#fff;font-weight:700}
+.foot-disc{max-width:340px;opacity:.75;text-align:right}
+
+@media(max-width:820px){
+  .hero-cols{grid-template-columns:1fr;gap:24px}
+  .dist{max-width:420px}
+}
+@media(max-width:760px){
+  .hero,.controls,.chips,.board,.foot{padding-left:20px;padding-right:20px}
+  .stat-band{flex-wrap:wrap}.hm{flex:1 0 33%;border-right:none;padding:12px 0}
+  .thead{display:none}
+  .row{grid-template-columns:1fr auto;grid-template-areas:"name badge" "meta target" "conv conv";gap:8px 12px;padding:15px 14px}
+  .r-rank{display:none}.r-name{grid-area:name}.r-meta-wrap{grid-area:meta;display:flex!important}
+  .conv{grid-area:conv;justify-content:flex-start;margin-top:2px}.badge{grid-area:badge;align-self:start}.r-target{grid-area:target;align-self:end}
+  .foot{flex-direction:column}.foot-disc{text-align:left;max-width:none}.hide-sm{display:none}
+}
+.r-meta-wrap{display:contents}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.tape-track{animation:none!important}}
+</style>
 </head>
 <body>
+<div class="wrap">
+
+<div class="tape"><div class="tape-track" id="tape"></div></div>
+
 <div class="hero">
-  <div class="brand-large">GHOST ANALYST</div>
-  <div class="tagline">Independent Equity Research &nbsp;|&nbsp; AI Infrastructure & Energy</div>
-  <div class="sub-tagline">Quantitative scoring model validated on 103 stocks across 32 rolling windows (2018-2026)<br>
-  Out-of-sample: 100% consistency rate &nbsp;|&nbsp; +31.4% avg Q1/Q4 spread &nbsp;|&nbsp; 2.26 Information Ratio</div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="brand">
+      <svg class="ghost-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3C10.5 3 6 7.5 6 13v14l3.2-2.4L12 27l3-2.3L16 27l1-2.3 3 2.3 2.8-2.4L26 27V13c0-5.5-4.5-10-10-10Z" fill="rgba(255,255,255,.08)" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="12.5" cy="14" r="1.7" fill="#fff"/><circle cx="19.5" cy="14" r="1.7" fill="#fff"/>
+        <path d="M11 19c1.5 1.6 8.5 1.6 10 0" stroke="#34D399" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      Ghost Analyst Research &middot; Independent Equity Research
+    </div>
+    <div class="hero-cols">
+      <div>
+        <h1>Conviction-scored equity research across the market&rsquo;s <span class="em">defining themes</span>.</h1>
+        <div class="sub">Institutional-grade reports spanning AI infrastructure, energy &amp; nuclear, defense, and select special situations &mdash; each driven by a quantitative conviction model validated across 103 names and 32 rolling windows.</div>
+      </div>
+      <div class="dist">
+        <div class="dist-cap"><span>Conviction Distribution</span><span id="dist-n"></span></div>
+        <div class="dist-bars" id="dist"></div>
+      </div>
+    </div>
+    <div class="stat-band">
+      <div class="hm"><div class="v" data-to="49">0</div><div class="l">Names Covered</div></div>
+      <div class="hm"><div class="v g" data-to="41">0</div><div class="l">Buy-Rated</div></div>
+      <div class="hm"><div class="v y" data-to="8">0</div><div class="l">Hold-Rated</div></div>
+      <div class="hm"><div class="v" data-to="73">0</div><div class="l">Avg Conviction</div></div>
+      <div class="hm hide-sm"><div class="v" data-to="226" data-dec="2">0</div><div class="l">Information Ratio</div></div>
+    </div>
+  </div>
 </div>
-<div class="container">
-<div class="section-title">AI Semiconductors & Memory</div>
-<a class="card" href="SNDK_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">SNDK</div><div class="card-name">SanDisk Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 92/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">STRONG BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$877</div></div></a>
-<a class="card" href="NVDA_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">NVDA</div><div class="card-name">NVIDIA Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 85/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$245</div></div></a>
-<a class="card" href="MU_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">MU</div><div class="card-name">Micron Technology, Inc.</div><div class="card-meta"><span>Pre-Earnings</span><span>Jun 22, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,400</div></div></a>
-<a class="card" href="MXL_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">MXL</div><div class="card-name">MaxLinear, Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 22, 2026</span></div><div class="score">Conviction: 51/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$75</div></div></a>
-<a class="card" href="TSM_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TSM</div><div class="card-name">Taiwan Semiconductor Mfg.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 83/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$410</div></div></a>
-<a class="card" href="ASML_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ASML</div><div class="card-name">ASML Holding N.V.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 79/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,500</div></div></a>
-<a class="card" href="AMD_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">AMD</div><div class="card-name">Advanced Micro Devices</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$269</div></div></a>
 
-<a class="card" href="MRVL_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">MRVL</div><div class="card-name">Marvell Technology, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$135</div></div></a>
-
-<a class="card" href="INTC_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">INTC</div><div class="card-name">Intel Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 22, 2026</span></div><div class="score">Conviction: 50/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$55</div></div></a>
-
-<a class="card" href="ICHR_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ICHR</div><div class="card-name">Ichor Holdings, Ltd.</div><div class="card-meta"><span>Initiation</span><span>May 22, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$80</div></div></a>
-
-<a class="card" href="AMKR_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">AMKR</div><div class="card-name">Amkor Technology, Inc.</div><div class="card-meta"><span>Initiation</span><span>May 22, 2026</span></div><div class="score">Conviction: 68/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$85</div></div></a>
-
-<a class="card" href="PENG_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">PENG</div><div class="card-name">Penguin Solutions, Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 22, 2026</span></div><div class="score">Conviction: 52/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$60</div></div></a>
-<a class="card" href="WDC_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">WDC</div><div class="card-name">Western Digital Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 77/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$306</div></div></a>
-
-<a class="card" href="STX_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">STX</div><div class="card-name">Seagate Technology Holdings</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 82/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$500</div></div></a>
-
-<a class="card" href="DELL_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">DELL</div><div class="card-name">Dell Technologies Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$200</div></div></a>
-
-<a class="card" href="META_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">META</div><div class="card-name">Meta Platforms, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 70/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$750</div></div></a>
-
-<a class="card" href="NFLX_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">NFLX</div><div class="card-name">Netflix, Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 22, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$105</div></div></a>
-<a class="card" href="NOK_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">NOK</div><div class="card-name">Nokia Corporation</div><div class="card-meta"><span>Initiation</span><span>Jun 22, 2026</span></div><div class="score">Conviction: 65/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$17.50</div></div></a>
-<a class="card" href="BESIY_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">BESIY</div><div class="card-name">BE Semiconductor Industries</div><div class="card-meta"><span>Initiation</span><span>Jun 23, 2026</span></div><div class="score">Conviction: 50/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$340</div></div></a>
-<a class="card" href="ASMPT_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ASMPT</div><div class="card-name">ASMPT Limited (0522.HK)</div><div class="card-meta"><span>Initiation</span><span>Jun 23, 2026</span></div><div class="score">Conviction: 68/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">HK$235</div></div></a>
-<a class="card" href="ADBE_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ADBE</div><div class="card-name">Adobe Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 23, 2026</span></div><div class="score">Conviction: 62/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$255</div></div></a>
-<a class="card" href="FIG_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">FIG</div><div class="card-name">Figma, Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 23, 2026</span></div><div class="score">Conviction: 44/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$22</div></div></a>
-<a class="card" href="LLY_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">LLY</div><div class="card-name">Eli Lilly and Company</div><div class="card-meta"><span>Initiation</span><span>Jun 23, 2026</span></div><div class="score">Conviction: 70/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,260</div></div></a>
-<a class="card" href="ADEA_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ADEA</div><div class="card-name">Adeia Inc.</div><div class="card-meta"><span>Initiation</span><span>Jun 26, 2026</span></div><div class="score">Conviction: 67/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$38</div></div></a>
-<a class="card" href="ON_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ON</div><div class="card-name">onsemi (ON Semiconductor)</div><div class="card-meta"><span>Initiation</span><span>Jun 26, 2026</span></div><div class="score">Conviction: 52/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--amber,#FBBF24)">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$118</div></div></a>
-<a class="card" href="QCOM_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">QCOM</div><div class="card-name">QUALCOMM Incorporated</div><div class="card-meta"><span>Initiation</span><span>Jun 26, 2026</span></div><div class="score">Conviction: 65/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$215</div></div></a>
-<hr class="divider">
-<div class="section-title">AI Networking & Photonics</div>
-<a class="card" href="LITE_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">LITE</div><div class="card-name">Lumentum Holdings Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 90/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$750</div></div></a>
-<a class="card" href="CIEN_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CIEN</div><div class="card-name">Ciena Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 88/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$435</div></div></a>
-<a class="card" href="COHR_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">COHR</div><div class="card-name">Coherent Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 82/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$297</div></div></a>
-<a class="card" href="TTMI_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TTMI</div><div class="card-name">TTM Technologies, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$120</div></div></a>
-
-<a class="card" href="CRDO_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CRDO</div><div class="card-name">Credo Technology Group</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 84/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$160</div></div></a>
-
-<a class="card" href="ANET_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ANET</div><div class="card-name">Arista Networks, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 74/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$180</div></div></a>
-<hr class="divider">
-<div class="section-title">Data Center Infrastructure</div>
-<a class="card" href="CLS_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CLS</div><div class="card-name">Celestica Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 80/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$370</div></div></a>
-<a class="card" href="VRT_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">VRT</div><div class="card-name">Vertiv Holdings Co</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 80/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$290</div></div></a>
-<a class="card" href="FIX_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">FIX</div><div class="card-name">Comfort Systems USA</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$1,550</div></div></a>
-<a class="card" href="STRL_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">STRL</div><div class="card-name">Sterling Infrastructure</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 77/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$450</div></div></a>
-<a class="card" <a class="card" href="MOD_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">MOD</div><div class="card-name">Modine Manufacturing Co.</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 82/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$265</div></div></a>
-<a class="card" href="VICR_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">VICR</div><div class="card-name">Vicor Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 80/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$190</div></div></a>
-<a class="card" href="Q_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">Q</div><div class="card-name">Qnity Electronics, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 74/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$140</div></div></a>
-
-<a class="card" href="NOW_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">NOW</div><div class="card-name">ServiceNow, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 12, 2026</span></div><div class="score">Conviction: 55/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$105</div></div></a><hr class="divider">
-<div class="section-title">Energy & Nuclear Power</div>
-<a class="card" href="VST_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">VST</div><div class="card-name">Vistra Corp.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$230</div></div></a>
-<a class="card" href="CEG_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CEG</div><div class="card-name">Constellation Energy</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$400</div></div></a>
-<a class="card" href="GEV_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">GEV</div><div class="card-name">GE Vernova Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 75/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$900</div></div></a>
-
-<a class="card" href="SEDG_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">SEDG</div><div class="card-name">SolarEdge Technologies</div><div class="card-meta"><span>Initiation</span><span>Apr 2, 2026</span></div><div class="score">Conviction: 78/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$65</div></div></a>
-<a class="card" href="CCJ_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CCJ</div><div class="card-name">Cameco Corporation</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 72/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$127</div></div></a>
-<hr class="divider">
-<div class="section-title">Defense & Aerospace</div>
-<a class="card" href="ATI_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">ATI</div><div class="card-name">ATI Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 76/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$177</div></div></a>
-<a class="card" href="RKLB_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">RKLB</div><div class="card-name">Rocket Lab USA, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 75/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$95</div></div></a>
-
-<a class="card" href="CSTM_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">CSTM</div><div class="card-name">Constellium SE</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: 72/100</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:var(--green)">BUY</div></div><div class="card-target"><div class="label">Target</div><div class="value">$35</div></div></a>
-<hr class="divider">
-<div class="section-title">Coverage Under Review</div>
-<a class="card" <a class="card" href="TSLA_Ghost_Analyst_Report.html"><div class="card-left"><div class="card-ticker">TSLA</div><div class="card-name">Tesla, Inc.</div><div class="card-meta"><span>Initiation</span><span>Apr 1, 2026</span></div><div class="score">Conviction: NOT RATED</div></div><div class="card-rating"><div class="label">Rating</div><div class="value" style="color:#CA8A04">HOLD</div></div><div class="card-target"><div class="label">Target</div><div class="value">$305</div></div></a>
-
-<div class="footer">
-<div>39 stocks covered &nbsp;|&nbsp; 27 BUY | 2 HOLD &nbsp;|&nbsp; 1 HOLD | 1 SELL &nbsp;|&nbsp; </div>
-<div style="margin-top:4px;font-size:11px;opacity:0.6;">Reports generated April 1, 2026 &nbsp;|&nbsp; Not investment advice</div>
+<div class="controls" id="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input id="search" type="text" placeholder="Search ticker or company..." autocomplete="off">
+    </div>
+    <div class="ctrl-group"><span class="ctrl-label">Sort</span>
+      <select id="sortby">
+        <option value="date">Newest first</option><option value="date-asc">Oldest first</option>
+        <option value="conv">Conviction high&rarr;low</option><option value="conv-asc">Conviction low&rarr;high</option>
+        <option value="ticker">Ticker A&rarr;Z</option><option value="rating">Rating strength</option>
+      </select></div>
+    <div class="ctrl-group"><span class="ctrl-label">Rating</span>
+      <select id="ratingfilter"><option value="all">All</option><option value="STRONG BUY">Strong Buy</option><option value="BUY">Buy</option><option value="HOLD">Hold</option><option value="SELL">Sell</option></select></div>
+  </div>
 </div>
+
+<div class="chips" id="chips"></div>
+
+<div class="board">
+  <div class="thead">
+    <div>#</div>
+    <div class="sortable" data-sort="ticker">Name <span class="arrow">&#9650;</span></div>
+    <div class="sortable hide-sm" data-sort="date">Published <span class="arrow">&#9660;</span></div>
+    <div class="sortable col-r" data-sort="conv">Conviction <span class="arrow">&#9660;</span></div>
+    <div class="col-c">Rating</div>
+    <div class="sortable col-r" data-sort="target">Target <span class="arrow">&#9660;</span></div>
+  </div>
+  <div id="rows"></div>
+  <div class="empty" id="empty" style="display:none">No reports match your filters.</div>
 </div>
+
+<div class="foot">
+  <div><span class="strong">49 names covered</span> &middot; 41 Buy &middot; 8 Hold<br>Coverage maintained by Ghost Analyst Research &middot; <a href="https://kelemvor75.github.io/ghostanalyst/">kelemvor75.github.io</a></div>
+  <div class="foot-disc">For informational purposes only. Not investment advice or a recommendation to buy or sell any security. The author may hold positions in securities mentioned.</div>
+</div>
+
+</div>
+<script>
+const DATA = [{"ticker":"SNDK","name":"SanDisk Corporation","href":"SNDK_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":92,"rating":"STRONG BUY","target":"$877","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"NVDA","name":"NVIDIA Corporation","href":"NVDA_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":85,"rating":"BUY","target":"$245","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"MU","name":"Micron Technology, Inc.","href":"MU_Ghost_Analyst_Report.html","type":"Pre-Earnings","date":"Jun 22, 2026","conviction":78,"rating":"BUY","target":"$1,400","sector":"AI Semiconductors & Memory","date_iso":"2026-06-22"},{"ticker":"MXL","name":"MaxLinear, Inc.","href":"MXL_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 22, 2026","conviction":51,"rating":"HOLD","target":"$75","sector":"AI Semiconductors & Memory","date_iso":"2026-06-22"},{"ticker":"TSM","name":"Taiwan Semiconductor Mfg.","href":"TSM_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":83,"rating":"BUY","target":"$410","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"ASML","name":"ASML Holding N.V.","href":"ASML_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":79,"rating":"BUY","target":"$1,500","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"AMD","name":"Advanced Micro Devices","href":"AMD_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":78,"rating":"BUY","target":"$269","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"MRVL","name":"Marvell Technology, Inc.","href":"MRVL_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":76,"rating":"BUY","target":"$135","sector":"AI Semiconductors & Memory","date_iso":"2026-04-02"},{"ticker":"INTC","name":"Intel Corporation","href":"INTC_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 22, 2026","conviction":50,"rating":"HOLD","target":"$55","sector":"AI Semiconductors & Memory","date_iso":"2026-04-22"},{"ticker":"ICHR","name":"Ichor Holdings, Ltd.","href":"ICHR_Ghost_Analyst_Report.html","type":"Initiation","date":"May 22, 2026","conviction":76,"rating":"BUY","target":"$80","sector":"AI Semiconductors & Memory","date_iso":"2026-05-22"},{"ticker":"AMKR","name":"Amkor Technology, Inc.","href":"AMKR_Ghost_Analyst_Report.html","type":"Initiation","date":"May 22, 2026","conviction":68,"rating":"BUY","target":"$85","sector":"AI Semiconductors & Memory","date_iso":"2026-05-22"},{"ticker":"PENG","name":"Penguin Solutions, Inc.","href":"PENG_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 22, 2026","conviction":52,"rating":"HOLD","target":"$60","sector":"AI Semiconductors & Memory","date_iso":"2026-06-22"},{"ticker":"WDC","name":"Western Digital Corp.","href":"WDC_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":77,"rating":"BUY","target":"$306","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"STX","name":"Seagate Technology Holdings","href":"STX_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":82,"rating":"BUY","target":"$500","sector":"AI Semiconductors & Memory","date_iso":"2026-04-01"},{"ticker":"DELL","name":"Dell Technologies Inc.","href":"DELL_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":76,"rating":"BUY","target":"$200","sector":"AI Semiconductors & Memory","date_iso":"2026-04-02"},{"ticker":"META","name":"Meta Platforms, Inc.","href":"META_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":70,"rating":"BUY","target":"$750","sector":"AI Semiconductors & Memory","date_iso":"2026-04-02"},{"ticker":"NFLX","name":"Netflix, Inc.","href":"NFLX_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 22, 2026","conviction":76,"rating":"BUY","target":"$105","sector":"AI Semiconductors & Memory","date_iso":"2026-06-22"},{"ticker":"NOK","name":"Nokia Corporation","href":"NOK_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 22, 2026","conviction":65,"rating":"BUY","target":"$17.50","sector":"AI Semiconductors & Memory","date_iso":"2026-06-22"},{"ticker":"BESIY","name":"BE Semiconductor Industries","href":"BESIY_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 23, 2026","conviction":50,"rating":"HOLD","target":"$340","sector":"AI Semiconductors & Memory","date_iso":"2026-06-23"},{"ticker":"ASMPT","name":"ASMPT Limited (0522.HK)","href":"ASMPT_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 23, 2026","conviction":68,"rating":"BUY","target":"HK$235","sector":"AI Semiconductors & Memory","date_iso":"2026-06-23"},{"ticker":"ADBE","name":"Adobe Inc.","href":"ADBE_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 23, 2026","conviction":62,"rating":"BUY","target":"$255","sector":"AI Semiconductors & Memory","date_iso":"2026-06-23"},{"ticker":"FIG","name":"Figma, Inc.","href":"FIG_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 23, 2026","conviction":44,"rating":"HOLD","target":"$22","sector":"AI Semiconductors & Memory","date_iso":"2026-06-23"},{"ticker":"LLY","name":"Eli Lilly and Company","href":"LLY_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 23, 2026","conviction":70,"rating":"BUY","target":"$1,260","sector":"AI Semiconductors & Memory","date_iso":"2026-06-23"},{"ticker":"ADEA","name":"Adeia Inc.","href":"ADEA_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 26, 2026","conviction":67,"rating":"BUY","target":"$38","sector":"AI Semiconductors & Memory","date_iso":"2026-06-26"},{"ticker":"ON","name":"onsemi (ON Semiconductor)","href":"ON_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 26, 2026","conviction":52,"rating":"HOLD","target":"$118","sector":"AI Semiconductors & Memory","date_iso":"2026-06-26"},{"ticker":"QCOM","name":"QUALCOMM Incorporated","href":"QCOM_Ghost_Analyst_Report.html","type":"Initiation","date":"Jun 26, 2026","conviction":65,"rating":"BUY","target":"$215","sector":"AI Semiconductors & Memory","date_iso":"2026-06-26"},{"ticker":"LITE","name":"Lumentum Holdings Inc.","href":"LITE_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":90,"rating":"BUY","target":"$750","sector":"AI Networking & Photonics","date_iso":"2026-04-01"},{"ticker":"CIEN","name":"Ciena Corporation","href":"CIEN_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":88,"rating":"BUY","target":"$435","sector":"AI Networking & Photonics","date_iso":"2026-04-01"},{"ticker":"COHR","name":"Coherent Corp.","href":"COHR_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":82,"rating":"BUY","target":"$297","sector":"AI Networking & Photonics","date_iso":"2026-04-01"},{"ticker":"TTMI","name":"TTM Technologies, Inc.","href":"TTMI_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":76,"rating":"BUY","target":"$120","sector":"AI Networking & Photonics","date_iso":"2026-04-01"},{"ticker":"CRDO","name":"Credo Technology Group","href":"CRDO_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":84,"rating":"BUY","target":"$160","sector":"AI Networking & Photonics","date_iso":"2026-04-02"},{"ticker":"ANET","name":"Arista Networks, Inc.","href":"ANET_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":74,"rating":"BUY","target":"$180","sector":"AI Networking & Photonics","date_iso":"2026-04-02"},{"ticker":"CLS","name":"Celestica Inc.","href":"CLS_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":80,"rating":"BUY","target":"$370","sector":"Data Center Infrastructure","date_iso":"2026-04-01"},{"ticker":"VRT","name":"Vertiv Holdings Co","href":"VRT_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":80,"rating":"BUY","target":"$290","sector":"Data Center Infrastructure","date_iso":"2026-04-01"},{"ticker":"FIX","name":"Comfort Systems USA","href":"FIX_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":78,"rating":"BUY","target":"$1,550","sector":"Data Center Infrastructure","date_iso":"2026-04-01"},{"ticker":"STRL","name":"Sterling Infrastructure","href":"STRL_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":77,"rating":"BUY","target":"$450","sector":"Data Center Infrastructure","date_iso":"2026-04-01"},{"ticker":"MOD","name":"Modine Manufacturing Co.","href":"MOD_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":82,"rating":"BUY","target":"$265","sector":"Data Center Infrastructure","date_iso":"2026-04-02"},{"ticker":"VICR","name":"Vicor Corporation","href":"VICR_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":80,"rating":"BUY","target":"$190","sector":"Data Center Infrastructure","date_iso":"2026-04-02"},{"ticker":"Q","name":"Qnity Electronics, Inc.","href":"Q_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":74,"rating":"BUY","target":"$140","sector":"Data Center Infrastructure","date_iso":"2026-04-01"},{"ticker":"NOW","name":"ServiceNow, Inc.","href":"NOW_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 12, 2026","conviction":55,"rating":"HOLD","target":"$105","sector":"Data Center Infrastructure","date_iso":"2026-04-12"},{"ticker":"VST","name":"Vistra Corp.","href":"VST_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":78,"rating":"BUY","target":"$230","sector":"Energy & Nuclear Power","date_iso":"2026-04-01"},{"ticker":"CEG","name":"Constellation Energy","href":"CEG_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":76,"rating":"BUY","target":"$400","sector":"Energy & Nuclear Power","date_iso":"2026-04-01"},{"ticker":"GEV","name":"GE Vernova Inc.","href":"GEV_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":75,"rating":"BUY","target":"$900","sector":"Energy & Nuclear Power","date_iso":"2026-04-01"},{"ticker":"SEDG","name":"SolarEdge Technologies","href":"SEDG_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 2, 2026","conviction":78,"rating":"BUY","target":"$65","sector":"Energy & Nuclear Power","date_iso":"2026-04-02"},{"ticker":"CCJ","name":"Cameco Corporation","href":"CCJ_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":72,"rating":"BUY","target":"$127","sector":"Energy & Nuclear Power","date_iso":"2026-04-01"},{"ticker":"ATI","name":"ATI Inc.","href":"ATI_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":76,"rating":"BUY","target":"$177","sector":"Defense & Aerospace","date_iso":"2026-04-01"},{"ticker":"RKLB","name":"Rocket Lab USA, Inc.","href":"RKLB_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":75,"rating":"BUY","target":"$95","sector":"Defense & Aerospace","date_iso":"2026-04-01"},{"ticker":"CSTM","name":"Constellium SE","href":"CSTM_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":72,"rating":"BUY","target":"$35","sector":"Defense & Aerospace","date_iso":"2026-04-01"},{"ticker":"TSLA","name":"Tesla, Inc.","href":"TSLA_Ghost_Analyst_Report.html","type":"Initiation","date":"Apr 1, 2026","conviction":null,"rating":"HOLD","target":"$305","sector":"Coverage Under Review","date_iso":"2026-04-01"}];
+const MONTHS={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+function parseDate(s){const m=s.match(/(\w{3}) (\d+), (\d{4})/);return m?new Date(+m[3],MONTHS[m[1]],+m[2]).getTime():0;}
+function parseTarget(t){const m=(t||'').replace(/[,$]/g,'').match(/[\d.]+/);return m?parseFloat(m[0]):0;}
+const RANK={'STRONG BUY':5,'BUY':4,'HOLD':3,'SELL':2,'STRONG SELL':1,'NOT RATED':0};
+DATA.forEach(d=>{d._date=parseDate(d.date);d._target=parseTarget(d.target);d._rank=RANK[d.rating]??0;d._conv=d.conviction||0;});
+
+/* ticker tape — sorted by newest, each item ticker+dot+target, doubled for seamless loop */
+(function(){
+  const items=[...DATA].sort((a,b)=>b._date-a._date);
+  const dotClass=r=>r.includes('SELL')?'d-sell':r==='HOLD'?'d-hold':'d-buy';
+  const html=items.map(d=>`<span class="tk"><span class="tk-sym">${d.ticker}</span><span class="tk-dot ${dotClass(d.rating)}"></span><span class="tk-tgt">${d.target}</span></span>`).join('');
+  document.getElementById('tape').innerHTML=html+html;
+})();
+
+/* conviction distribution histogram */
+(function(){
+  const buckets=[{lo:0,hi:49,lbl:'<50'},{lo:50,hi:59,lbl:'50s'},{lo:60,hi:69,lbl:'60s'},{lo:70,hi:79,lbl:'70s'},{lo:80,hi:89,lbl:'80s'},{lo:90,hi:200,lbl:'90+'}];
+  const counts=buckets.map(b=>DATA.filter(d=>d._conv>=b.lo&&d._conv<=b.hi&&d._conv>0).length);
+  const max=Math.max(...counts,1);
+  const color=mid=>mid<50?'#F87171':mid<60?'#FBBF24':mid<80?'#34D399':'#10B981';
+  document.getElementById('dist-n').textContent=DATA.filter(d=>d._conv>0).length+' names';
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.getElementById('dist').innerHTML=buckets.map((b,i)=>{
+    const mid=(b.lo+Math.min(b.hi,100))/2;const h=Math.round(counts[i]/max*100);
+    return `<div class="dist-col"><span class="dist-ct">${counts[i]}</span><div class="dist-bar" style="background:${color(mid)};height:${reduce?h:0}%" data-h="${h}"></div><span class="dist-lbl">${b.lbl}</span></div>`;
+  }).join('');
+  if(!reduce){requestAnimationFrame(()=>setTimeout(()=>{document.querySelectorAll('.dist-bar').forEach(el=>el.style.height=el.dataset.h+'%');},60));}
+})();
+
+/* count-up stats */
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('.hm .v[data-to]').forEach(el=>{
+    const to=+el.dataset.to;const dec=+(el.dataset.dec||0);
+    const fmt=v=>dec?(v/100).toFixed(dec):Math.round(v).toString();
+    if(reduce){el.textContent=fmt(to);return;}
+    const dur=900,t0=performance.now();
+    function tick(t){const p=Math.min((t-t0)/dur,1);const e=1-Math.pow(1-p,3);el.textContent=fmt(to*e);if(p<1)requestAnimationFrame(tick);}
+    requestAnimationFrame(tick);
+  });
+})();
+
+/* sector chips */
+const sectors=[...new Set(DATA.map(d=>d.sector))];
+const sectorCounts={};DATA.forEach(d=>sectorCounts[d.sector]=(sectorCounts[d.sector]||0)+1);
+let activeSector='all';
+const chipsEl=document.getElementById('chips');
+function renderChips(){
+  chipsEl.innerHTML='';
+  const mk=(label,val,count)=>{const b=document.createElement('button');b.className='chip'+(activeSector===val?' active':'');b.innerHTML=label+' <span class="ct">'+count+'</span>';b.onclick=()=>{activeSector=val;renderChips();render();};return b;};
+  chipsEl.appendChild(mk('All Sectors','all',DATA.length));
+  sectors.forEach(s=>chipsEl.appendChild(mk(s,s,sectorCounts[s])));
+}
+const badgeClass=r=>({'STRONG BUY':'b-strongbuy','BUY':'b-buy','HOLD':'b-hold','SELL':'b-sell','STRONG SELL':'b-sell'}[r]||'b-na');
+const badgeText=r=>r==='NOT RATED'?'NR':r;
+function convColor(c){if(c>=80)return'#15803D';if(c>=65)return'var(--green)';if(c>=50)return'var(--yellow)';return'var(--red)';}
+
+let sortKey='date',sortDir='desc';
+const sortSel=document.getElementById('sortby');
+sortSel.onchange=e=>{const map={'date':['date','desc'],'date-asc':['date','asc'],'conv':['conv','desc'],'conv-asc':['conv','asc'],'ticker':['ticker','asc'],'rating':['rating','desc']};[sortKey,sortDir]=map[e.target.value];render();};
+document.querySelectorAll('.thead .sortable').forEach(h=>{h.onclick=()=>{const k=h.dataset.sort;if(sortKey===k){sortDir=sortDir==='desc'?'asc':'desc';}else{sortKey=k;sortDir=(k==='ticker')?'asc':'desc';}const rev={'date|desc':'date','date|asc':'date-asc','conv|desc':'conv','conv|asc':'conv-asc','ticker|asc':'ticker','rating|desc':'rating'};sortSel.value=rev[sortKey+'|'+sortDir]||sortSel.value;render();};});
+document.getElementById('search').oninput=render;
+document.getElementById('ratingfilter').onchange=render;
+const ctrlEl=document.getElementById('controls');
+window.addEventListener('scroll',()=>{ctrlEl.classList.toggle('stuck',ctrlEl.getBoundingClientRect().top<=0);},{passive:true});
+
+function render(){
+  const q=document.getElementById('search').value.trim().toUpperCase();
+  const rf=document.getElementById('ratingfilter').value;
+  let rows=DATA.filter(d=>{if(activeSector!=='all'&&d.sector!==activeSector)return false;if(rf!=='all'&&d.rating!==rf)return false;if(q&&!(d.ticker.toUpperCase().includes(q)||d.name.toUpperCase().includes(q)))return false;return true;});
+  const dir=sortDir==='asc'?1:-1;
+  const keyf={date:d=>d._date,conv:d=>d._conv,ticker:d=>d.ticker,target:d=>d._target,rating:d=>d._rank}[sortKey];
+  rows.sort((a,b)=>{let av=keyf(a),bv=keyf(b);if(typeof av==='string')return av.localeCompare(bv)*dir;return (av-bv)*dir;});
+  document.querySelectorAll('.thead .sortable').forEach(h=>{const on=h.dataset.sort===sortKey;h.classList.toggle('act',on);const ar=h.querySelector('.arrow');if(ar)ar.textContent=sortDir==='asc'?'\u25B2':'\u25BC';});
+  document.getElementById('empty').style.display=rows.length?'none':'block';
+  document.getElementById('rows').innerHTML=rows.map((d,i)=>`
+    <a class="row" href="${d.href}">
+      <div class="r-rank">${String(i+1).padStart(2,'0')}</div>
+      <div class="r-name"><span class="r-ticker">${d.ticker}</span><span class="r-company">${d.name}</span><span class="r-sector hide-sm">${d.sector}</span></div>
+      <div class="r-meta-wrap hide-sm"><div class="r-date-cell"><span class="r-date">${d.date}</span><span class="r-type">${d.type}</span></div></div>
+      <div class="conv"><span class="conv-num" style="color:${convColor(d._conv)}">${d.conviction||'\u2014'}</span><span class="conv-bar"><span class="conv-fill" style="width:${d._conv}%;background:${convColor(d._conv)}"></span></span></div>
+      <div style="display:flex;justify-content:center"><span class="badge ${badgeClass(d.rating)}">${badgeText(d.rating)}</span></div>
+      <div class="r-target">${d.target}</div>
+    </a>`).join('');
+}
+renderChips();render();
+</script>
 </body>
 </html>
