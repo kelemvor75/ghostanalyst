@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Ghost Analyst Crypto Week Ahead, Sep 28 - Oct 2, 2026: bitcoin as a two-times Nasdaq, measured beta to QQQ and TLT, IBIT dealer levels translated to BTC, decoded ETF and options flow, and the catalyst calendar.">
+<meta property="og:title" content="Ghost Analyst Crypto Week Ahead: bitcoin is trading as a two-times Nasdaq">
+<meta property="og:description" content="BTC and crypto positioning for Sep 28 - Oct 2, 2026. Data as of Sep 26.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z' fill='%238ab4ff'/%3E%3Ccircle cx='12.4' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3Ccircle cx='19.6' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3C/svg%3E">
+<title>Ghost Analyst Crypto Week Ahead</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --page: #0c0f15; --surface: #151a23; --raised: #1a2029; --raised-2: #202836;
+    --ink: #eaedf3; --ink-2: #aab2c2; --muted: #7e8797;
+    --hair: #263040; --hair-2: #34405a;
+    --accent: #8ab4ff; --accent-2: #5e8ff0; --accent-ink: #0c0f15;
+    --tint: rgba(138,180,255,0.10); --tint-2: rgba(138,180,255,0.18);
+    --glow: rgba(94,143,240,0.22); --dot: rgba(255,255,255,0.045);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --neg: #e66767; --pos: #3987e5;
+    --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --grid: #232a37; --axis: #3a4457;
+    --negbg: rgba(230,103,103,0.16); --posbg: rgba(57,135,229,0.20);
+    --shadow-card: 0 12px 32px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.04) inset;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+      --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+      --hair: #dfe3ea; --hair-2: #c9cfda;
+      --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+      --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+      --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+      --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+      --neg: #e34948; --pos: #2a78d6;
+      --grid: #e6e8ee; --axis: #c3c7d1;
+      --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+      --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+    --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+    --hair: #dfe3ea; --hair-2: #c9cfda;
+    --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+    --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+    --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+    --neg: #e34948; --pos: #2a78d6;
+    --grid: #e6e8ee; --axis: #c3c7d1;
+    --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+    --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; position: relative; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(900px 520px at 12% -6%, var(--glow), transparent 65%), radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: auto, 22px 22px; background-color: var(--page); }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding-block: 0 56px; padding-inline: 20px; }
+  @media (min-width: 720px) { .wrap { padding-inline: 32px; } }
+
+  /* masthead */
+  .mast { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 16px 14px; border-bottom: 1px solid var(--hair); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { width: 28px; height: 28px; flex: none; filter: drop-shadow(0 0 10px var(--glow)); }
+  .brand .w { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); line-height: 1.2; }
+  .brand .w small { display: block; font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); }
+  .mast-right { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .live { display: inline-flex; align-items: center; gap: 7px; }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(12,163,12,0.18); }
+  .theme-btn { font: 500 12px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: 40px 8px; max-width: 860px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--accent); transform: rotate(45deg); }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.02; letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .dek { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 18px; text-wrap: pretty; }
+  .signals { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+  .sig { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px 6px 10px; font-size: 13px; }
+  .sig i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .sig b { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* the call */
+  .call { margin-top: 26px; position: relative; border-radius: 14px; padding: 22px 24px 10px;
+    background: linear-gradient(var(--raised), var(--surface)) padding-box, linear-gradient(135deg, var(--accent-2), var(--hair) 55%, var(--hair)) border-box; border: 1px solid transparent; box-shadow: var(--shadow-card); }
+  .call .eyebrow { margin-bottom: 10px; }
+  .call ol { margin: 0; padding: 0; list-style: none; max-width: 80ch; counter-reset: call; }
+  .call ol li { counter-increment: call; position: relative; padding-left: 40px; margin-bottom: 12px; }
+  .call ol li::before { content: counter(call); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 500 13px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+
+  /* tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+  @media (min-width: 620px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 940px) { .tiles { grid-template-columns: repeat(6, 1fr); } }
+  .tile { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px 10px; min-width: 0; box-shadow: var(--shadow-card); }
+  .tile .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 6px; }
+  .tile .val { font-size: 24px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+  .tile .chg { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .tile .spark { display: block; width: 100%; height: 34px; margin: 6px 0 4px; }
+  .tile .bar { position: relative; height: 6px; border-radius: 3px; background: var(--hair); margin: 16px 0 12px; }
+  .tile .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--accent-2); }
+  .tile .bar em { position: absolute; top: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--hair-2); }
+  .tile .sub { font-size: 12px; color: var(--ink-2); }
+
+  /* sections */
+  section { padding-block: 34px 6px; position: relative; }
+  section + section::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--accent-2), var(--hair) 45%, var(--hair)); opacity: 0.7; }
+  .sh { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin-bottom: 16px; }
+  .sh .idx { font-family: var(--font-display); font-size: 54px; line-height: 0.9; color: var(--accent); opacity: 0.28; font-weight: 500; padding-top: 4px; }
+  .sh .eyebrow { margin-bottom: 6px; }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.1vw, 32px); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h3 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
+  h3::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  p { max-width: 68ch; margin: 0 0 10px; }
+  ul.tight { padding-left: 18px; margin: 0 0 10px; max-width: 74ch; }
+  ul.tight li { margin-bottom: 7px; } ul.tight li::marker { color: var(--accent); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tk { font-family: var(--font-mono); font-weight: 500; }
+  .up { color: var(--s3); } .dn { color: var(--neg); }
+  .small { font-size: 13px; color: var(--muted); }
+
+  /* cards & figures */
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 860px) { .grid2 { grid-template-columns: 1fr 1fr; } .grid2 .span2 { grid-column: 1 / -1; } }
+  .card { background: linear-gradient(180deg, var(--raised), var(--surface) 120px); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; min-width: 0; box-shadow: var(--shadow-card); }
+  .card h4 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+  .card .cap { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+  .chart-box { position: relative; width: 100%; } .chart-box canvas { width: 100% !important; }
+  .take { margin: 12px 0 0; font-size: 14px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+  .take b { flex: none; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--tint); border: 1px solid var(--tint-2); border-radius: 999px; padding: 2px 8px; margin-top: 2px; }
+  .read { margin-top: 12px; border: 1px solid var(--tint-2); background: var(--tint); border-radius: 10px; padding: 12px 14px 12px 44px; font-size: 13.5px; color: var(--ink-2); position: relative; }
+  .read::before { content: "?"; position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 600 12px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+  .read b.k { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .read p { margin: 0 0 6px; max-width: none; } .read p:last-child { margin-bottom: 0; }
+  .read i { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  details.tbl { margin-top: 8px; }
+  details.tbl summary { cursor: pointer; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); list-style: none; padding: 4px 0; }
+  details.tbl summary::before { content: "▸ "; color: var(--accent); } details.tbl[open] summary::before { content: "▾ "; }
+  details.tbl summary::-webkit-details-marker { display: none; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; background: var(--raised-2); }
+  th:first-child { border-radius: 8px 0 0 8px; } th:last-child { border-radius: 0 8px 8px 0; }
+  td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--tint); }
+  .tblcard { background: var(--surface); border: 1px solid var(--hair); border-radius: 14px; padding: 6px 6px; box-shadow: var(--shadow-card); }
+  td.heat { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 500; }
+  td.heat.p { background: var(--posbg); } td.heat.n { background: var(--negbg); }
+
+  /* ladder */
+  .ladder { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px 12px; box-shadow: var(--shadow-card); }
+  .ladder .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; margin-bottom: 2px; }
+  .ladder .head .t { font-family: var(--font-mono); font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .ladder .head .p { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+  .regime { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--good); color: var(--good); background: rgba(12,163,12,0.10); }
+  .regime::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+  .track { position: relative; height: 116px; margin: 8px 10px 0; }
+  .track .rail { position: absolute; left: 0; right: 0; top: 40px; height: 2px; background: var(--axis); border-radius: 2px; }
+  .track .band { position: absolute; top: 34px; height: 14px; border-radius: 4px; background: linear-gradient(90deg, rgba(217,89,38,0.22), rgba(57,135,229,0.26)); }
+  .spot { position: absolute; top: 8px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .spot .slab { font-family: var(--font-mono); font-size: 11px; color: var(--ink); white-space: nowrap; margin-bottom: 3px; background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 1px 8px; }
+  .spot .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 9px solid var(--ink); filter: drop-shadow(0 0 6px var(--accent)); }
+  .lv { position: absolute; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .lv .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--s1); border: 2px solid var(--surface); margin-top: -4.5px; flex: none; box-shadow: 0 0 0 1px var(--s1); }
+  .lv .tick { width: 1px; height: 8px; background: var(--hair-2); } .lv.row2 .tick { height: 34px; }
+  .lv .lab { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .lv .v { font-family: var(--font-mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  .lv.flip .dot { background: var(--s2); box-shadow: 0 0 0 1px var(--s2); } .lv.magnet .dot { background: var(--s3); box-shadow: 0 0 0 1px var(--s3); }
+  .legend-inline { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin: 8px 0 2px; }
+  .legend-inline span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--s1); }
+  .legend-inline .lf::before { background: var(--s2); } .legend-inline .lm::before { background: var(--s3); }
+  .legend-inline .ls::before { background: var(--ink); border-radius: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+  /* risk ranking */
+  .rank { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+  .rank li { display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start; background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-left: 4px solid var(--sev, var(--hair-2)); border-radius: 12px; padding: 11px 14px; font-size: 14px; box-shadow: var(--shadow-card); }
+  .rank .n { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--sev, var(--accent)); line-height: 1; padding-top: 2px; }
+  .rank .t { font-weight: 600; } .rank .d { color: var(--ink-2); }
+  .rank .sev { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sev); border: 1px solid var(--sev); border-radius: 999px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; }
+  .rank li.critical { --sev: var(--critical); } .rank li.serious { --sev: var(--serious); } .rank li.warn { --sev: var(--warn); } .rank li.low { --sev: var(--good); }
+  @media (max-width: 560px) { .rank li { grid-template-columns: 30px 1fr; } .rank .sev { grid-column: 2; justify-self: start; } }
+
+  /* tiers */
+  .two { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .two { grid-template-columns: 1fr 1fr; } }
+  .tier { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-card); border-top: 3px solid var(--s3); }
+  .tier.b { border-top-color: var(--s2); }
+  .tier h4 { margin: 0 0 4px; font-size: 15px; }
+  .tier .why { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+  .tier ul { margin: 0; padding-left: 16px; font-size: 14px; color: var(--ink-2); } .tier li { margin-bottom: 5px; }
+
+  /* scenarios */
+  .scen { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 860px) { .scen { grid-template-columns: 1fr 1fr 1fr; } }
+  .sc { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; box-shadow: var(--shadow-card); --c: var(--s1); }
+  .sc.bear { --c: var(--critical); } .sc.bull { --c: var(--good); }
+  .sc .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .sc .pr { font-size: 32px; font-weight: 600; line-height: 1; color: var(--c); }
+  .sc .gl { font-family: var(--font-mono); font-size: 22px; color: var(--c); opacity: 0.8; }
+  .sc .nm { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 4px 0 8px; }
+  .sc .pbar { height: 5px; border-radius: 3px; background: var(--hair); margin: 0 0 12px; overflow: hidden; }
+  .sc .pbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+  .sc p { font-size: 14px; color: var(--ink-2); margin: 0 0 6px; } .sc p b { color: var(--ink); font-weight: 500; }
+
+  /* calendar */
+  .imp { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 0; background: var(--hair-2); }
+  .imp.h { background: var(--critical); box-shadow: 0 0 0 3px rgba(208,59,59,0.18); } .imp.m { background: var(--warn); }
+  .cal td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--muted); }
+  .cal th:last-child, .cal td:last-child { width: 40%; color: var(--ink-2); }
+
+  .gloss dt { font-family: var(--font-mono); font-weight: 500; font-size: 13px; margin-top: 10px; color: var(--accent); }
+  .gloss dd { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); max-width: 72ch; }
+  .foot { border-top: 1px solid var(--hair); margin-top: 36px; padding-top: 18px; font-size: 13px; color: var(--muted); }
+  .foot ul { padding-left: 18px; margin: 8px 0; } .foot li { margin-bottom: 4px; }
+  .foot .sig-off { display: flex; align-items: center; gap: 10px; margin-top: 16px; color: var(--ink-2); }
+  .foot .sig-off svg { width: 22px; height: 22px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  @media (max-width: 520px) { #tBeta th, #tBeta td { padding: 8px 5px; font-size: 12.5px; } #tBeta th:first-child, #tBeta td:first-child { padding-left: 0; } }
+</style>
+<style>img{max-width:100%} [hidden]{display:none!important} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ghost" viewBox="0 0 32 32"><path d="M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z" fill="currentColor"/><circle cx="12.4" cy="14.2" r="1.9" fill="var(--page)"/><circle cx="19.6" cy="14.2" r="1.9" fill="var(--page)"/></symbol></svg>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><svg style="color:var(--accent)"><use href="#ghost"/></svg><div class="w">Ghost Analyst<small>Research · Crypto Week Ahead</small></div></div>
+    <div class="mast-right"><span class="live">Data: Sat Sep 26, 2026, 17:30 ET</span><button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">Theme</button></div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Sep 28 – Oct 2, 2026 · bitcoin &amp; crypto positioning</p>
+    <h1>Bitcoin is trading as a <em>two-times Nasdaq</em></h1>
+    <p class="dek">BTC is +44% off the July low with $2.4B of ETF inflows this week, the largest since October. But since the September rate shock its correlation to QQQ has jumped to 0.72 with a beta of 2.0. For the next two weeks, PCE and payrolls will move bitcoin more than anything crypto-native.</p>
+    <div class="signals">
+      <span class="sig"><i style="background:var(--good)"></i><b>Trend</b> Above 50 &amp; 200-day, 3% under the Sep 21 high</span>
+      <span class="sig"><i style="background:var(--warn)"></i><b>Flows</b> +$2.4B week, fading every day</span>
+      <span class="sig"><i style="background:var(--critical)"></i><b>Macro</b> Beta 2.0 to QQQ, 1.5 to TLT</span>
+      <span class="sig"><i style="background:var(--s1)"></i><b>Vol</b> Implied 33% vs realized 43%: cheap</span>
+    </div>
+    <p class="meta">Sources: Massive/Polygon · Unusual Whales · FMP · MT Newswires · The Block · linked reporting</p>
+  </div>
+
+  <div class="call">
+    <p class="eyebrow">The call</p>
+    <ol>
+      <li><b>Trade it as a rates/Nasdaq instrument this week.</b> Over the last 21 sessions BTC moves 2.0× QQQ (correlation 0.72) and 1.5× TLT, up from 0.6× and 1.0× over the summer. Wednesday's core PCE and Friday's payrolls are the catalysts; a hot print hits BTC roughly twice as hard as the Nasdaq. Dealer levels on IBIT translate to <span class="num">$82.6K</span> (gamma flip), <span class="num">$84.1K</span> (put wall) and <span class="num">$85.0K</span> (call wall) on BTC.</li>
+      <li><b>Flows are strong but decelerating.</b> Spot ETFs took $999M Monday, $135M Friday. Both legs of the rally were short squeezes ($2.7B on Aug 19, $500M on Sep 18), so this is positioning-driven, not yet accumulation-driven. Two negative flow days in a row with BTC under <span class="num">$82.6K</span> is the signal the squeeze is over.</li>
+      <li><b>Options say cautious now, bullish later.</b> IBIT holders sold October calls and bought November puts while selling 2027–2029 puts and buying 2027 calls at $99K–$115K BTC-equivalent. Implied vol (33%) sits ten points under realized (43%), so protection and upside are both cheap. Overhang: Mt. Gox's Oct 31 distribution deadline and CLARITY effectively dead for 2026.</li>
+    </ol>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <!-- 01 -->
+  <section>
+    <div class="sh"><span class="idx">01</span><div><p class="eyebrow">What's driving it</p><h2>A rates trade wearing a bitcoin costume</h2></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h4>Quarter to date, indexed to Jun 30 = 100</h4>
+        <p class="cap">Daily closes on equity trading days · BTC and ETH from Massive/Polygon crypto aggregates, QQQ and TLT adjusted.</p>
+        <div class="chart-box" style="height:280px"><canvas id="cIdx"></canvas></div>
+        <p class="take"><b>Read</b><span>Two gaps made the quarter: Aug 19–21 (White House crypto summit, SEC's "Regulation Crypto Assets" proposal, a record $2.7B short squeeze) and Sep 18–21 ($433M of ETF inflows in a day, $500M of shorts liquidated). Between the gaps BTC drifted with QQQ.</span></p>
+      </div>
+      <div class="card">
+        <h4>Beta and correlation to QQQ and TLT</h4>
+        <p class="cap">Daily returns, equity calendar · 60 sessions (Jun 26 – Sep 25) vs the last 21 (Aug 27 – Sep 25).</p>
+        <div class="scroll"><table id="tBeta"></table></div>
+        <p class="take"><b>Read</b><span>The summer BTC was its own asset (0.3 correlation to the Nasdaq). Since the rate shock it is the highest-beta expression of the same trade that runs semis: same driver, twice the amplitude. ETH is the same with more volatility.</span></p>
+        <div class="read"><b class="k">How to read it</b><p><i>Beta 2.0</i> means: on a day QQQ falls 1%, BTC has tended to fall 2%. <i>Correlation 0.72</i> means that relationship held on most days, not just the big ones. When correlation is this high, crypto-native news (ETF approvals, a bill, a treasury purchase) mostly changes the level for a day; the macro tape sets the direction. That is also why the crypto equities (MSTR, COIN, miners) fell 2–4% on Friday while BTC was flat: they carry the rates beta on top of the BTC beta.</p></div>
+      </div>
+    </div>
+    <ul class="tight" style="margin-top:16px; font-size:14px">
+      <li><b>Levels (BTC):</b> Sep 21 high <span class="num">$87.4K</span> intraday; 50-day <span class="num">$75.3K</span>; 200-day <span class="num">$70.9K</span>; Sep 15 low <span class="num">$74.9K</span> (the CLARITY failure); Aug 19 breakout base <span class="num">$64.7K</span>. All-time high <span class="num">$126.3K</span> (October 2025): BTC is still −33% from it.</li>
+      <li><b>ETH</b> $2,687, +71% QTD, −46% from its $4,956 high; ETH ETFs took $690M this week. <b>SOL</b> $122, +60% since Aug 10, at a six-week high; the Solana DEX tape dominates the whale feed, which is where retail speculation has moved.</li>
+      <li><b>Policy:</b> the Senate cloture vote on the CLARITY Act failed 50–49 on Sep 15; near-term progress runs through SEC and CFTC rulemaking, not Congress. That removes the year's biggest scheduled catalyst and hands the calendar back to macro.</li>
+    </ul>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <div class="sh"><span class="idx">02</span><div><p class="eyebrow">Flows and positioning</p><h2>Squeeze fuel is running low; the options book is hedged and patient</h2></div></div>
+
+    <div class="ladder">
+      <div class="head"><span class="t">IBIT <span class="regime">at the put wall · positive gamma</span></span><span class="p">IBIT 47.57 · BTC $84.2K · flip 1.9% below · call wall +0.9%</span></div>
+      <div class="legend-inline"><span>put / call wall</span><span class="lf">gamma flip</span><span class="lm">magnet</span><span class="ls">spot</span></div>
+      <div class="track" id="ibitTrack"></div>
+      <p class="take" style="margin-top:4px"><b>Read</b><span>Spot sits between the 47.5 put wall and the 48 magnet/call wall (BTC $84.1K–$85.0K). Above 46.7 (BTC $82.6K) dealers dampen moves; below it the next flips stack down to 44.6 (BTC $78.9K), which is the air pocket. 48 caps the bounce until call open interest rolls up.</span></p>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h4>Implied moves (IBIT, translated to BTC)</h4>
+        <p class="cap">± move priced by at-the-money IBIT options · Unusual Whales term structure, Sep 25 · BTC equivalents at $84.2K.</p>
+        <div class="scroll"><table id="tMoves"></table></div>
+        <div class="read"><b class="k">How to read it</b><p>The implied move is roughly the straddle: the one-standard-deviation range the market expects by that date. IBIT prices ±3.1% for a week that contains PCE and payrolls, with implied vol at 33% against 43% realized over the last three weeks. When implied is below realized, buying options is cheap relative to how much the asset has actually been moving; that is unusual for bitcoin, which normally trades rich.</p></div>
+      </div>
+      <div class="card">
+        <h4>Spot ETF flows this week</h4>
+        <p class="cap">Net daily flow, all U.S. spot bitcoin ETFs, $M · The Block / Farside.</p>
+        <div class="chart-box" style="height:200px"><canvas id="cFlows"></canvas></div>
+        <p class="take"><b>Read</b><span>$2.4B for the week (IBIT $1.2B, FBTC $702M, ARKB $295M), the biggest since October, and it flipped the year to positive (+$934M YTD, $108B AUM). The shape matters more than the total: every day was smaller than the last. Watch the daily print at ~4pm ET; the inflow run is seven sessions old, and two negatives in a row would be the first since Sep 15–16 (−$450M, −$296M).</span></p>
+      </div>
+    </div>
+
+    <h3>Flow that matters, decoded</h3>
+    <div class="tblcard scroll"><table id="tFlow"></table></div>
+    <div class="read"><b class="k">How to read flow</b>
+      <p><i>Bought vs sold</i> comes from where the print filled: at the ask, the buyer was aggressive; at the bid, the seller was. Selling an in-the-money put (IBIT Jan-27 $52, Dec $50) is a bullish trade: the seller collects premium and is happy to be assigned. Selling a far out-of-the-money put (Jan-29 $39, BTC ~$69K) is income with a bullish lean.</p>
+      <p><i>Near-dated calls sold against long-dated calls bought</i> (IBIT, MSTR) is a holder financing upside: they cap the next few weeks to pay for 2027. It tells you the marginal institution expects chop now and higher later, which is exactly the shape of the ETF flow curve.</p>
+      <p>Convert IBIT strikes to BTC by multiplying by ~1,770 (spot ratio on Sep 26). The 2027 calls bought at $56–$65 map to $99K–$115K; the Jun-27 $70 calls that were <i>sold</i> map to $124K, the prior all-time high.</p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <div class="sh"><span class="idx">03</span><div><p class="eyebrow">Catalysts</p><h2>What moves crypto over the next five weeks</h2></div></div>
+    <div class="tblcard scroll cal"><table id="tCal"></table></div>
+    <p class="small" style="margin-top:8px"><span class="imp h"></span>can move BTC 5%+ &nbsp; <span class="imp m"></span>secondary &nbsp;· The September quarterly futures and options expiries cleared Friday morning, so dealer positioning is fresh for October.</p>
+  </section>
+
+  <!-- 04 -->
+  <section>
+    <div class="sh"><span class="idx">04</span><div><p class="eyebrow">Three paths</p><h2>How the week resolves, and the playbook</h2></div></div>
+    <p class="small" style="margin-bottom:12px">Probabilities are our judgment, not market-implied. Levels come from the dealer-positioning data above.</p>
+    <div class="scen">
+      <div class="sc base"><div class="top"><span class="pr">50%</span><span class="gl">⟷</span></div><div class="nm">Base · chop and digest</div><div class="pbar"><i style="width:50%"></i></div>
+        <p><b>Trigger:</b> in-line PCE and payrolls; ETF flows positive but small.</p>
+        <p><b>Tape:</b> BTC $80–88K, IBIT pinned 47–48; ETH $2,550–2,850. Weekly implied ±$2.6K holds.</p>
+        <p><b>Leaders:</b> SOL and ETH keep beta leadership; MSTR premium stalls.</p></div>
+      <div class="sc bear"><div class="top"><span class="pr">30%</span><span class="gl">↓</span></div><div class="nm">Bear · rates leg two</div><div class="pbar"><i style="width:30%"></i></div>
+        <p><b>Trigger:</b> core PCE ≥0.4% or payrolls &gt;150K; QQQ −2–3%.</p>
+        <p><b>Tape:</b> BTC −5–8% to $78–80K (IBIT flip cluster 44.6), ETF outflows resume; ETH under $2,500.</p>
+        <p><b>Leaders:</b> MSTR, COIN and miners −10–15%; long-dated put sellers get tested.</p></div>
+      <div class="sc bull"><div class="top"><span class="pr">20%</span><span class="gl">↑</span></div><div class="nm">Bull · yields relent</div><div class="pbar"><i style="width:20%"></i></div>
+        <p><b>Trigger:</b> cool PCE or an Iran framework; 10-year back under 5%.</p>
+        <p><b>Tape:</b> BTC clears $87.4K toward $90–92K (the Oct 30 implied ceiling is $90.6K); IBIT through 48.</p>
+        <p><b>Leaders:</b> SOL first, then ETH toward $2,900; MSTR through B. Riley's $195.</p></div>
+    </div>
+    <h3>Playbook</h3>
+    <ul class="tight" style="font-size:14px">
+      <li><b>Size BTC as a 2× Nasdaq position this week.</b> If you hedge, QQQ puts are the cheaper hedge for the macro leg; IBIT puts (IV 33%) for the crypto leg. Owning gamma into Wednesday and Friday is cheap relative to realized.</li>
+      <li><b>Follow the flows, not the headlines.</b> Stay long while daily ETF prints are positive and BTC holds $82.6K; cut on two negative days plus a close under the flip. The squeeze already happened twice; the third leg has to come from real buyers.</li>
+      <li><b>Crypto equities carry double beta.</b> MSTR is 35% above its 50-day and bought 950 BTC on Sep 21; the deep in-the-money call buying says leveraged longs are still adding. That is the crowded seat if rates break higher. COIN's put sellers at $195–200 are your line in the sand for the sector.</li>
+      <li><b>Overhang calendar:</b> Mt. Gox's Oct 31 deadline (~34,700 BTC remaining per the trustee's October 2025 filing) and MSTR/COIN earnings Oct 29 sit right after the Oct 28 FOMC. Roll or trim size into that cluster rather than through it.</li>
+    </ul>
+    <p class="small">For information and education only; not investment advice or a solicitation. Ghost Analyst Research is not a registered investment adviser. Digital assets and options involve substantial risk.</p>
+  </section>
+
+  <footer class="foot">
+    <details class="tbl"><summary>Sources and data notes</summary>
+      <ul>
+        <li>Prices: Massive/Polygon crypto daily aggregates (X:BTCUSD, X:ETHUSD, X:SOLUSD, UTC days) and equity aggregates (QQQ, TLT), Jun 25 – Sep 25; FMP quotes for 52-week ranges and moving averages; Unusual Whales BTC-USD pair state (Sep 26). Betas are OLS slopes of daily returns on the equity calendar; realized vol is annualized from calendar-day BTC returns. Options: Unusual Whales GEX levels (OI source), IV term structure and flow alerts for IBIT, MSTR and COIN (Sep 22–25). ETF flows: The Block. Corporate news: MT Newswires (viaNexus EDGE).</li>
+        <li><a href="https://www.theblock.co/news/markets/2026-09-26-bitcoin-etfs-turn-positive-for-2026-with-2-4-billion-weekly-inflow-their-largest-since-october-416944">The Block: $2.4B weekly inflow</a> · <a href="https://www.investing.com/news/stock-market-news/bitcoin-rallies-above-71k-after-white-house-talks-is-a-new-bull-run-starting-93CH-4869641">Investing.com: Aug 19 White House talks and short squeeze</a> · <a href="https://bitcoinfoundation.org/news/bitcoin/bitcoin-is-back-above-85000-why-is-btc-rallying-despite-the-fed-and-clarity-act/">Bitcoin Foundation: Sep 18–22 rally drivers</a> · <a href="https://natlawreview.com/article/senate-fails-advance-clarity-act">NatLawReview: CLARITY cloture fails 50–49</a> · <a href="https://www.cnbc.com/2026/09/15/senate-cloture-vote-on-clarity-act-fails-dealing-regulatory-setback-to-crypto-industry.html">CNBC: CLARITY vote</a> · <a href="https://www.coindesk.com/markets/2025/10/27/mt-gox-delays-creditor-repayment-to-october-2026">CoinDesk: Mt. Gox deadline Oct 31, 2026</a>.</li>
+      </ul>
+    </details>
+    <div class="sig-off"><svg style="color:var(--accent)"><use href="#ghost"/></svg><span>© 2026 Ghost Analyst Research · kelemvor75.github.io</span></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function () {
+  'use strict';
+  const D = {};
+  D.labels = ["06-30","07-01","07-02","07-06","07-07","07-08","07-09","07-10","07-13","07-14","07-15","07-16","07-17","07-20","07-21","07-22","07-23","07-24","07-27","07-28","07-29","07-30","07-31","08-03","08-04","08-05","08-06","08-07","08-10","08-11","08-12","08-13","08-14","08-17","08-18","08-19","08-20","08-21","08-24","08-25","08-26","08-27","08-28","08-31","09-01","09-02","09-03","09-04","09-08","09-09","09-10","09-11","09-14","09-15","09-16","09-17","09-18","09-21","09-22","09-23","09-24","09-25"];
+  D.btc = [100.0,102.46,105.06,109.36,108.2,106.42,107.95,109.58,106.39,111.05,110.58,108.96,109.18,111.43,113.66,112.92,111.15,109.5,108.83,109.1,109.18,110.59,107.35,108.45,109.45,110.39,109.8,110.88,109.21,108.57,108.35,108.38,107.61,110.18,110.52,118.39,124.76,133.84,134.96,134.18,135.03,137.17,133.0,134.25,132.25,132.09,138.86,136.14,134.04,133.76,130.78,131.93,133.58,129.15,130.11,130.46,138.19,147.97,147.29,144.18,144.19,143.69];
+  D.eth = [100.0,102.43,108.23,114.59,112.84,110.98,111.11,114.42,113.07,120.46,122.13,118.71,117.43,121.29,122.91,123.27,119.59,118.5,120.47,122.33,121.6,122.12,118.55,118.43,119.18,121.53,121.22,122.0,119.24,119.83,119.63,120.08,119.81,121.82,122.13,143.47,148.23,160.3,158.16,155.63,159.73,160.04,155.66,157.2,154.02,152.58,159.76,156.53,158.34,157.22,155.3,160.33,160.27,152.67,153.98,155.82,166.34,176.85,175.43,171.01,171.22,171.49];
+  D.qqq = [100.0,98.48,96.77,98.16,96.34,96.61,98.22,98.52,96.65,97.73,97.47,95.86,94.42,94.52,96.28,95.78,93.97,92.92,92.63,91.73,89.86,92.82,93.43,95.07,98.3,97.41,97.05,98.18,97.89,97.56,98.28,99.41,99.28,99.11,97.43,97.24,96.54,96.88,95.92,96.51,96.6,97.92,97.29,97.33,96.09,96.31,97.46,97.63,97.55,97.27,96.24,97.08,96.3,95.67,95.7,97.35,97.97,100.69,101.5,100.65,100.64,101.1];
+  D.tlt = [100.0,98.96,98.95,98.88,97.84,97.62,97.77,97.74,97.17,97.29,97.48,97.44,97.8,97.07,96.81,96.55,96.24,96.33,96.91,97.48,95.87,95.81,95.17,95.11,95.83,96.04,95.49,95.76,94.95,95.11,95.01,95.57,94.93,94.13,94.49,96.07,95.28,94.94,95.53,96.59,96.39,96.19,95.9,95.49,94.74,94.83,94.97,95.13,95.12,94.57,93.47,93.58,93.65,93.39,93.59,94.63,94.02,94.65,94.6,93.1,91.9,91.78];
+  D.sBtc = [59707,60003,59935,59474,60163,58524,59961,61484,62520,63086,63580,64002,63323,62284,63174,64128,63773,63740,62265,64989,64717,63771,63894,64796,64682,65213,66516,66087,65051,64083,64296,65341,63694,63847,63896,64722,62826,62764,63499,63467,64054,64603,64259,64892,64909,64849,63912,63541,63412,63425,62975,63019,62837,64484,64681,69285,73012,78326,77054,77729,78982,78527,79026,80275,77839,78234,77684,78566,77399,77305,81264,79675,79832,80339,79092,78447,78284,76537,77209,77263,76800,78175,75584,76145,76349,80875,81234,81160,86595,86198,84378,84385,84093];
+  D.sEth = [1568,1576,1572,1569,1611,1569,1608,1699,1756,1779,1784,1798,1771,1742,1744,1796,1787,1806,1775,1891,1917,1863,1843,1862,1871,1904,1929,1935,1877,1860,1873,1953,1891,1920,1908,1917,1861,1843,1883,1859,1870,1907,1902,1915,1915,1909,1871,1881,1878,1885,1880,1881,1874,1912,1917,2252,2326,2516,2422,2464,2482,2443,2507,2512,2443,2458,2417,2467,2417,2395,2507,2457,2481,2514,2493,2485,2468,2437,2516,2525,2476,2515,2396,2417,2445,2611,2632,2644,2776,2753,2684,2687,2691];
+  D.sSol = [76.0,76.2,75.6,76.2,75.3,75.3,74.5,76.0,77.0,85.3,87.6,93.7,93.8,95.4,99.0,96.6,102.1,109.2,104.1,105.6,101.8,103.0,99.9,100.4,103.9,102.0,103.2,106.5,103.8,103.4,101.5,98.6,102.5,101.8,99.2,102.5,96.8,98.6,101.5,112.7,111.0,111.2,118.9,118.6,115.0,117.0,122.1];
+  D.flows = { d: ["Mon 9/21","Tue 9/22","Wed 9/23","Thu 9/24","Fri 9/25"], v: [999.0,714.7,347.0,190.6,134.5] };
+  D.beta = [["BTC","QQQ",0.59,0.31,1.98,0.72],["BTC","TLT",1.03,0.26,1.50,0.34],["ETH","QQQ",0.57,0.22,2.03,0.70],["ETH","TLT",1.93,0.36,1.59,0.35]];
+  D.gex = { spot: 47.57, putWall: 47.5, flip: 46.69, magnet: 48, callWall: 48 };
+  D.moves = [["Thru Fri Oct 2","±3.1%","±$2,600","$81.6K – $86.8K"],["Thru Oct 16","±5.6%","±$4,700","$79.5K – $88.9K"],["Thru Oct 30 (FOMC, expiry)","±7.6%","±$6,400","$77.8K – $90.6K"],["Thru Dec 18","±13.0%","±$10,900","$73.3K – $95.1K"]];
+  D.flow = [
+    ["IBIT","Nov 20 $48 puts","Bought",2.1,"At-the-money protection through November. Near-term caution."],
+    ["IBIT","Oct 16 $47 calls (2 prints)","Sold",1.6,"Overwriting into strength: caps the next three weeks near $84–85K BTC."],
+    ["IBIT","Dec $50 P · Jan-27 $52 P · Jan-29 $39 P","Sold",2.6,"Willing to own it lower, or already bullish: ITM puts sold for Dec/Jan, deep OTM puts sold to 2029 ($69K BTC)."],
+    ["IBIT","Jan-27 $60 C · Jun-27 $56 C · Dec-27 $65 C","Bought",2.2,"Upside bought 9–15 months out at $99K–$115K BTC equivalent; Jun-27 $70 C ($124K, the old high) sold against."],
+    ["MSTR","Oct 9 $144 calls, deep ITM (3 prints) · Jan-28 $300 calls","Bought",3.6,"Stock-replacement longs plus a 2028 moonshot; Oct 16 $175–180 calls sold against. Leveraged longs still adding."],
+    ["COIN","Nov $195 P, Jun-27 $200 P sold · Nov $190 P, Jun-27 $160 P bought","Sold / Bought",4.9,"Supported near $195–200, insured for a crash to $160. Insiders sold $9.4M this week; earnings Oct 29."]
+  ];
+  D.cal = [
+    ["Wed Sep 30, 8:30","PCE (Aug): core est +0.3% m/m","h","BTC's beta to QQQ is 2.0: a hot print is worth roughly −4–6% on BTC, a cool one +4–6%."],
+    ["Wed Sep 30","Quarter-end","m","BTC +44% on the quarter; rebalancing sells the winners. Watch the 4pm ET ETF print."],
+    ["Daily ~4pm","Spot ETF flows (Farside / The Block)","h","The tell. Two negative days in a row would be the first since Sep 15–16."],
+    ["Fri Oct 2, 8:30","Payrolls (est +100K)","h","Weak = yields ease = BTC bid; strong = the opposite, twice the size."],
+    ["Oct 7","FOMC minutes; 10-year auction","m","Rates plumbing; matters through the QQQ link."],
+    ["Oct 14","CPI (Sep)","h","Core is the swing; headline will be hot on energy."],
+    ["Oct 28","FOMC (~70% hike priced)","h","IBIT implies ±7.6% through the Oct 30 expiry."],
+    ["Oct 29","MSTR and COIN earnings","m","The levered-beta names report the day after the Fed."],
+    ["Oct 30","Monthly options and futures expiry (Deribit, CME)","m","Dealer positioning rolls; the Oct 30 implied ceiling is $90.6K."],
+    ["Oct 31","Mt. Gox repayment deadline","m","~34,700 BTC remaining per the trustee's Oct 2025 filing; distributions have historically been front-run, not sold."],
+    ["Rolling","SEC \"Regulation Crypto Assets\" rulemaking; CLARITY dead near-term","","Agency route replaces Congress after the 50–49 cloture failure. Progress is incremental, not a catalyst."]
+  ];
+
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt = (v, d = 2) => (+v).toFixed(d);
+  const el = (id) => document.getElementById(id);
+  function spark(data, w, h, color) {
+    const min = Math.min(...data), max = Math.max(...data), pad = 3;
+    const x = (i) => pad + i * (w - 2 * pad) / (data.length - 1);
+    const y = (v) => pad + (h - 2 * pad) * (1 - (v - min) / ((max - min) || 1));
+    const pts = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
+    const path = "M" + pts.join(" L"); const area = path + ` L${x(data.length - 1).toFixed(1)},${h} L${x(0).toFixed(1)},${h} Z`;
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${area}" fill="${color}" opacity="0.14"/><path d="${path}" fill="none" stroke="${color}" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="${x(data.length - 1).toFixed(1)}" cy="${y(data[data.length - 1]).toFixed(1)}" r="2.6" fill="${color}" vector-effect="non-scaling-stroke"/></svg>`;
+  }
+  function sparkBars(data, w, h, color) {
+    const max = Math.max(...data), n = data.length, gap = 3, bw = (w - gap * (n - 1)) / n;
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">` + data.map((v, i) => { const bh = (h - 2) * v / max; return `<rect x="${(i * (bw + gap)).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="1.5" fill="${color}" opacity="${i === n - 1 ? 1 : 0.55}"/>`; }).join("") + `</svg>`;
+  }
+  function renderTiles() {
+    const c1 = css("--s1"), c2 = css("--s2"), c3 = css("--s3");
+    el("tiles").innerHTML = [
+      { l: "Bitcoin", v: "$84,184", c: `<span class="up">+4.0% wk</span>`, body: spark(D.sBtc, 200, 34, c1), s: "+44% QTD · −33% from the $126.3K high" },
+      { l: "Ether", v: "$2,687", c: `<span class="up">+3.1% wk</span>`, body: spark(D.sEth, 200, 34, c2), s: "+71% QTD · −46% from the $4,956 high" },
+      { l: "Solana", v: "$122", c: `<span class="up">+8.4% wk</span>`, body: spark(D.sSol, 200, 34, c3), s: "+60% since Aug 10 · six-week high" },
+      { l: "BTC ETF flows", v: "+$2.4B", c: `<span class="dn">fading</span>`, body: sparkBars(D.flows.v, 200, 34, c1), s: "$999M Mon → $135M Fri · YTD now +$934M" },
+      { l: "BTC beta vs QQQ", v: "2.0×", c: `<span class="dn">was 0.6×</span>`, body: `<div class="bar"><i style="width:66%"></i></div>`, s: "Corr 0.72 (was 0.31), last 21 sessions" },
+      { l: "IBIT week move", v: "±3.1%", c: `<span>±$2.6K</span>`, body: `<div class="bar"><em style="left:34%"></em></div>`, s: "IV 33% vs 43% realized · ±7.6% thru Oct 30" }
+    ].map(t => `<div class="tile"><div class="lbl">${t.l}</div><div class="row"><span class="val">${t.v}</span><span class="chg">${t.c}</span></div>${t.body}<div class="sub">${t.s}</div></div>`).join("");
+  }
+  renderTiles();
+
+  el("tBeta").innerHTML = `<thead><tr><th>Pair</th><th class="r">Beta<br>60d</th><th class="r">Corr<br>60d</th><th class="r">Beta<br>21d</th><th class="r">Corr<br>21d</th></tr></thead><tbody>` + D.beta.map(r => `<tr><td class="tk" style="white-space:nowrap">${r[0]} / ${r[1]}</td><td class="r">${fmt(r[2])}</td><td class="r">${fmt(r[3])}</td><td class="r"><b>${fmt(r[4])}</b></td><td class="r"><b>${fmt(r[5])}</b></td></tr>`).join("") + "</tbody>";
+  el("tMoves").innerHTML = `<thead><tr><th>Window</th><th class="r">IBIT</th><th class="r">BTC $</th><th class="r">BTC range</th></tr></thead><tbody>` + D.moves.map(r => `<tr><td>${r[0]}</td><td class="r">${r[1]}</td><td class="r">${r[2]}</td><td class="r">${r[3]}</td></tr>`).join("") + "</tbody>";
+  el("tFlow").innerHTML = `<thead><tr><th>Ticker</th><th>What traded</th><th>Side</th><th class="r">Premium $M</th><th>What it means</th></tr></thead><tbody>` + D.flow.map(r => `<tr><td class="tk">${r[0]}</td><td>${r[1]}</td><td style="white-space:nowrap">${r[2]}</td><td class="r">${fmt(r[3], 1)}</td><td style="color:var(--ink-2)">${r[4]}</td></tr>`).join("") + "</tbody>";
+  el("tCal").innerHTML = `<thead><tr><th>When (ET)</th><th>What</th><th>Why it matters</th></tr></thead><tbody>` + D.cal.map(r => `<tr><td>${r[0]}</td><td><span class="imp ${r[2]}"></span>${r[1]}</td><td>${r[3]}</td></tr>`).join("") + "</tbody>";
+
+  (function () {
+    const g = D.gex, k = 1769.7;
+    const lo = Math.min(g.putWall, g.flip, g.spot, g.magnet, g.callWall), hi = Math.max(g.putWall, g.flip, g.spot, g.magnet, g.callWall);
+    const pad = (hi - lo) * 0.22, a = lo - pad, b = hi + pad;
+    const x = (v) => ((v - a) / (b - a) * 100).toFixed(2) + "%";
+    const raw = [{ v: g.flip, c: "flip", l: "gamma flip" }, { v: g.putWall, c: "wall", l: "put wall" }, { v: g.magnet, c: "magnet", l: "magnet" }, { v: g.callWall, c: "wall", l: "call wall" }];
+    const lv = []; raw.forEach(r => { const m = lv.find(q => q.v === r.v); if (m) m.l += " · " + r.l; else lv.push({ v: r.v, c: r.c, l: r.l }); });
+    lv.sort((p, q) => p.v - q.v);
+    el("ibitTrack").innerHTML = `<div class="rail"></div><div class="band" style="left:${x(g.flip)};width:calc(${x(g.callWall)} - ${x(g.flip)})"></div>` +
+      lv.map((r, i) => `<div class="lv ${r.c} ${i % 2 ? 'row2' : 'row1'}" style="left:${x(r.v)}"><div class="dot"></div><div class="tick"></div><div class="lab">${r.l}</div><div class="v">${r.v} · $${(r.v * k / 1000).toFixed(1)}K</div></div>`).join("") +
+      `<div class="spot" style="left:${x(g.spot)}"><div class="slab">spot ${g.spot.toFixed(2)}</div><div class="tri"></div></div>`;
+  })();
+
+  const charts = [];
+  const theme = () => ({ ink: css("--ink"), ink2: css("--ink-2"), muted: css("--muted"), grid: css("--grid"), axis: css("--axis"), s1: css("--s1"), s2: css("--s2"), s3: css("--s3"), s4: css("--s4"), surface: css("--surface") });
+  function build() {
+    if (!window.Chart) return;
+    charts.forEach(c => c.destroy()); charts.length = 0;
+    const T = theme(); Chart.defaults.font.family = css("--font-body"); Chart.defaults.color = T.ink2;
+    const endLabels = { id: "endLabels", afterDatasetsDraw(chart, args, opts) { if (!opts || !opts.on) return; const { ctx } = chart; ctx.save(); ctx.font = "500 11px " + css("--font-mono"); ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillStyle = T.ink;
+      chart.data.datasets.forEach((ds, i) => { const meta = chart.getDatasetMeta(i); const pt = meta.data[meta.data.length - 1]; if (pt) ctx.fillText(ds.data[ds.data.length - 1].toFixed(0), pt.x + 6, pt.y); }); ctx.restore(); } };
+    const base = (extra) => Object.assign({ responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false },
+      plugins: { legend: { labels: { color: T.ink2, boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: "circle", font: { size: 12 } } }, tooltip: { backgroundColor: T.surface, titleColor: T.ink, bodyColor: T.ink2, borderColor: T.axis, borderWidth: 1, padding: 8 } },
+      scales: { x: { grid: { color: T.grid, drawTicks: false }, border: { color: T.axis }, ticks: { color: T.muted, font: { size: 11 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }, y: { grid: { color: T.grid, drawTicks: false }, border: { display: false }, ticks: { color: T.muted, font: { size: 11 } } } } }, extra || {});
+    const line = (label, data, color) => ({ label, data, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0.15 });
+
+    let o = base(); o.scales.y.suggestedMin = 85; o.layout = { padding: { right: 34 } }; o.plugins.endLabels = { on: true };
+    o.plugins.tooltip.callbacks = { label: c => ` ${c.dataset.label}: ${c.parsed.y.toFixed(1)}` };
+    charts.push(new Chart(el("cIdx"), { type: "line", data: { labels: D.labels, datasets: [line("BTC", D.btc, T.s1), line("ETH", D.eth, T.s2), line("QQQ", D.qqq, T.s3), line("TLT", D.tlt, T.s4)] }, options: o, plugins: [endLabels] }));
+
+    o = base(); o.plugins.legend.display = false; o.scales.x.grid.display = false; o.scales.y.ticks.callback = v => "$" + v + "M"; o.scales.y.beginAtZero = true;
+    o.plugins.tooltip.callbacks = { label: c => ` $${c.parsed.y.toFixed(1)}M` };
+    charts.push(new Chart(el("cFlows"), { type: "bar", data: { labels: D.flows.d, datasets: [{ label: "Net flow", data: D.flows.v, backgroundColor: T.s1, borderRadius: 4, borderSkipped: "start", barPercentage: 0.7, categoryPercentage: 0.8 }] }, options: o }));
+  }
+  build();
+
+  const root = document.documentElement;
+  el("themeBtn").addEventListener("click", () => {
+    const light = matchMedia("(prefers-color-scheme: light)").matches;
+    const cur = root.getAttribute("data-theme") || (light ? "light" : "dark");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+  const rethem = () => { renderTiles(); build(); };
+  new MutationObserver(rethem).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", rethem);
+})();
+</script>
+
+</body>
+</html>
