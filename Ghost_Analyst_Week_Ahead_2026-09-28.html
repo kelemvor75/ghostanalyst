@@ -290,7 +290,7 @@
     </div>
     <ul class="tight" style="margin-top:16px; font-size:14px">
       <li><b>Levels:</b> 5.25% on the 10-year (Thursday's high zone), 5.50% on the 30-year, TLT 78.83 (52-week low). Curve: 2s10s +31 bp and bear-steepening from the front; the 2-year at 4.87% vs 4.00% funds prices ~3 more hikes.</li>
-      <li><b>Fed:</b> hiked to 4.00% on Sep 17 (12–0); 16 of 18 dots see another this year; October ~70% priced. Warsh: policy "not yet sufficiently restrictive." Williams: another hike by year-end is "reasonable." Only bill auctions next week; the next 3s/10s/30s slate typically lands mid-October.</li>
+      <li><b>Fed:</b> hiked to 4.00% on Sep 16 (12–0); 16 of 18 dots see another this year; October ~70% priced. Warsh: policy "not yet sufficiently restrictive." Williams: another hike by year-end is "reasonable." Only bill auctions next week; the next 3s/10s/30s slate typically lands mid-October.</li>
       <li><b>Global:</b> BoJ hiked to 1.25% on Sep 22, ECB 2.65%, BoE 3.75%; RBA decides Tuesday morning Sydney. The Fed, ECB, BoE and BoJ all meet Oct 28–30.</li>
     </ul>
   </section>
@@ -515,7 +515,7 @@
       { l: "SPY close", v: "771.35", c: `<span class="up">+3.3% QTD</span>`, body: spark(D.spy, 200, 34, c1), s: "+0.5% Fri · 0.8% off the Aug 13 high" },
       { l: "10-year yield", v: "5.18%", c: `<span class="dn">+48bp 1m</span>`, body: spark(D.dgs10, 200, 34, cneg), s: "Highest since 2007 · Jun 1 → Sep 24" },
       { l: "10-yr real (TIPS)", v: "2.85%", c: `<span class="dn">+47bp 1m</span>`, body: spark(D.dfii10, 200, 34, c2), s: "Breakeven flat 2.33% · Aug 24 → Sep 24" },
-      { l: "Oct hike odds", v: "~70%", c: `<span class="dn">55→70%</span>`, body: `<div class="bar"><i style="width:70%"></i></div>`, s: "Jumped Wed · funds 4.00% after Sep 17" },
+      { l: "Oct hike odds", v: "~70%", c: `<span class="dn">55→70%</span>`, body: `<div class="bar"><i style="width:70%"></i></div>`, s: "Jumped Wed · funds 4.00% after Sep 16" },
       { l: "VIX", v: "14.87", c: `<span class="up">−5.1%</span>`, body: `<div class="bar"><em style="left:${vixPct}%"></em></div>`, s: "Position in 52-wk range 13.4 – 35.3" },
       { l: "SPY week implied", v: "±1.07%", c: `<span>±$8.2</span>`, body: spark(D.spyMoves, 200, 34, c3), s: "Implied move by expiry, Sep 28 → Dec 18" }
     ].map(t => `<div class="tile"><div class="lbl">${t.l}</div><div class="row"><span class="val">${t.v}</span><span class="chg">${t.c}</span></div>${t.body}<div class="sub">${t.s}</div></div>`).join("");
