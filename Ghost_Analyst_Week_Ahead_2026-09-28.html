@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Ghost Analyst Week Ahead, Sep 28 - Oct 2, 2026: the 5% real-yield shock, measured rate sensitivity of the AI complex, dealer gamma levels, decoded options flow, and the event calendar.">
+<meta property="og:title" content="Ghost Analyst Week Ahead: the real-yield squeeze meets the AI trade">
+<meta property="og:description" content="Options and positioning for Sep 28 - Oct 2, 2026. Data as of the Sep 25 close.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z' fill='%238ab4ff'/%3E%3Ccircle cx='12.4' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3Ccircle cx='19.6' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3C/svg%3E">
+<title>Ghost Analyst Week Ahead</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --page: #0c0f15; --surface: #151a23; --raised: #1a2029; --raised-2: #202836;
+    --ink: #eaedf3; --ink-2: #aab2c2; --muted: #7e8797;
+    --hair: #263040; --hair-2: #34405a;
+    --accent: #8ab4ff; --accent-2: #5e8ff0; --accent-ink: #0c0f15;
+    --tint: rgba(138,180,255,0.10); --tint-2: rgba(138,180,255,0.18);
+    --glow: rgba(94,143,240,0.22); --dot: rgba(255,255,255,0.045);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+    --neg: #e66767; --pos: #3987e5;
+    --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --grid: #232a37; --axis: #3a4457;
+    --negbg: rgba(230,103,103,0.16); --posbg: rgba(57,135,229,0.20);
+    --shadow-card: 0 12px 32px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.04) inset;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+      --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+      --hair: #dfe3ea; --hair-2: #c9cfda;
+      --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+      --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+      --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+      --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+      --neg: #e34948; --pos: #2a78d6;
+      --grid: #e6e8ee; --axis: #c3c7d1;
+      --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+      --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+    --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+    --hair: #dfe3ea; --hair-2: #c9cfda;
+    --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+    --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+    --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+    --neg: #e34948; --pos: #2a78d6;
+    --grid: #e6e8ee; --axis: #c3c7d1;
+    --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+    --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; position: relative; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(900px 520px at 12% -6%, var(--glow), transparent 65%), radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: auto, 22px 22px; background-color: var(--page); }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding-block: 0 56px; padding-inline: 20px; }
+  @media (min-width: 720px) { .wrap { padding-inline: 32px; } }
+
+  /* masthead */
+  .mast { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 16px 14px; border-bottom: 1px solid var(--hair); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { width: 28px; height: 28px; flex: none; filter: drop-shadow(0 0 10px var(--glow)); }
+  .brand .w { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); line-height: 1.2; }
+  .brand .w small { display: block; font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); }
+  .mast-right { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .live { display: inline-flex; align-items: center; gap: 7px; }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(12,163,12,0.18); }
+  .theme-btn { font: 500 12px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: 40px 8px; max-width: 860px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--accent); transform: rotate(45deg); }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.02; letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .dek { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 18px; text-wrap: pretty; }
+  .signals { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+  .sig { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px 6px 10px; font-size: 13px; }
+  .sig i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .sig b { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* the call */
+  .call { margin-top: 26px; position: relative; border-radius: 14px; padding: 22px 24px 10px;
+    background: linear-gradient(var(--raised), var(--surface)) padding-box, linear-gradient(135deg, var(--accent-2), var(--hair) 55%, var(--hair)) border-box; border: 1px solid transparent; box-shadow: var(--shadow-card); }
+  .call .eyebrow { margin-bottom: 10px; }
+  .call ol { margin: 0; padding: 0; list-style: none; max-width: 80ch; counter-reset: call; }
+  .call ol li { counter-increment: call; position: relative; padding-left: 40px; margin-bottom: 12px; }
+  .call ol li::before { content: counter(call); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 500 13px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+
+  /* tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+  @media (min-width: 620px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 940px) { .tiles { grid-template-columns: repeat(6, 1fr); } }
+  .tile { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px 10px; min-width: 0; box-shadow: var(--shadow-card); }
+  .tile .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 6px; }
+  .tile .val { font-size: 24px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+  .tile .chg { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .tile .spark { display: block; width: 100%; height: 34px; margin: 6px 0 4px; }
+  .tile .bar { position: relative; height: 6px; border-radius: 3px; background: var(--hair); margin: 16px 0 12px; }
+  .tile .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--accent-2); }
+  .tile .bar em { position: absolute; top: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--hair-2); }
+  .tile .sub { font-size: 12px; color: var(--ink-2); }
+
+  /* sections */
+  section { padding-block: 34px 6px; position: relative; }
+  section + section::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--accent-2), var(--hair) 45%, var(--hair)); opacity: 0.7; }
+  .sh { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin-bottom: 16px; }
+  .sh .idx { font-family: var(--font-display); font-size: 54px; line-height: 0.9; color: var(--accent); opacity: 0.28; font-weight: 500; padding-top: 4px; }
+  .sh .eyebrow { margin-bottom: 6px; }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.1vw, 32px); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h3 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
+  h3::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  p { max-width: 68ch; margin: 0 0 10px; }
+  ul.tight { padding-left: 18px; margin: 0 0 10px; max-width: 74ch; }
+  ul.tight li { margin-bottom: 7px; } ul.tight li::marker { color: var(--accent); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tk { font-family: var(--font-mono); font-weight: 500; }
+  .up { color: var(--s3); } .dn { color: var(--neg); }
+  .small { font-size: 13px; color: var(--muted); }
+
+  /* cards & figures */
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 860px) { .grid2 { grid-template-columns: 1fr 1fr; } .grid2 .span2 { grid-column: 1 / -1; } }
+  .card { background: linear-gradient(180deg, var(--raised), var(--surface) 120px); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; min-width: 0; box-shadow: var(--shadow-card); }
+  .card h4 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+  .card .cap { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+  .chart-box { position: relative; width: 100%; } .chart-box canvas { width: 100% !important; }
+  .take { margin: 12px 0 0; font-size: 14px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+  .take b { flex: none; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--tint); border: 1px solid var(--tint-2); border-radius: 999px; padding: 2px 8px; margin-top: 2px; }
+  .read { margin-top: 12px; border: 1px solid var(--tint-2); background: var(--tint); border-radius: 10px; padding: 12px 14px 12px 44px; font-size: 13.5px; color: var(--ink-2); position: relative; }
+  .read::before { content: "?"; position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 600 12px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+  .read b.k { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .read p { margin: 0 0 6px; max-width: none; } .read p:last-child { margin-bottom: 0; }
+  .read i { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  details.tbl { margin-top: 8px; }
+  details.tbl summary { cursor: pointer; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); list-style: none; padding: 4px 0; }
+  details.tbl summary::before { content: "▸ "; color: var(--accent); } details.tbl[open] summary::before { content: "▾ "; }
+  details.tbl summary::-webkit-details-marker { display: none; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; background: var(--raised-2); }
+  th:first-child { border-radius: 8px 0 0 8px; } th:last-child { border-radius: 0 8px 8px 0; }
+  td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--tint); }
+  .tblcard { background: var(--surface); border: 1px solid var(--hair); border-radius: 14px; padding: 6px 6px; box-shadow: var(--shadow-card); }
+  td.heat { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 500; }
+  td.heat.p { background: var(--posbg); } td.heat.n { background: var(--negbg); }
+
+  /* ladder */
+  .ladder { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px 12px; box-shadow: var(--shadow-card); }
+  .ladder .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; margin-bottom: 2px; }
+  .ladder .head .t { font-family: var(--font-mono); font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .ladder .head .p { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+  .regime { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--good); color: var(--good); background: rgba(12,163,12,0.10); }
+  .regime::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+  .track { position: relative; height: 116px; margin: 8px 10px 0; }
+  .track .rail { position: absolute; left: 0; right: 0; top: 40px; height: 2px; background: var(--axis); border-radius: 2px; }
+  .track .band { position: absolute; top: 34px; height: 14px; border-radius: 4px; background: linear-gradient(90deg, rgba(217,89,38,0.22), rgba(57,135,229,0.26)); }
+  .spot { position: absolute; top: 8px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .spot .slab { font-family: var(--font-mono); font-size: 11px; color: var(--ink); white-space: nowrap; margin-bottom: 3px; background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 1px 8px; }
+  .spot .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 9px solid var(--ink); filter: drop-shadow(0 0 6px var(--accent)); }
+  .lv { position: absolute; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .lv .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--s1); border: 2px solid var(--surface); margin-top: -4.5px; flex: none; box-shadow: 0 0 0 1px var(--s1); }
+  .lv .tick { width: 1px; height: 8px; background: var(--hair-2); } .lv.row2 .tick { height: 34px; }
+  .lv .lab { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .lv .v { font-family: var(--font-mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  .lv.flip .dot { background: var(--s2); box-shadow: 0 0 0 1px var(--s2); } .lv.magnet .dot { background: var(--s3); box-shadow: 0 0 0 1px var(--s3); }
+  .legend-inline { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin: 8px 0 2px; }
+  .legend-inline span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--s1); }
+  .legend-inline .lf::before { background: var(--s2); } .legend-inline .lm::before { background: var(--s3); }
+  .legend-inline .ls::before { background: var(--ink); border-radius: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+  /* risk ranking */
+  .rank { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+  .rank li { display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start; background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-left: 4px solid var(--sev, var(--hair-2)); border-radius: 12px; padding: 11px 14px; font-size: 14px; box-shadow: var(--shadow-card); }
+  .rank .n { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--sev, var(--accent)); line-height: 1; padding-top: 2px; }
+  .rank .t { font-weight: 600; } .rank .d { color: var(--ink-2); }
+  .rank .sev { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sev); border: 1px solid var(--sev); border-radius: 999px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; }
+  .rank li.critical { --sev: var(--critical); } .rank li.serious { --sev: var(--serious); } .rank li.warn { --sev: var(--warn); } .rank li.low { --sev: var(--good); }
+  @media (max-width: 560px) { .rank li { grid-template-columns: 30px 1fr; } .rank .sev { grid-column: 2; justify-self: start; } }
+
+  /* tiers */
+  .two { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .two { grid-template-columns: 1fr 1fr; } }
+  .tier { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-card); border-top: 3px solid var(--s3); }
+  .tier.b { border-top-color: var(--s2); }
+  .tier h4 { margin: 0 0 4px; font-size: 15px; }
+  .tier .why { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+  .tier ul { margin: 0; padding-left: 16px; font-size: 14px; color: var(--ink-2); } .tier li { margin-bottom: 5px; }
+
+  /* scenarios */
+  .scen { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 860px) { .scen { grid-template-columns: 1fr 1fr 1fr; } }
+  .sc { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; box-shadow: var(--shadow-card); --c: var(--s1); }
+  .sc.bear { --c: var(--critical); } .sc.bull { --c: var(--good); }
+  .sc .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .sc .pr { font-size: 32px; font-weight: 600; line-height: 1; color: var(--c); }
+  .sc .gl { font-family: var(--font-mono); font-size: 22px; color: var(--c); opacity: 0.8; }
+  .sc .nm { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 4px 0 8px; }
+  .sc .pbar { height: 5px; border-radius: 3px; background: var(--hair); margin: 0 0 12px; overflow: hidden; }
+  .sc .pbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+  .sc p { font-size: 14px; color: var(--ink-2); margin: 0 0 6px; } .sc p b { color: var(--ink); font-weight: 500; }
+
+  /* calendar */
+  .imp { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 0; background: var(--hair-2); }
+  .imp.h { background: var(--critical); box-shadow: 0 0 0 3px rgba(208,59,59,0.18); } .imp.m { background: var(--warn); }
+  .cal td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--muted); }
+  .cal th:last-child, .cal td:last-child { width: 40%; color: var(--ink-2); }
+
+  .gloss dt { font-family: var(--font-mono); font-weight: 500; font-size: 13px; margin-top: 10px; color: var(--accent); }
+  .gloss dd { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); max-width: 72ch; }
+  .foot { border-top: 1px solid var(--hair); margin-top: 36px; padding-top: 18px; font-size: 13px; color: var(--muted); }
+  .foot ul { padding-left: 18px; margin: 8px 0; } .foot li { margin-bottom: 4px; }
+  .foot .sig-off { display: flex; align-items: center; gap: 10px; margin-top: 16px; color: var(--ink-2); }
+  .foot .sig-off svg { width: 22px; height: 22px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+<style>img{max-width:100%} [hidden]{display:none!important} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ghost" viewBox="0 0 32 32"><path d="M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z" fill="currentColor"/><circle cx="12.4" cy="14.2" r="1.9" fill="var(--page)"/><circle cx="19.6" cy="14.2" r="1.9" fill="var(--page)"/></symbol></svg>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><svg style="color:var(--accent)"><use href="#ghost"/></svg><div class="w">Ghost Analyst<small>Research · Week Ahead</small></div></div>
+    <div class="mast-right"><span class="live">Data: Fri Sep 25, 2026 close</span><button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">Theme</button></div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Sep 28 – Oct 2, 2026 · options &amp; positioning</p>
+    <h1>The <em>real-yield squeeze</em> meets the AI trade</h1>
+    <p class="dek">Ten-year yields are at 19-year highs and almost all of the last month's move is real rates, not inflation expectations. Semis still carry the index, but the AI complex has quietly become the most rate-sensitive group in the market.</p>
+    <div class="signals">
+      <span class="sig"><i style="background:var(--good)"></i><b>Regime</b> Positive gamma, range-bound</span>
+      <span class="sig"><i style="background:var(--critical)"></i><b>Rates</b> Real-yield shock, 10Y 5.18%</span>
+      <span class="sig"><i style="background:var(--warn)"></i><b>Flow</b> Hedged-long, calls sold into strength</span>
+      <span class="sig"><i style="background:var(--s1)"></i><b>Vol</b> Cheap: SPY ±1.07% for the week</span>
+    </div>
+    <p class="meta">Sources: Unusual Whales · FRED · Massive/Polygon · FMP · MT Newswires · linked reporting</p>
+  </div>
+
+  <div class="call">
+    <p class="eyebrow">The call</p>
+    <ol>
+      <li><b>Range, not trend.</b> SPY is pinned in a positive-gamma pocket: flip <span class="num">768.5</span>, magnet <span class="num">772</span>, call wall <span class="num">785</span>, quarter-end max pain <span class="num">761</span> (also the 50-day). Fade the edges of <span class="num">761–785</span> until PCE (Wed) or payrolls (Fri) breaks it. A close under 768.5 changes the rules.</li>
+      <li><b>The yield move is a discount-rate shock.</b> The 10-year TIPS yield is up 47 bp in a month to <span class="num">2.85%</span>; breakevens are flat at <span class="num">2.33%</span>. Most exposed to another leg: debt-funded AI builders (Oracle trades with a 3.6× beta to long bonds), housing, small caps, and, on a day-to-day basis, memory and semis.</li>
+      <li><b>Flow is hedged-long, not chasing.</b> Big holders sold in-the-money calls in MU, SNDK, NVDA and META and bought long-dated puts in QQQ, NVDA and credit. Weekly index vol is cheap (<span class="num">±1.07%</span> on SPY) for a week with PCE, Micron, payrolls and quarter-end. Wildcards: Iran's seven-day Hormuz clock and eleven Fed speakers before an October meeting priced ~70% for a hike.</li>
+    </ol>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <!-- ============ 01 RATES ============ -->
+  <section>
+    <div class="sh"><span class="idx">01</span><div><p class="eyebrow">Why yields matter this week</p><h2>A 5% ten-year built out of real yield</h2></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h4>10-year: nominal, real and breakeven</h4>
+        <p class="cap">%, daily closes Aug 24 – Sep 24 · FRED DGS10 and DFII10; breakeven = nominal − real.</p>
+        <div class="chart-box" style="height:260px"><canvas id="cReal"></canvas></div>
+        <p class="take"><b>Read</b><span>Nominal +48 bp, real +47 bp, breakeven +1 bp. The market is not pricing more inflation; it is demanding more compensation to hold duration while the Fed hikes.</span></p>
+        <div class="read"><b class="k">How to read it</b><p>The <i>real yield</i> is what a Treasury pays after inflation; it is the discount rate that sets equity multiples. When real yields rise and breakevens do not, long-duration assets (unprofitable growth, software, builders, REITs, utilities) lose value with no offsetting boost to nominal earnings. That is why cap-weighted tech is up and almost everything else is down this quarter.</p></div>
+      </div>
+      <div class="card">
+        <h4>Where the pain has landed</h4>
+        <p class="cap">Price return, % · 1 wk = Sep 18–25 · 1 mo = Aug 25–Sep 25 · QTD = Jun 30–Sep 25 · Massive/Polygon.</p>
+        <div class="scroll"><table id="tHeat"></table></div>
+        <p class="take"><b>Read</b><span>SPY +3.3% QTD with equal-weight −0.8% is a narrow tape. Small caps, utilities and homebuilders are down 6–14% in the quarter; that is the rate shock, already priced. Semis are +20% off the Jul 29 low but still below their Jun 30 high.</span></p>
+      </div>
+    </div>
+    <ul class="tight" style="margin-top:16px; font-size:14px">
+      <li><b>Levels:</b> 5.25% on the 10-year (Thursday's high zone), 5.50% on the 30-year, TLT 78.83 (52-week low). Curve: 2s10s +31 bp and bear-steepening from the front; the 2-year at 4.87% vs 4.00% funds prices ~3 more hikes.</li>
+      <li><b>Fed:</b> hiked to 4.00% on Sep 17 (12–0); 16 of 18 dots see another this year; October ~70% priced. Warsh: policy "not yet sufficiently restrictive." Williams: another hike by year-end is "reasonable." Only bill auctions next week; the next 3s/10s/30s slate typically lands mid-October.</li>
+      <li><b>Global:</b> BoJ hiked to 1.25% on Sep 22, ECB 2.65%, BoE 3.75%; RBA decides Tuesday morning Sydney. The Fed, ECB, BoE and BoJ all meet Oct 28–30.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 02 EXPOSURE ============ -->
+  <section>
+    <div class="sh"><span class="idx">02</span><div><p class="eyebrow">Who gets hurt if yields keep rising</p><h2>Rate sensitivity, measured: the AI complex moved to the top</h2></div></div>
+    <div class="card">
+      <h4>Beta to TLT: full 60 sessions vs the last 21</h4>
+      <p class="cap">Slope of daily returns vs TLT (20+yr Treasury ETF) daily returns · Massive/Polygon, Jun 25 – Sep 25 · sorted by the 21-session beta.</p>
+      <div class="chart-box" style="height:420px"><canvas id="cBeta"></canvas></div>
+      <p class="take"><b>Read</b><span>Over the summer semis barely noticed bonds (SMH correlation 0.20). Since the September shock they move 1.6× TLT with 0.47 correlation; Oracle 3.6× with 0.72. QQQ's correlation to bonds jumped from 0.31 to 0.67. The AI trade is now the tape's rate-shock absorber.</span></p>
+      <div class="read"><b class="k">How to read it</b><p><i>Beta 1.6</i> means: on a day TLT falls 1%, SMH has tended to fall 1.6%. <i>Correlation</i> says how reliably that happens; 0.47 means rates explain roughly a fifth of SMH's daily variance lately, versus about 4% over the summer. High beta with low correlation (CRWV, IGV) means the name is volatile but driven by its own news; high beta with high correlation (ORCL, ITB, QQQ) means rates are the driver. A negative beta (XLE) is the hedge.</p></div>
+      <details class="tbl"><summary>Data table (beta and correlation, both windows)</summary><div class="scroll" id="tBeta"></div></details>
+    </div>
+    <h3>Risk ranking for another leg up in yields</h3>
+    <ol class="rank">
+      <li class="critical"><span class="n">1</span><div><span class="t">Debt-funded AI builders and data-center financing.</span> <span class="d"><span class="tk">ORCL</span> (3.6× beta, force majeure on Project Jupiter over power delays, Ellison pledging $9.2B more stock as collateral), <span class="tk">CRWV</span>, <span class="tk">NBIS</span>, <span class="tk">IREN</span>, private-credit-funded sites. Reuters: lenders more cautious.</span></div><span class="sev">critical</span></li>
+      <li class="critical"><span class="n">2</span><div><span class="t">Housing complex.</span> <span class="d"><span class="tk">ITB</span> −14% QTD with the highest correlation to bonds in the set; 30-year mortgage 7.45%; HD/LOW −12–13% on the month.</span></div><span class="sev">critical</span></li>
+      <li class="serious"><span class="n">3</span><div><span class="t">Small caps.</span> <span class="d"><span class="tk">IWM</span> correlation 0.67, floating-rate balance sheets, −6% QTD and below its 50-day (294).</span></div><span class="sev">serious</span></li>
+      <li class="serious"><span class="n">4</span><div><span class="t">Semis and memory, intraday.</span> <span class="d">Trend is up because revisions dominate, but on a 10-year break above 5.25% <span class="tk">SMH</span>, <span class="tk">MU</span> and <span class="tk">NVDA</span> are the first to gap. SMH sits at its call wall (607.5); its gamma flip is 593.</span></div><span class="sev">serious</span></li>
+      <li class="warn"><span class="n">5</span><div><span class="t">Utilities and REITs.</span> <span class="d">Mostly repriced (<span class="tk">XLU</span> −13% QTD, 52-week low), and Friday's 16× normal call volume in XLU is the first sign positioning is turning.</span></div><span class="sev">watch</span></li>
+      <li class="low"><span class="n">6</span><div><span class="t">Least exposed.</span> <span class="d"><span class="tk">XLE</span> (inverse, beta −0.77), <span class="tk">XLF</span>, <span class="tk">XLP</span>, <span class="tk">XLV</span>. Energy is the cleanest hedge against a further rates leg.</span></div><span class="sev">low</span></li>
+    </ol>
+  </section>
+
+  <!-- ============ 03 OPTIONS ============ -->
+  <section>
+    <div class="sh"><span class="idx">03</span><div><p class="eyebrow">Options map</p><h2>Long gamma at 772, cheap weekly vol, holders selling calls into strength</h2></div></div>
+
+    <div class="ladder">
+      <div class="head"><span class="t">SPY <span class="regime">positive gamma · dampened</span></span><span class="p">spot 771.35 · flip 0.4% below · call wall +1.8%</span></div>
+      <div class="legend-inline"><span>put / call wall</span><span class="lf">gamma flip</span><span class="lm">magnet</span><span class="ls">spot</span></div>
+      <div class="track" id="spyTrack"></div>
+      <p class="take" style="margin-top:4px"><b>Read</b><span>Above 768.5 dealers buy dips and sell rips, so moves stall and price gravitates to 772 into Wednesday's quarter-end. Below 768.5 they do the opposite and the next support cluster is far away (~698). 785 caps rallies until call open interest rolls higher.</span></p>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card span2">
+        <h4>Dealer levels, Fri Sep 25</h4>
+        <p class="cap">Unusual Whales GEX (open-interest source).</p>
+        <div class="scroll"><table id="tLevels"></table></div>
+        <div class="read"><b class="k">How to read it</b><p><i>Gamma flip</i>: the price where dealer hedging switches from stabilizing (above) to amplifying (below). Above it, fade extremes; below it, trade with momentum and widen stops. <i>Call wall / put wall</i>: the strikes with the most call or put exposure; they act as a ceiling and floor until the open interest moves. <i>Magnet</i>: where the most gamma sits; price gravitates there into expiry, especially on quarter-end. <i>Max pain</i> (761 for Sep 30) is a gentle pull, not a target.</p></div>
+      </div>
+      <div class="card span2">
+        <h4>Implied moves</h4>
+        <p class="cap">± move priced by at-the-money options through each expiry · Unusual Whales term structure.</p>
+        <div class="scroll"><table id="tMoves"></table></div>
+        <p class="take"><b>Read</b><span>SPY prices a ±$8 week that contains PCE, Micron, payrolls and quarter-end. VIX 14.87 sits a point above its 52-week low while the bond market is at 19-year highs. Convexity is cheap; own some into Wednesday and Friday.</span></p>
+        <div class="read"><b class="k">How to read it</b><p>The implied move is roughly the straddle price: the one-standard-deviation range the market expects by that date (about two-thirds odds price stays inside it). If your stop is inside the implied move you will be stopped on noise; if your target is outside it you are betting on an outlier. MU's ±7.3% compares with its last four earnings moves of −2.8%, +10.2%, −3.8% and +15.7%, so the print is priced fairly to slightly cheap.</p></div>
+      </div>
+    </div>
+
+    <h3>Flow that matters, decoded</h3>
+    <div class="tblcard scroll"><table id="tFlow"></table></div>
+    <div class="read"><b class="k">How to read flow</b>
+      <p><i>Bought vs sold:</i> Unusual Whales tags each print by where it filled. At the ask, the buyer was aggressive (bought); at the bid, the seller was (sold). The same contract means opposite things depending on the side.</p>
+      <p><i>Deep in-the-money calls sold in size before an event</i> (MU, SNDK, NVDA this week) is a holder converting stock-like exposure into cash, usually closing a winner. It is risk reduction inside a bull position, not a bearish bet; it does mean the marginal buyer is stepping back.</p>
+      <p><i>Long-dated puts bought</i> (QQQ Jun-27, NVDA Dec, HYG Jan-27) are insurance, not a directional call. <i>Puts sold</i> (AMD Dec $700, MU Dec $1,080) say "I'll own it lower." <i>Near-dated calls bought</i> (INTC, MSFT, AAPL, CRWV) are the only outright chasing on the tape, and it is in laggards, not in the semis that already ran.</p>
+      <p>Weigh by <i>premium</i>, not contract count: 30,000 XLU calls at $0.45 is $1.4M; one MU print was $19.6M. Volume above open interest (MU Dec $1,080 puts, 6.7×) means new positions rather than closing.</p>
+    </div>
+  </section>
+
+  <!-- ============ 04 AI INFRA ============ -->
+  <section>
+    <div class="sh"><span class="idx">04</span><div><p class="eyebrow">AI infrastructure</p><h2>Two tiers: paid for revisions, or charged for leverage</h2></div></div>
+    <div class="two">
+      <div class="tier">
+        <h4>Tier A · picks and shovels (earnings-driven)</h4>
+        <p class="why">Move on order books and pricing; rates are a secondary driver. Week / month.</p>
+        <ul>
+          <li><span class="tk">ALAB</span> +20% / +29% · <span class="tk">CRDO</span> +20% / −7% · <span class="tk">AMD</span> +13% / +32% · <span class="tk">ARM</span> +13% / +28%</li>
+          <li><span class="tk">LRCX</span> +9% / 0% · <span class="tk">AMAT</span> +9% / +1% · <span class="tk">MRVL</span> +7% / +9% · <span class="tk">MU</span> +7% / +16%</li>
+          <li><span class="tk">SMH</span> +6% / +9% · <span class="tk">TSM</span> +4% / +8% · <span class="tk">ANET</span> +4% / +8% · <span class="tk">NVDA</span> +1% / +6%</li>
+          <li>Demand signals: xAI to double Nvidia chips at Colossus 2 by year-end; Supermicro shipping Vera Rubin racks; hyperscaler capex ~$800B this year (Goldman).</li>
+        </ul>
+      </div>
+      <div class="tier b">
+        <h4>Tier B · levered builders and bond proxies (rate-driven)</h4>
+        <p class="why">Borrow to build, or trade as yield substitutes. This is where 5% real-plus-inflation bites. Week / month.</p>
+        <ul>
+          <li><span class="tk">ORCL</span> −7% / −5% · <span class="tk">IREN</span> −5% / +5% · <span class="tk">FSLR</span> −9% / −14% · <span class="tk">NEE</span> −5% / −10%</li>
+          <li><span class="tk">CRWV</span> +8% / −1% and <span class="tk">NBIS</span> +6% / +7% bounced but carry ~1.1× rate beta; <span class="tk">VST</span> −2% / 0% now 1.3×.</li>
+          <li>Constraints are shifting from chips to power and water: Jupiter slipped a year on power; Texas AG is probing data-center water use. That favors grid and cooling (<span class="tk">ETN</span> bought COL Group, <span class="tk">VRT</span> bought a liquid-cooling firm) over the builders.</li>
+          <li>Multiples already gave: Goldman puts the AI-infra median forward P/E at 22× vs 32× in April.</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Micron, Wednesday after the close</h3>
+    <ul class="tight" style="font-size:14px">
+      <li>$1,082, +16% on the month, still 11% under its June high. Consensus EPS $31.24; options imply ±7.3%. Citi raised its target to $1,300 and UBS says the shortage deepens into 2027, so the bar is high.</li>
+      <li>~$45M of Oct 2 $1,000 calls were sold Friday: holders monetizing before the print. Prefer call spreads or stock-plus-collar to naked calls; a beat-and-fade is the modal outcome when positioning looks like this.</li>
+      <li>Read-through: SNDK, WDC, STX, and SMH sitting on its 607.5 call wall.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 05 CALENDAR ============ -->
+  <section>
+    <div class="sh"><span class="idx">05</span><div><p class="eyebrow">The week</p><h2>What can actually move the tape, Eastern time</h2></div></div>
+    <div class="tblcard scroll cal"><table id="tCal"></table></div>
+    <p class="small" style="margin-top:8px"><span class="imp h"></span>can reprice October &nbsp; <span class="imp m"></span>secondary &nbsp;· Consensus from the FMP calendar; earnings and implied moves from Unusual Whales. Government funding runs through Dec 11, so no Oct 1 shutdown and payrolls print on schedule.</p>
+    <h3>Wildcards</h3>
+    <ul class="tight" style="font-size:14px">
+      <li><b>Iran / Hormuz.</b> Transits are down to nine vessels. Iran's seven-day plan (lift the blockade, waive oil sanctions, ceasefire incl. Lebanon, then the strait reopens and nuclear talks resume) is on the table; Washington wants one package and is "in no rush." Acceptance is worth roughly $10–15 off crude and 15–25 bp off the 10-year; escalation puts Brent back over $110. XLE's put-heavy book says the market leans toward a deal.</li>
+      <li><b>US–China.</b> The summit gave stability, not a breakthrough: truce extended, soybeans, no chip-export easing, no firm rare-earth commitment, pressure on Taiwan. Watch export licenses, not communiqués. Golden Week thins Asia from Oct 1.</li>
+      <li><b>Fed speak.</b> Eleven slots. The phrase to listen for is "sufficiently restrictive"; anyone dropping the "not yet" moves the 2-year.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 06 SCENARIOS ============ -->
+  <section>
+    <div class="sh"><span class="idx">06</span><div><p class="eyebrow">Three paths</p><h2>How the week resolves, and the playbook</h2></div></div>
+    <p class="small" style="margin-bottom:12px">Probabilities are our judgment, not market-implied. Levels come from the dealer-positioning data above.</p>
+    <div class="scen">
+      <div class="sc base"><div class="top"><span class="pr">50%</span><span class="gl">⟷</span></div><div class="nm">Base · range and rotation</div><div class="pbar"><i style="width:50%"></i></div>
+        <p><b>Trigger:</b> core PCE +0.3%, payrolls near 100K, no Hormuz decision.</p>
+        <p><b>Tape:</b> 10-year 5.05–5.25%; SPY holds 768.5 and chops 761–785, pinning near 772 into quarter-end; QQQ 735–756.</p>
+        <p><b>Leaders:</b> semis hold, breadth stays poor, Micron beats and fades.</p></div>
+      <div class="sc bear"><div class="top"><span class="pr">30%</span><span class="gl">↓</span></div><div class="nm">Bear · rates break higher</div><div class="pbar"><i style="width:30%"></i></div>
+        <p><b>Trigger:</b> core PCE ≥0.4% or payrolls &gt;150K with 0.3% wages; hot ISM prices.</p>
+        <p><b>Tape:</b> 10-year through 5.25–5.30%, October &gt;90% priced; SPY loses 768.5, negative gamma, 761 then 745–750; QQQ under 738.5; SMH under 593.</p>
+        <p><b>Leaders:</b> levered AI builders and memory lead down; VIX 18–22.</p></div>
+      <div class="sc bull"><div class="top"><span class="pr">20%</span><span class="gl">↑</span></div><div class="nm">Bull · yields relent</div><div class="pbar"><i style="width:20%"></i></div>
+        <p><b>Trigger:</b> U.S. accepts an Iran framework or core PCE prints 0.2%; crude under $88.</p>
+        <p><b>Tape:</b> 10-year back under 5.00%, real yields −15 to −25 bp; SPY tests 779–785, SMH clears 607.5 toward 620–630.</p>
+        <p><b>Leaders:</b> violent catch-up in XLU, XLRE, IWM, ITB; energy sells off.</p></div>
+    </div>
+    <h3>Playbook</h3>
+    <ul class="tight" style="font-size:14px">
+      <li><b>Index:</b> respect the gamma pocket. Fade the edges of 761–785 while SPY holds 768.5; treat a close below it as a regime change and widen risk. Weekly convexity is cheap: SPY Oct 16 765/750 put spreads or QQQ 735/715 cost a fraction of what they cover.</li>
+      <li><b>AI infrastructure:</b> keep exposure in Tier A (memory, optical, networking, equipment, grid and cooling) and fund it by trimming Tier B, which now carries 2–4× rate beta. Collar concentrated NVDA and MU; the largest holders already are.</li>
+      <li><b>Micron:</b> express upside with call spreads or stock plus collar, not naked calls, into a ±7.3% print with holders selling ITM calls.</li>
+      <li><b>Contrarian rates trade:</b> XLU calls at a 52-week low are a "rates peaking" expression that also pays on an Iran deal. Small and defined-risk; the catalyst is yields, not utility fundamentals. Energy is the cleanest inverse-rate hedge (beta −0.77 to TLT).</li>
+    </ul>
+    <p class="small">For information and education only; not investment advice or a solicitation. Ghost Analyst Research is not a registered investment adviser. Options involve risk and are not suitable for all investors.</p>
+  </section>
+
+  <section>
+    <details class="tbl"><summary>Glossary</summary>
+      <dl class="gloss">
+        <dt>Gamma / dealer positioning</dt><dd>Market makers hedge the options they sell by trading the underlying. When they are net long gamma they sell rallies and buy dips (stabilizing); net short gamma, they chase (amplifying). The GEX levels estimate where that flips.</dd>
+        <dt>Implied move</dt><dd>What at-the-money options price as a one-standard-deviation move by an expiry; approximately the straddle cost as a percent of price.</dd>
+        <dt>Market tide</dt><dd>Running total of options premium bought at the ask minus sold at the bid, split by calls and puts. Friday finished at −$294M net call premium and −$23M net put premium: calls sold into the rally, puts lightly sold.</dd>
+        <dt>Beta to TLT</dt><dd>Slope of a stock's daily returns on the long-bond ETF's daily returns. Positive = falls when yields rise. Reported for the full window (60 sessions) and the last 21.</dd>
+        <dt>Real yield / breakeven</dt><dd>Real yield = TIPS yield. Breakeven = nominal minus real, the market's inflation expectation. Real yields drive equity multiples.</dd>
+        <dt>Max pain</dt><dd>The price at which the most option value expires worthless for a given expiry. Weak gravitational pull into expiration.</dd>
+      </dl>
+    </details>
+  </section>
+
+  <footer class="foot">
+    <details class="tbl"><summary>Sources and data notes</summary>
+      <ul>
+        <li>Yields: FRED DGS2, DGS10, DGS30, DFII10 (through Sep 24, the last published close). Curve and policy rates: Unusual Whales. Prices, returns and rate betas: Massive/Polygon adjusted daily bars, Jun 25 – Sep 25 (beta = OLS slope on TLT; "21 sessions" = Aug 27 – Sep 25). Options: Unusual Whales market state, tide, GEX, IV term structure, max pain, sector ETF premiums, flow alerts, earnings (Sep 25). Quotes and VIX: FMP. News: MT Newswires (viaNexus EDGE), Sep 22–25.</li>
+        <li><a href="https://www.cnn.com/2026/09/23/investing/us-bond-market-fed">CNN: 10-year hits 5.1%</a> · <a href="https://www.schwab.com/learn/story/fomc-meeting">Schwab: Fed hikes 12–0</a> · <a href="https://fortune.com/2026/09/25/10-year-treasury-yield-bonds-warsh-fed/">Fortune: 5% yields</a> · <a href="https://tradingeconomics.com/united-states/government-bond-yield">Trading Economics: US 10Y</a> · <a href="https://www.pbs.org/newshour/world/iran-has-suggested-a-deal-to-reopen-the-strait-of-hormuz-in-7-days">AP/PBS: Iran's 7-day plan</a> · <a href="https://www.cnbc.com/2026/09/25/us-iran-trump-hormuz-.html">CNBC: Hormuz transits</a> · <a href="https://www.aljazeera.com/news/2026/9/25/whats-in-irans-seven-day-plan-to-reopen-the-strait-of-hormuz">Al Jazeera: what's in the plan</a> · <a href="https://www.fxstreet.com/analysis/trump-xi-summit-stability-not-a-breakthrough-202609251127">Saxo/FXStreet: Trump–Xi summit</a> · <a href="https://www.cnbc.com/2026/09/25/trump-xi-summit-takeaways.html">CNBC: summit takeaways</a> · <a href="https://www.npr.org/2026/09/01/nx-s1-5951536/house-government-funding-vote-midterms">NPR: funding through Dec 11</a> · <a href="https://www.gurufocus.com/news/9097481/nvda-looks-433-undervalued-on-gf-value-as-ai-infrastructure-stocks-face-valuation-pressure">GuruFocus: Goldman on AI-infra multiples</a>.</li>
+        <li>Not available this session: Tiingo (no connector).</li>
+      </ul>
+    </details>
+    <div class="sig-off"><svg style="color:var(--accent)"><use href="#ghost"/></svg><span>© 2026 Ghost Analyst Research · kelemvor75.github.io</span></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function () {
+  'use strict';
+  const D = {};
+  D.realDates = ["08-24","08-25","08-26","08-27","08-28","08-31","09-01","09-02","09-03","09-04","09-08","09-09","09-10","09-11","09-14","09-15","09-16","09-17","09-18","09-21","09-22","09-23","09-24"];
+  D.nom10 = [4.70,4.64,4.66,4.67,4.73,4.75,4.79,4.79,4.77,4.78,4.80,4.83,4.95,4.96,4.97,5.00,5.01,4.94,5.01,4.96,4.96,5.11,5.18];
+  D.dfii10 = [2.38,2.32,2.34,2.34,2.42,2.44,2.44,2.45,2.42,2.43,2.43,2.46,2.55,2.60,2.60,2.62,2.68,2.61,2.68,2.62,2.63,2.76,2.85];
+  D.breakeven = D.nom10.map((n, i) => +(n - D.dfii10[i]).toFixed(2));
+  D.dgs10 = [4.47,4.46,4.49,4.47,4.55,4.56,4.53,4.55,4.45,4.48,4.47,4.43,4.49,4.46,4.51,4.50,4.41,4.40,4.38,4.38,4.44,4.48,4.49,4.48,4.55,4.56,4.54,4.56,4.62,4.58,4.55,4.57,4.55,4.60,4.63,4.67,4.71,4.69,4.65,4.61,4.67,4.68,4.75,4.70,4.63,4.63,4.69,4.65,4.72,4.70,4.68,4.63,4.68,4.72,4.71,4.65,4.69,4.74,4.70,4.64,4.66,4.67,4.73,4.75,4.79,4.79,4.77,4.78,4.80,4.83,4.95,4.96,4.97,5.00,5.01,4.94,5.01,4.96,4.96,5.11,5.18];
+  D.spy = [734.3,728.99,741,746.77,745.76,744.78,751.28,747.71,745.4,751.71,754.95,749.17,751.83,754.81,750.72,743.29,742.09,748.28,747.41,738.18,738.93,739.09,740.86,729.46,741.69,747.03,757.67,771.33,769.79,768.56,773.26,773.03,770.56,772.49,777.88,776.34,772.67,767.45,769.06,762.6,765.72,763.47,765.91,766.08,771.1,769.35,767.05,761.78,765.16,773.17,770.19,765.96,762.4,757.83,764.29,760.88,757.39,754.05,762.6,761.69,773.5,773.38,767.81,767.18,771.35];
+  D.spyMoves = [0.48,0.65,0.80,0.92,1.07,1.18,1.26,1.33,1.41,1.50,1.93,2.28,2.70,3.06,3.65,4.65];
+  D.beta = [["ORCL",2.038,0.379,3.606,0.715],["MU",1.368,0.173,2.132,0.434],["SMH",0.864,0.202,1.631,0.468],["NVDA",0.628,0.163,1.507,0.345],["ITB",1.673,0.588,1.354,0.531],["VST",0.476,0.119,1.295,0.403],["XLK",0.664,0.238,1.181,0.552],["CRWV",1.342,0.129,1.107,0.155],["QQQ",0.636,0.313,1.057,0.667],["IWM",0.642,0.493,0.849,0.674],["IGV",0.677,0.203,0.828,0.198],["XLU",0.454,0.311,0.723,0.522],["SPY",0.475,0.416,0.692,0.645],["XLRE",0.465,0.345,0.575,0.562],["RSP",0.517,0.516,0.507,0.572],["XLF",0.305,0.231,0.129,0.098],["XLE",-0.951,-0.441,-0.773,-0.365]];
+  D.heat = [["SPY","S&P 500",1.27,0.71,3.29],["RSP","S&P equal weight",-0.56,-4.81,-0.78],["QQQ","Nasdaq-100",3.19,4.75,1.10],["SMH","Semiconductors",5.86,9.13,-7.52],["XLK","Technology",3.52,7.99,3.02],["IWM","Russell 2000",-0.75,-5.77,-6.15],["XLF","Financials",-1.83,-5.95,2.29],["XLE","Energy",-3.53,-0.03,16.81],["XLU","Utilities",-3.87,-8.77,-12.86],["XLRE","Real estate",-2.28,-8.38,-5.61],["ITB","Homebuilders",2.31,-8.89,-14.40],["TLT","20+yr Treasuries",-2.38,-4.97,-8.22]];
+  D.gex = { spot: 771.35, putWall: 772, flip: 768.54, magnet: 772, callWall: 785 };
+  D.levels = [["SPY",771.35,768.54,772,772,785,"Positive gamma; pinned near 772"],["QQQ",744.50,738.51,745,745,760,"Positive gamma; flip 0.8% below"],["SMH",606.56,593.24,600,607.5,607.5,"At the call wall; flip 2.2% below"],["NVDA",225.07,221.67,225,225,230,"On the magnet; 230 caps"]];
+  D.moves = [["SPY","±1.07% (±$8.2)","±1.93%","±2.70%"],["QQQ","±1.59% (±$11.8)","±2.85%","±3.96%"],["NVDA","±2.68% (±$6.0)","±4.84%","±6.45%"],["MU","±7.3% (±$79, earnings Wed)","—","—"]];
+  D.flow = [
+    ["MU","Oct 2 $1,000 calls, deep ITM (3 prints)","Sold",45.2,"Holders cashing in before Wednesday's print. Expectations high; don't chase calls."],
+    ["NVDA","Oct 9 $215 calls sold; Dec $221 puts bought","Sold / Bought",22.2,"Capping upside and buying protection: hedged long into Q4 and Nov 18 earnings."],
+    ["META","Jan-28 $700/$670 LEAPS calls sold; Oct 9 $750 calls bought","Sold / Bought",38.9,"Long-term profit-taking after +32% on the month, short-term momentum bet kept."],
+    ["AMD","Jan-28 $560 calls bought; Dec $700 puts sold","Bought / Sold",28.0,"Wants upside over 15 months, willing to own lower: bullish and patient."],
+    ["QQQ / HYG","Jun-27 $800 puts; Jan-27 $77 puts","Bought",10.8,"Long-dated insurance on tech and on credit. Someone is paying for tail protection."],
+    ["XLU","412K calls vs 25K average; Mar-27 $45 and Oct 2 $40 calls","Bought",1.8,"Contrarian bet that rates peak, placed at a 52-week low. Small premium, huge volume."],
+    ["INTC · MSFT · AAPL · CRWV","Oct 16 calls near the money","Bought",14.5,"The only outright chasing, and it is in laggards and platforms, not in semis that already ran."],
+    ["XLF","Put premium 3.5× call premium on the day","—",18.4,"Financials are the hedge of choice for a rates accident."]
+  ];
+  D.cal = [
+    ["Tue 10:00","JOLTS openings (est 7.23M)","m","Labor cooling is the one thing that eases yields without an Iran deal."],
+    ["Tue 21:30","China NBS PMIs (mfg est 50.1)","m","Golden Week eve; sets Asia tone."],
+    ["Wed 8:30","PCE (Aug): core est +0.3% m/m, 3.4% y/y","h","The number that sets October. ≥0.4% locks the hike; 0.2% reopens the debate."],
+    ["Wed AMC","Micron earnings, ±7.3%","h","Memory read-through for the whole AI trade; SNDK/WDC/STX/SMH follow."],
+    ["Wed close","Quarter-end","m","Rebalancing flows; SPY max pain 761, magnet 772."],
+    ["Thu 10:00","ISM manufacturing (est 54.8; prices 72.0)","h","Hot PMIs are what spiked yields on Sep 23. Prices paid matters most."],
+    ["Fri 8:30","Payrolls (est +100K; unemployment 4.2%; wages +0.2%)","h","Strong = more hikes priced. Weak = yields ease, stagflation talk."],
+    ["All week","Fed: Barkin ×2, Goolsbee ×2, Williams ×2, Musalem, Kashkari, Schmid, Collins, Logan","m","Listen for \"sufficiently restrictive\" without the \"not yet.\""],
+    ["Rolling","Iran's seven-day Hormuz clock","h","Acceptance: crude −$10–15, 10-year −15–25 bp. Escalation: the opposite."],
+    ["Oct 1","China Golden Week; new U.S. fiscal year (funded to Dec 11)","","Thin Asia liquidity; no shutdown risk."]
+  ];
+
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt = (v, d = 2) => (+v).toFixed(d);
+  const sgn = (v, d = 1) => (v > 0 ? "+" : "") + fmt(v, d) + "%";
+  const el = (id) => document.getElementById(id);
+
+  // sparkline: single hue, faint area, emphasized endpoint
+  function spark(data, w, h, color) {
+    const min = Math.min(...data), max = Math.max(...data), pad = 3;
+    const x = (i) => pad + i * (w - 2 * pad) / (data.length - 1);
+    const y = (v) => pad + (h - 2 * pad) * (1 - (v - min) / ((max - min) || 1));
+    const pts = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
+    const path = "M" + pts.join(" L");
+    const area = path + ` L${x(data.length - 1).toFixed(1)},${h} L${x(0).toFixed(1)},${h} Z`;
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${area}" fill="${color}" opacity="0.14"/><path d="${path}" fill="none" stroke="${color}" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="${x(data.length - 1).toFixed(1)}" cy="${y(data[data.length - 1]).toFixed(1)}" r="2.6" fill="${color}" vector-effect="non-scaling-stroke"/></svg>`;
+  }
+  function renderTiles() {
+    const c1 = css("--s1"), c2 = css("--s2"), c3 = css("--s3"), cneg = css("--neg");
+    const vixLo = 13.38, vixHi = 35.30, vix = 14.87, vixPct = ((vix - vixLo) / (vixHi - vixLo) * 100).toFixed(1);
+    el("tiles").innerHTML = [
+      { l: "SPY close", v: "771.35", c: `<span class="up">+3.3% QTD</span>`, body: spark(D.spy, 200, 34, c1), s: "+0.5% Fri · 0.8% off the Aug 13 high" },
+      { l: "10-year yield", v: "5.18%", c: `<span class="dn">+48bp 1m</span>`, body: spark(D.dgs10, 200, 34, cneg), s: "Highest since 2007 · Jun 1 → Sep 24" },
+      { l: "10-yr real (TIPS)", v: "2.85%", c: `<span class="dn">+47bp 1m</span>`, body: spark(D.dfii10, 200, 34, c2), s: "Breakeven flat 2.33% · Aug 24 → Sep 24" },
+      { l: "Oct hike odds", v: "~70%", c: `<span class="dn">55→70%</span>`, body: `<div class="bar"><i style="width:70%"></i></div>`, s: "Jumped Wed · funds 4.00% after Sep 17" },
+      { l: "VIX", v: "14.87", c: `<span class="up">−5.1%</span>`, body: `<div class="bar"><em style="left:${vixPct}%"></em></div>`, s: "Position in 52-wk range 13.4 – 35.3" },
+      { l: "SPY week implied", v: "±1.07%", c: `<span>±$8.2</span>`, body: spark(D.spyMoves, 200, 34, c3), s: "Implied move by expiry, Sep 28 → Dec 18" }
+    ].map(t => `<div class="tile"><div class="lbl">${t.l}</div><div class="row"><span class="val">${t.v}</span><span class="chg">${t.c}</span></div>${t.body}<div class="sub">${t.s}</div></div>`).join("");
+  }
+  renderTiles();
+
+  const heatCell = (v) => `<td class="heat ${v > 0 ? 'p' : (v < 0 ? 'n' : '')}">${sgn(v)}</td>`;
+  el("tHeat").innerHTML = `<thead><tr><th>Ticker</th><th>Name</th><th class="r">1 wk</th><th class="r">1 mo</th><th class="r">QTD</th></tr></thead><tbody>` + D.heat.map(r => `<tr><td class="tk">${r[0]}</td><td>${r[1]}</td>${heatCell(r[2])}${heatCell(r[3])}${heatCell(r[4])}</tr>`).join("") + "</tbody>";
+  el("tBeta").innerHTML = `<table><thead><tr><th>Ticker</th><th class="r">Beta 60</th><th class="r">Corr 60</th><th class="r">Beta 21</th><th class="r">Corr 21</th></tr></thead><tbody>` + D.beta.map(r => `<tr><td class="tk">${r[0]}</td><td class="r">${fmt(r[1])}</td><td class="r">${fmt(r[2])}</td><td class="r">${fmt(r[3])}</td><td class="r">${fmt(r[4])}</td></tr>`).join("") + "</tbody></table>";
+  el("tLevels").innerHTML = `<thead><tr><th>Ticker</th><th class="r">Spot</th><th class="r">Flip</th><th class="r">Put wall</th><th class="r">Magnet</th><th class="r">Call wall</th><th>State</th></tr></thead><tbody>` + D.levels.map(r => `<tr><td class="tk">${r[0]}</td><td class="r">${fmt(r[1])}</td><td class="r">${r[2]}</td><td class="r">${r[3]}</td><td class="r">${r[4]}</td><td class="r">${r[5]}</td><td style="color:var(--ink-2)">${r[6]}</td></tr>`).join("") + "</tbody>";
+  el("tMoves").innerHTML = `<thead><tr><th>Ticker</th><th class="r">Thru Fri Oct 2</th><th class="r">Thru Oct 16</th><th class="r">Thru Oct 30 (FOMC)</th></tr></thead><tbody>` + D.moves.map(r => `<tr><td class="tk">${r[0]}</td><td class="r">${r[1]}</td><td class="r">${r[2]}</td><td class="r">${r[3]}</td></tr>`).join("") + "</tbody>";
+  el("tFlow").innerHTML = `<thead><tr><th>Ticker</th><th>What traded</th><th>Side</th><th class="r">Premium $M</th><th>What it means</th></tr></thead><tbody>` + D.flow.map(r => `<tr><td class="tk" style="white-space:nowrap">${r[0]}</td><td>${r[1]}</td><td style="white-space:nowrap">${r[2]}</td><td class="r">${fmt(r[3], 1)}</td><td style="color:var(--ink-2)">${r[4]}</td></tr>`).join("") + "</tbody>";
+  el("tCal").innerHTML = `<thead><tr><th>When (ET)</th><th>What</th><th>Why it matters</th></tr></thead><tbody>` + D.cal.map(r => `<tr><td>${r[0]}</td><td><span class="imp ${r[2]}"></span>${r[1]}</td><td>${r[3]}</td></tr>`).join("") + "</tbody>";
+
+  (function () {
+    const g = D.gex;
+    const lo = Math.min(g.putWall, g.flip, g.spot, g.magnet, g.callWall), hi = Math.max(g.putWall, g.flip, g.spot, g.magnet, g.callWall);
+    const pad = (hi - lo) * 0.16, a = lo - pad, b = hi + pad;
+    const x = (v) => ((v - a) / (b - a) * 100).toFixed(2) + "%";
+    const raw = [{ v: g.flip, c: "flip", l: "gamma flip" }, { v: g.putWall, c: "wall", l: "put wall" }, { v: g.magnet, c: "magnet", l: "magnet" }, { v: g.callWall, c: "wall", l: "call wall" }];
+    const lv = []; raw.forEach(r => { const m = lv.find(q => q.v === r.v); if (m) m.l += " · " + r.l; else lv.push({ v: r.v, c: r.c, l: r.l }); });
+    lv.sort((p, q) => p.v - q.v);
+    el("spyTrack").innerHTML = `<div class="rail"></div><div class="band" style="left:${x(g.flip)};width:calc(${x(g.callWall)} - ${x(g.flip)})"></div>` +
+      lv.map((r, i) => `<div class="lv ${r.c} ${i % 2 ? 'row2' : 'row1'}" style="left:${x(r.v)}"><div class="dot"></div><div class="tick"></div><div class="lab">${r.l}</div><div class="v">${r.v}</div></div>`).join("") +
+      `<div class="spot" style="left:${x(g.spot)}"><div class="slab">spot ${g.spot.toFixed(2)}</div><div class="tri"></div></div>`;
+  })();
+
+  const charts = [];
+  const theme = () => ({ ink: css("--ink"), ink2: css("--ink-2"), muted: css("--muted"), grid: css("--grid"), axis: css("--axis"), s1: css("--s1"), s2: css("--s2"), s3: css("--s3"), surface: css("--surface") });
+  function build() {
+    if (!window.Chart) return;
+    charts.forEach(c => c.destroy()); charts.length = 0;
+    const T = theme(); Chart.defaults.font.family = css("--font-body"); Chart.defaults.color = T.ink2;
+    const endLabels = { id: "endLabels", afterDatasetsDraw(chart, args, opts) { if (!opts || !opts.on) return; const { ctx } = chart; ctx.save(); ctx.font = "500 11px " + css("--font-mono"); ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillStyle = T.ink;
+      chart.data.datasets.forEach((ds, i) => { const meta = chart.getDatasetMeta(i); const pt = meta.data[meta.data.length - 1]; if (pt) ctx.fillText(ds.data[ds.data.length - 1].toFixed(2) + "%", pt.x + 6, pt.y); }); ctx.restore(); } };
+    const refLine = { id: "refLine", afterDatasetsDraw(chart, args, opts) { if (!opts || opts.x == null) return; const { ctx, chartArea: { top, bottom }, scales: { x } } = chart; const px = x.getPixelForValue(opts.x);
+      ctx.save(); ctx.strokeStyle = T.muted; ctx.lineWidth = 1; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(px, top); ctx.lineTo(px, bottom); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = T.ink2; ctx.font = "500 11px " + css("--font-mono"); ctx.textAlign = "left"; ctx.fillText(opts.text, px + 4, bottom - 6); ctx.restore(); } };
+    const base = (extra) => Object.assign({ responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false },
+      plugins: { legend: { labels: { color: T.ink2, boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: "circle", font: { size: 12 } } }, tooltip: { backgroundColor: T.surface, titleColor: T.ink, bodyColor: T.ink2, borderColor: T.axis, borderWidth: 1, padding: 8 } },
+      scales: { x: { grid: { color: T.grid, drawTicks: false }, border: { color: T.axis }, ticks: { color: T.muted, font: { size: 11 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }, y: { grid: { color: T.grid, drawTicks: false }, border: { display: false }, ticks: { color: T.muted, font: { size: 11 } } } } }, extra || {});
+    const line = (label, data, color) => ({ label, data, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0.15 });
+
+    let o = base(); o.scales.y.ticks.callback = v => v.toFixed(1) + "%"; o.scales.y.suggestedMin = 2.0; o.scales.y.suggestedMax = 5.4; o.layout = { padding: { right: 44 } };
+    o.plugins.tooltip.callbacks = { label: c => ` ${c.dataset.label}: ${c.parsed.y.toFixed(2)}%` };
+    o.plugins.endLabels = { on: true };
+    charts.push(new Chart(el("cReal"), { type: "line", data: { labels: D.realDates, datasets: [line("10-year nominal", D.nom10, T.s1), line("10-year real (TIPS)", D.dfii10, T.s2), line("Breakeven", D.breakeven, T.s3)] }, options: o, plugins: [endLabels] }));
+
+    const bt = D.beta.slice().sort((a, b) => b[3] - a[3]);
+    o = base({ indexAxis: "y" }); o.interaction = { mode: "index", intersect: false, axis: "y" };
+    o.scales.x.ticks.callback = v => v.toFixed(1) + "×"; o.scales.y.grid.display = false; o.scales.y.ticks.font = { size: 12, family: css("--font-mono") }; o.scales.y.ticks.autoSkip = false;
+    o.plugins.refLine = { x: 1, text: "1× = moves like TLT" };
+    o.plugins.tooltip.callbacks = { label: c => { const r = bt[c.dataIndex]; const corr = c.datasetIndex === 0 ? r[4] : r[2]; return ` ${c.dataset.label}: beta ${c.parsed.x.toFixed(2)}× · corr ${corr.toFixed(2)}`; } };
+    charts.push(new Chart(el("cBeta"), { type: "bar", data: { labels: bt.map(r => r[0]), datasets: [
+      { label: "Last 21 sessions", data: bt.map(r => r[3]), backgroundColor: T.s1, borderRadius: 4, borderSkipped: "start", barPercentage: 0.8, categoryPercentage: 0.8 },
+      { label: "60 sessions", data: bt.map(r => r[1]), backgroundColor: T.s2, borderRadius: 4, borderSkipped: "start", barPercentage: 0.8, categoryPercentage: 0.8 } ] }, options: o, plugins: [refLine] }));
+  }
+  build();
+
+  const root = document.documentElement;
+  el("themeBtn").addEventListener("click", () => {
+    const light = matchMedia("(prefers-color-scheme: light)").matches;
+    const cur = root.getAttribute("data-theme") || (light ? "light" : "dark");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+  const rethem = () => { renderTiles(); build(); };
+  new MutationObserver(rethem).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", rethem);
+})();
+</script>
+
+</body>
+</html>
