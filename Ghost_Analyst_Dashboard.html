@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Ghost Analyst Positioning Dashboard: dealer gamma levels, market tide, options tape, IV ranks, sector performance and premium skew, Treasury curve, cross-asset and seasonality on one screen. Snapshot as of the Sep 25, 2026 close.">
+<meta property="og:title" content="Ghost Analyst Positioning Dashboard">
+<meta property="og:description" content="Where the market is leaning: gamma, flow, vol, sectors, rates and cross-asset in one place. Snapshot as of Sep 25, 2026.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z' fill='%238ab4ff'/%3E%3Ccircle cx='12.4' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3Ccircle cx='19.6' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3C/svg%3E">
+<title>Ghost Analyst Positioning Dashboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --page: #0c0f15; --surface: #151a23; --raised: #1a2029; --raised-2: #202836;
+    --ink: #eaedf3; --ink-2: #aab2c2; --muted: #7e8797;
+    --hair: #263040; --hair-2: #34405a;
+    --accent: #8ab4ff; --accent-2: #5e8ff0; --accent-ink: #0c0f15;
+    --tint: rgba(138,180,255,0.10); --tint-2: rgba(138,180,255,0.18);
+    --glow: rgba(94,143,240,0.22); --dot: rgba(255,255,255,0.045);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --neg: #e66767; --pos: #3987e5;
+    --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --grid: #232a37; --axis: #3a4457;
+    --negbg: rgba(230,103,103,0.16); --posbg: rgba(57,135,229,0.20);
+    --shadow-card: 0 12px 32px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.04) inset;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+      --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+      --hair: #dfe3ea; --hair-2: #c9cfda;
+      --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+      --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+      --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+      --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+      --neg: #e34948; --pos: #2a78d6;
+      --grid: #e6e8ee; --axis: #c3c7d1;
+      --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+      --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+    --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+    --hair: #dfe3ea; --hair-2: #c9cfda;
+    --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+    --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+    --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+    --neg: #e34948; --pos: #2a78d6;
+    --grid: #e6e8ee; --axis: #c3c7d1;
+    --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+    --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; position: relative; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(900px 520px at 12% -6%, var(--glow), transparent 65%), radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: auto, 22px 22px; background-color: var(--page); }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding-block: 0 56px; padding-inline: 20px; }
+  @media (min-width: 720px) { .wrap { padding-inline: 32px; } }
+
+  /* masthead */
+  .mast { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 16px 14px; border-bottom: 1px solid var(--hair); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { width: 28px; height: 28px; flex: none; filter: drop-shadow(0 0 10px var(--glow)); }
+  .brand .w { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); line-height: 1.2; }
+  .brand .w small { display: block; font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); }
+  .mast-right { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .live { display: inline-flex; align-items: center; gap: 7px; }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(12,163,12,0.18); }
+  .theme-btn { font: 500 12px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: 40px 8px; max-width: 860px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--accent); transform: rotate(45deg); }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.02; letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .dek { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 18px; text-wrap: pretty; }
+  .signals { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+  .sig { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px 6px 10px; font-size: 13px; }
+  .sig i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .sig b { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* the call */
+  .call { margin-top: 26px; position: relative; border-radius: 14px; padding: 22px 24px 10px;
+    background: linear-gradient(var(--raised), var(--surface)) padding-box, linear-gradient(135deg, var(--accent-2), var(--hair) 55%, var(--hair)) border-box; border: 1px solid transparent; box-shadow: var(--shadow-card); }
+  .call .eyebrow { margin-bottom: 10px; }
+  .call ol { margin: 0; padding: 0; list-style: none; max-width: 80ch; counter-reset: call; }
+  .call ol li { counter-increment: call; position: relative; padding-left: 40px; margin-bottom: 12px; }
+  .call ol li::before { content: counter(call); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 500 13px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+
+  /* tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+  @media (min-width: 620px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 940px) { .tiles { grid-template-columns: repeat(6, 1fr); } }
+  .tile { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px 10px; min-width: 0; box-shadow: var(--shadow-card); }
+  .tile .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 6px; }
+  .tile .val { font-size: 24px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+  .tile .chg { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .tile .spark { display: block; width: 100%; height: 34px; margin: 6px 0 4px; }
+  .tile .bar { position: relative; height: 6px; border-radius: 3px; background: var(--hair); margin: 16px 0 12px; }
+  .tile .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--accent-2); }
+  .tile .bar em { position: absolute; top: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--hair-2); }
+  .tile .sub { font-size: 12px; color: var(--ink-2); }
+
+  /* sections */
+  section { padding-block: 34px 6px; position: relative; }
+  section + section::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--accent-2), var(--hair) 45%, var(--hair)); opacity: 0.7; }
+  .sh { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin-bottom: 16px; }
+  .sh .idx { font-family: var(--font-display); font-size: 54px; line-height: 0.9; color: var(--accent); opacity: 0.28; font-weight: 500; padding-top: 4px; }
+  .sh .eyebrow { margin-bottom: 6px; }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.1vw, 32px); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h3 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
+  h3::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  p { max-width: 68ch; margin: 0 0 10px; }
+  ul.tight { padding-left: 18px; margin: 0 0 10px; max-width: 74ch; }
+  ul.tight li { margin-bottom: 7px; } ul.tight li::marker { color: var(--accent); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tk { font-family: var(--font-mono); font-weight: 500; }
+  .up { color: var(--s3); } .dn { color: var(--neg); }
+  .small { font-size: 13px; color: var(--muted); }
+
+  /* cards & figures */
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 860px) { .grid2 { grid-template-columns: 1fr 1fr; } .grid2 .span2 { grid-column: 1 / -1; } }
+  .card { background: linear-gradient(180deg, var(--raised), var(--surface) 120px); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; min-width: 0; box-shadow: var(--shadow-card); }
+  .card h4 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+  .card .cap { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+  .chart-box { position: relative; width: 100%; } .chart-box canvas { width: 100% !important; }
+  .take { margin: 12px 0 0; font-size: 14px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+  .take b { flex: none; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--tint); border: 1px solid var(--tint-2); border-radius: 999px; padding: 2px 8px; margin-top: 2px; }
+  .read { margin-top: 12px; border: 1px solid var(--tint-2); background: var(--tint); border-radius: 10px; padding: 12px 14px 12px 44px; font-size: 13.5px; color: var(--ink-2); position: relative; }
+  .read::before { content: "?"; position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 600 12px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+  .read b.k { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .read p { margin: 0 0 6px; max-width: none; } .read p:last-child { margin-bottom: 0; }
+  .read i { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  details.tbl { margin-top: 8px; }
+  details.tbl summary { cursor: pointer; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); list-style: none; padding: 4px 0; }
+  details.tbl summary::before { content: "▸ "; color: var(--accent); } details.tbl[open] summary::before { content: "▾ "; }
+  details.tbl summary::-webkit-details-marker { display: none; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; background: var(--raised-2); }
+  th:first-child { border-radius: 8px 0 0 8px; } th:last-child { border-radius: 0 8px 8px 0; }
+  td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--tint); }
+  .tblcard { background: var(--surface); border: 1px solid var(--hair); border-radius: 14px; padding: 6px 6px; box-shadow: var(--shadow-card); }
+  td.heat { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 500; }
+  td.heat.p { background: var(--posbg); } td.heat.n { background: var(--negbg); }
+
+  /* ladder */
+  .ladder { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px 12px; box-shadow: var(--shadow-card); }
+  .ladder .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; margin-bottom: 2px; }
+  .ladder .head .t { font-family: var(--font-mono); font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .ladder .head .p { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+  .regime { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--good); color: var(--good); background: rgba(12,163,12,0.10); }
+  .regime::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+  .track { position: relative; height: 116px; margin: 8px 10px 0; }
+  .track .rail { position: absolute; left: 0; right: 0; top: 40px; height: 2px; background: var(--axis); border-radius: 2px; }
+  .track .band { position: absolute; top: 34px; height: 14px; border-radius: 4px; background: linear-gradient(90deg, rgba(217,89,38,0.22), rgba(57,135,229,0.26)); }
+  .spot { position: absolute; top: 8px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .spot .slab { font-family: var(--font-mono); font-size: 11px; color: var(--ink); white-space: nowrap; margin-bottom: 3px; background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 1px 8px; }
+  .spot .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 9px solid var(--ink); filter: drop-shadow(0 0 6px var(--accent)); }
+  .lv { position: absolute; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .lv .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--s1); border: 2px solid var(--surface); margin-top: -4.5px; flex: none; box-shadow: 0 0 0 1px var(--s1); }
+  .lv .tick { width: 1px; height: 8px; background: var(--hair-2); } .lv.row2 .tick { height: 34px; }
+  .lv .lab { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .lv .v { font-family: var(--font-mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  .lv.flip .dot { background: var(--s2); box-shadow: 0 0 0 1px var(--s2); } .lv.magnet .dot { background: var(--s3); box-shadow: 0 0 0 1px var(--s3); }
+  .legend-inline { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin: 8px 0 2px; }
+  .legend-inline span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--s1); }
+  .legend-inline .lf::before { background: var(--s2); } .legend-inline .lm::before { background: var(--s3); }
+  .legend-inline .ls::before { background: var(--ink); border-radius: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+  /* risk ranking */
+  .rank { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+  .rank li { display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start; background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-left: 4px solid var(--sev, var(--hair-2)); border-radius: 12px; padding: 11px 14px; font-size: 14px; box-shadow: var(--shadow-card); }
+  .rank .n { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--sev, var(--accent)); line-height: 1; padding-top: 2px; }
+  .rank .t { font-weight: 600; } .rank .d { color: var(--ink-2); }
+  .rank .sev { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sev); border: 1px solid var(--sev); border-radius: 999px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; }
+  .rank li.critical { --sev: var(--critical); } .rank li.serious { --sev: var(--serious); } .rank li.warn { --sev: var(--warn); } .rank li.low { --sev: var(--good); }
+  @media (max-width: 560px) { .rank li { grid-template-columns: 30px 1fr; } .rank .sev { grid-column: 2; justify-self: start; } }
+
+  /* tiers */
+  .two { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .two { grid-template-columns: 1fr 1fr; } }
+  .tier { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-card); border-top: 3px solid var(--s3); }
+  .tier.b { border-top-color: var(--s2); }
+  .tier h4 { margin: 0 0 4px; font-size: 15px; }
+  .tier .why { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+  .tier ul { margin: 0; padding-left: 16px; font-size: 14px; color: var(--ink-2); } .tier li { margin-bottom: 5px; }
+
+  /* scenarios */
+  .scen { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 860px) { .scen { grid-template-columns: 1fr 1fr 1fr; } }
+  .sc { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; box-shadow: var(--shadow-card); --c: var(--s1); }
+  .sc.bear { --c: var(--critical); } .sc.bull { --c: var(--good); }
+  .sc .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .sc .pr { font-size: 32px; font-weight: 600; line-height: 1; color: var(--c); }
+  .sc .gl { font-family: var(--font-mono); font-size: 22px; color: var(--c); opacity: 0.8; }
+  .sc .nm { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 4px 0 8px; }
+  .sc .pbar { height: 5px; border-radius: 3px; background: var(--hair); margin: 0 0 12px; overflow: hidden; }
+  .sc .pbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+  .sc p { font-size: 14px; color: var(--ink-2); margin: 0 0 6px; } .sc p b { color: var(--ink); font-weight: 500; }
+
+  /* calendar */
+  .imp { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 0; background: var(--hair-2); }
+  .imp.h { background: var(--critical); box-shadow: 0 0 0 3px rgba(208,59,59,0.18); } .imp.m { background: var(--warn); }
+  .cal td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--muted); }
+  .cal th:last-child, .cal td:last-child { width: 40%; color: var(--ink-2); }
+
+  .gloss dt { font-family: var(--font-mono); font-weight: 500; font-size: 13px; margin-top: 10px; color: var(--accent); }
+  .gloss dd { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); max-width: 72ch; }
+  .foot { border-top: 1px solid var(--hair); margin-top: 36px; padding-top: 18px; font-size: 13px; color: var(--muted); }
+  .foot ul { padding-left: 18px; margin: 8px 0; } .foot li { margin-bottom: 4px; }
+  .foot .sig-off { display: flex; align-items: center; gap: 10px; margin-top: 16px; color: var(--ink-2); }
+  .foot .sig-off svg { width: 22px; height: 22px; }
+
+  /* dashboard */
+  .dash-hero { padding-block: 30px 6px; }
+  .dash-hero .dek { margin-bottom: 8px; }
+  section.tight-top { padding-top: 22px; }
+  .rstrip { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 18px; }
+  @media (min-width: 640px) { .rstrip { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .rstrip { grid-template-columns: repeat(5, 1fr); } }
+  .rg { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-left: 4px solid var(--c, var(--hair-2)); border-radius: 12px; padding: 10px 12px; box-shadow: var(--shadow-card); min-width: 0; }
+  .rg.good { --c: var(--good); } .rg.critical { --c: var(--critical); } .rg.warn { --c: var(--warn); } .rg.s1 { --c: var(--s1); }
+  .rg .rk { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .rg .rv { font-weight: 600; font-size: 14.5px; color: var(--ink); margin: 2px 0; }
+  .rg .rd { font-size: 12px; color: var(--ink-2); line-height: 1.4; }
+  .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 640px) { .kpis { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 980px) { .kpis { grid-template-columns: repeat(6, 1fr); } }
+  .kpi { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 12px 10px; min-width: 0; box-shadow: var(--shadow-card); }
+  .kpi .kh { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+  .kpi .kh .tk { font-size: 13px; color: var(--muted); } .kpi .kv { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+  .kpi .kr { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 4px; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-2); margin: 6px 0 8px; white-space: nowrap; }
+  .rng { position: relative; height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--negbg), var(--hair) 50%, var(--posbg)); }
+  .rng i { position: absolute; top: -4px; width: 13px; height: 13px; border-radius: 50%; background: var(--ink); border: 3px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--hair-2); }
+  .kpi .klab { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin: 6px 0 8px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 4px; }
+  .pill { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--hair-2); color: var(--ink-2); white-space: nowrap; }
+  .pill.pos { border-color: var(--good); color: var(--good); } .pill.neg { border-color: var(--critical); color: var(--critical); }
+  .flowgrid { align-items: start; } .stack { display: grid; gap: 16px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+  .st .sk { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .st .sv { font-size: 22px; font-weight: 600; line-height: 1.1; margin: 2px 0; } .st .sd { font-size: 12px; color: var(--ink-2); }
+  .ivr { display: grid; gap: 7px; }
+  .ivrow { display: grid; grid-template-columns: 44px 1fr 34px; align-items: center; gap: 10px; font-size: 13px; }
+  .ivrow .ivbar { height: 7px; border-radius: 4px; background: var(--hair); overflow: hidden; } .ivrow .ivbar i { display: block; height: 100%; border-radius: 4px; }
+  .ivrow .num { text-align: right; } .ivrow.vix { grid-template-columns: 44px 44px 1fr; margin-top: 2px; } .ivrow.vix .num { text-align: left; font-weight: 500; }
+  .ladders { display: grid; gap: 10px; }
+  .ladder.mini { padding: 10px 14px 6px; } .ladder.mini .track { height: 112px; } .ladder.mini .lv.lbl { top: 46px; } .ladder.mini .lv.lbl .tick { height: 6px; } .ladder.mini .lv.lbl.row2 .tick { height: 34px; }
+  .ladder.mini .head .t { font-size: 14px; } .regime.neg { border-color: var(--critical); color: var(--critical); background: rgba(208,59,59,0.10); } .regime.neg::before { background: var(--critical); }
+  #tSectors td.rc { min-width: 110px; } #tSectors td.rc .rng { margin: 6px 0 4px; } #tSectors td.rc .small { display: block; }
+  #tSectors td.hot { color: var(--warn); font-weight: 600; }
+  #tSectors tr.bench td { background: var(--raised-2); }
+  .skew { position: relative; height: 7px; border-radius: 4px; background: var(--hair); margin: 6px 0 4px; overflow: hidden; }
+  .skew::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--axis); }
+  .skew i { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .xa { display: grid; gap: 6px; }
+  .xr { display: grid; grid-template-columns: 1.3fr 0.8fr 1fr 0.9fr; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--hair); font-size: 13px; }
+  .xr:last-child { border-bottom: none; }
+  .xr .xn { font-weight: 600; color: var(--ink); } .xr .xn .small { display: block; font-weight: 400; }
+  .xr .xv { font-size: 15px; font-weight: 500; } .xr .xc { line-height: 1.35; }
+  .xr .xb .rng { margin: 2px 0; }
+  @media (max-width: 480px) { .xr { grid-template-columns: 1.2fr 0.8fr 1fr; } .xr .xb { display: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+<style>img{max-width:100%} [hidden]{display:none!important} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ghost" viewBox="0 0 32 32"><path d="M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z" fill="currentColor"/><circle cx="12.4" cy="14.2" r="1.9" fill="var(--page)"/><circle cx="19.6" cy="14.2" r="1.9" fill="var(--page)"/></symbol></svg>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><svg style="color:var(--accent)"><use href="#ghost"/></svg><div class="w">Ghost Analyst<small>Research · Positioning Dashboard</small></div></div>
+    <div class="mast-right"><span class="live">Snapshot: Fri Sep 25, 2026 close</span><button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">Theme</button></div>
+  </header>
+
+  <div class="hero dash-hero">
+    <p class="eyebrow">Market positioning · one screen</p>
+    <h1>Where the market is <em>leaning</em></h1>
+    <p class="dek">Dealer gamma, options flow, volatility, sectors, rates and cross-asset, in one place. Read it top to bottom: the regime strip says what kind of tape this is, the panels say why.</p>
+  </div>
+
+  <div class="rstrip" id="regime"></div>
+
+  <section class="tight-top">
+    <div class="sh"><div class="idx">01</div><div><p class="eyebrow">Indexes</p><h2>Price, range, vol and the gamma regime</h2></div></div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">02</div><div><p class="eyebrow">Options flow</p><h2>Market tide and the day's tape</h2></div></div>
+    <div class="grid2 flowgrid">
+      <div class="card">
+        <h4>Market tide · Fri Sep 25, 5-minute</h4>
+        <p class="cap">Cumulative net premium across all U.S. options, $M. Above zero = paid at the ask (buying), below = hit at the bid (selling).</p>
+        <div class="chart-box" style="height:230px"><canvas id="cTide"></canvas></div>
+        <p class="take"><b>Read</b><span id="tideRead"></span></p>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <h4>The tape</h4>
+          <p class="cap">All U.S. options, Friday.</p>
+          <div class="stats" id="tape"></div>
+        </div>
+        <div class="card">
+          <h4>Volatility</h4>
+          <p class="cap">Where implied vol sits in its one-year range. High rank = fear is priced; low = it is not.</p>
+          <div class="ivr" id="ivr"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">03</div><div><p class="eyebrow">Dealer positioning</p><h2>Gamma levels, open-interest basis</h2></div></div>
+    <p class="small" style="margin:0 0 10px">Above the flip, dealers dampen moves (they sell rallies, buy dips). Below it they amplify them. Put wall = the support strike, call wall = the ceiling, magnet = where expiry tends to pull.</p>
+    <div class="ladders" id="ladders"></div>
+    <div class="legend-inline"><span>put / call wall</span><span class="lf">gamma flip</span><span class="lm">magnet</span><span class="ls">spot</span></div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">04</div><div><p class="eyebrow">Sectors</p><h2>Performance and options skew by sector</h2></div></div>
+    <div class="tblcard scroll"><table id="tSectors"></table></div>
+    <p class="small" style="margin-top:8px">Call vol ×avg = Friday call volume over its 30-day average. Skew = (bullish − bearish premium) ÷ total, from Unusual Whales' bid/ask-side classification; +100 is all bullish. Sorted by one-week return.</p>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">05</div><div><p class="eyebrow">Rates &amp; cross-asset</p><h2>The curve moved 50 bp in a month</h2></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h4>Treasury curve · now vs one month ago</h4>
+        <p class="cap">Constant-maturity yields, %. Sep 25 vs Aug 25 and Sep 18.</p>
+        <div class="chart-box" style="height:220px"><canvas id="cCurve"></canvas></div>
+        <p class="take"><b>Read</b><span>The whole curve is 30–65 bp higher than a month ago and the belly led: 2-year +64 bp, 10-year +53 bp, 30-year +32 bp. That is a market pricing more Fed, not just more term premium. 2s10s is +36 bp; 3-month to 10-year +93 bp.</span></p>
+      </div>
+      <div class="card">
+        <h4>Cross-asset</h4>
+        <p class="cap">Last, change, and position in the 52-week range.</p>
+        <div class="xa" id="xa"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">06</div><div><p class="eyebrow">Seasonality</p><h2>October, historically</h2></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h4>Average October return, 18 years</h4>
+        <p class="cap">Bar = average; label = share of Octobers that closed up.</p>
+        <div class="chart-box" style="height:330px"><canvas id="cSeas"></canvas></div>
+      </div>
+      <div class="card">
+        <h4>Read</h4>
+        <p class="cap">Unusual Whales monthly seasonality, 2008–2025.</p>
+        <ul class="tight" style="font-size:14px">
+          <li><b>October is a positive-but-wide month.</b> SPY averages +0.9% (median +1.9%) and closes up 61% of the time, but the range runs −16% to +12%: it is the month of the outliers.</li>
+          <li><b>Utilities are the seasonal standout</b> (83% positive, +1.4% avg) and are sitting on a 52-week low with call volume 16× normal. Tech averages +1.6% with a +3.5% median.</li>
+          <li><b>Communication services is the laggard</b> (29% positive over its 7-year history).</li>
+          <li><b>November is the strong month</b> across the board: SPY +2.2% avg, 78% positive; small caps 83%; industrials 83%; materials 89%.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">07</div><div><p class="eyebrow">Decoder</p><h2>How to read this page</h2></div></div>
+    <div class="grid2">
+      <div class="read" style="margin-top:0"><b class="k">Flow and gamma</b>
+        <p><i>Market tide</i> sums every option trade by whether it filled at the ask (buyer aggressive) or the bid (seller aggressive). Net call premium falling while the index rises means calls are being sold into strength: hedged or overwritten, not chased.</p>
+        <p><i>Gamma flip</i> is the price where dealers' net gamma changes sign. Above it their hedging leans against the move (quiet, mean-reverting tape); below it their hedging pushes with the move (trend, air pockets). Walls are the strikes with the most positive gamma above and below spot: the first places a move stalls.</p>
+      </div>
+      <div class="read" style="margin-top:0"><b class="k">Vol and skew</b>
+        <p><i>IV rank</i> puts today's implied vol on a 0–100 scale against the last year. Under 20, options are cheap relative to the year and the market is not paying for protection; over 60 it is. Equity ranks near the floor with bond ranks near the ceiling is the signature of a rates-driven tape.</p>
+        <p><i>Premium skew</i> is bullish minus bearish premium as a share of the total: +100 all calls bought/puts sold, −100 the reverse. It is a one-day read; pair it with the volume multiple to tell a real bet from noise.</p>
+        <p><i>Nothing here is a forecast.</i> It is where the market is positioned, which is what determines how it reacts.</p>
+      </div>
+    </div>
+    <p class="small" style="margin-top:12px">For information and education only; not investment advice or a solicitation. Ghost Analyst Research is not a registered investment adviser. Options involve risk and are not suitable for all investors.</p>
+  </section>
+
+  <footer class="foot">
+    <details class="tbl"><summary>Sources and data notes</summary>
+      <ul>
+        <li>Unusual Whales API: market tide (5-minute, all options), market state (volume and premium totals), GEX levels (open-interest basis), sector ETF snapshot (call/put volume, bullish/bearish premium, 30-day averages), IV term structure and IV rank (ticker day-state), ticker performances, monthly seasonality. All as of the Sep 25, 2026 close.</li>
+        <li>FMP: batch quotes (52-week ranges, moving averages), VIX/VXN/MOVE, BTC, ETH, gold, Brent, DXY; Treasury constant-maturity yields (Aug 24 – Sep 25).</li>
+        <li>Per-day implied moves are backed out of the variance between consecutive daily expiries. Premium skew and the volume multiple are computed from the sector ETF snapshot.</li>
+      </ul>
+    </details>
+    <div class="sig-off"><svg style="color:var(--accent)"><use href="#ghost"/></svg><span>© 2026 Ghost Analyst Research · kelemvor75.github.io</span></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function () {
+  'use strict';
+  /* ===================== DATA (replace this block to refresh) ===================== */
+  const D = {
+    asof: "2026-09-25",
+    // last, prev, 1w-ago, 1m-ago, ytd-base, 52w low, 52w high, 50d, 200d
+    px: {
+      SPY:  [771.35, 767.18, 761.69, 765.91, 681.92, 629.28, 779.37, 761.57, 718.45],
+      QQQ:  [744.50, 741.10, 721.45, 710.72, 614.31, 555.60, 748.65, 712.65, 665.59],
+      IWM:  [281.97, 281.66, 284.10, 299.23, 246.16, 228.90, 305.18, 294.00, 275.68],
+      DIA:  [517.49, 512.68, 515.88, 535.24, 480.57, 450.44, 546.75, 527.56, 502.02],
+      RSP:  [211.11, 210.26, 212.29, 221.77, 191.56, 182.11, 223.44, 217.01, 205.34],
+      SMH:  [606.56, 600.52, 573.00, 555.82, 360.13, 315.05, 671.83, 565.89, 493.28],
+      TLT:  [79.32, 79.42, 81.25, 83.47, 87.16, 78.83, 92.19, 82.25, 85.67],
+      IBIT: [47.57, 47.81, 46.02, 44.72, 49.65, 32.84, 71.82, 40.91, 42.02],
+      GLD:  [393.36, 391.69, 401.17, 428.07, 396.31, 345.31, 509.70, 394.86, 416.40],
+      HYG:  [77.86, 77.89, 78.53, 79.92, 80.63, 76.94, 81.36, 79.24, 79.97],
+      UUP:  [28.62, 28.69, 28.39, 27.94, 27.03, 26.40, 28.74, 28.23, 27.73],
+      XLK:  [196.27, 194.71, 189.60, 181.74, 143.97, 126.68, 198.73, 184.47, 163.68],
+      XLC:  [112.96, 113.99, 110.81, 113.18, 117.72, 105.03, 120.41, 111.33, 113.94],
+      XLY:  [110.56, 110.32, 111.03, 117.95, 119.41, 105.19, 125.01, 114.82, 116.65],
+      XLF:  [54.84, 54.53, 55.86, 58.31, 54.77, 47.67, 58.60, 57.05, 53.73],
+      XLI:  [170.43, 168.83, 169.75, 178.40, 155.12, 147.14, 188.19, 177.91, 172.03],
+      XLV:  [170.70, 169.87, 168.39, 175.29, 154.80, 134.74, 176.60, 167.71, 156.32],
+      XLP:  [82.06, 81.70, 82.80, 86.52, 77.68, 75.16, 90.14, 84.71, 83.67],
+      XLE:  [62.04, 62.60, 64.31, 62.06, 44.71, 42.35, 66.17, 61.76, 56.14],
+      XLU:  [39.51, 39.36, 41.10, 43.31, 42.69, 39.125, 47.80, 43.27, 44.47],
+      XLB:  [49.80, 49.685, 49.99, 53.58, 45.35, 42.035, 54.19, 51.70, 50.55],
+      XLRE: [41.56, 41.65, 42.53, 45.36, 40.35, 39.725, 46.46, 44.33, 43.19]
+    },
+    names: { XLK: "Technology", XLC: "Comm. services", XLY: "Discretionary", XLF: "Financials", XLI: "Industrials", XLV: "Health care", XLP: "Staples", XLE: "Energy", XLU: "Utilities", XLB: "Materials", XLRE: "Real estate", SPY: "S&P 500" },
+    // sector options snapshot: call vol, avg30 call vol, put vol, avg30 put vol, bullish prem, bearish prem
+    sopt: {
+      SPY:  [6961274, 4961477, 6776566, 5696633, 1076945142, 1024809433],
+      XLK:  [13119, 11956, 53057, 18342, 12473381, 10760383],
+      XLC:  [816, 1316, 1980, 1256, 91947, 187715],
+      XLY:  [4468, 3265, 8267, 7216, 217551, 354476],
+      XLF:  [63923, 73361, 147741, 118224, 1913771, 2698056],
+      XLI:  [10055, 6821, 10326, 17573, 1332094, 2633420],
+      XLV:  [4573, 9528, 2552, 10020, 877212, 1000147],
+      XLP:  [5808, 8244, 8944, 14851, 585375, 375802],
+      XLE:  [52966, 82575, 102627, 90643, 3133778, 4920512],
+      XLU:  [411786, 25008, 39963, 24378, 9265430, 7102796],
+      XLB:  [1147, 3434, 1975, 12542, 216049, 126773],
+      XLRE: [519, 525, 90, 203, 37583, 30654]
+    },
+    // index KPI extras: iv rank, week implied %, 30d IV, gamma levels {flip, put, call, magnet}
+    kpi: {
+      SPY:  { ivr: 8.7, wk: 1.07, iv30: 12.4, gex: { flip: 768.54, put: 772, call: 785, magnet: 772 } },
+      QQQ:  { ivr: 23.4, wk: 1.59, iv30: 18.2, gex: { flip: 738.51, put: 745, call: 760, magnet: 745 } },
+      IWM:  { ivr: 12.1, wk: null, iv30: 18.2, gex: { flip: 282.5, put: 282, call: 300, magnet: 280 } },
+      TLT:  { ivr: 70.0, wk: 1.47, iv30: 13.9, gex: { flip: 80.46, put: null, call: 90, magnet: 80 } },
+      IBIT: { ivr: 6.5, wk: 3.1, iv30: 35.7, gex: { flip: 46.69, put: 47.5, call: 48, magnet: 48 } },
+      SMH:  { ivr: null, wk: null, iv30: null, gex: null }
+    },
+    tape: { callVol: 44194733, putVol: 30706201, callPrem: 22088276789, putPrem: 12637193548, spyBull: 1076945142, spyBear: 1024809433, qqqBull: 730046491, qqqBear: 853806810, iwmBull: 95603368, iwmBear: 85759622 },
+    vol: { VIX: [14.87, 15.97, 18.06, 13.38, 35.30], VXN: [20.87, 23.14, 24.12, 9.01, 34.37], MOVE: [96.0, 77.33, 72.98, 55.77, 115.02] },
+    tide: { t: ["9:30","9:35","9:40","9:45","9:50","9:55","10:00","10:05","10:10","10:15","10:20","10:25","10:30","10:35","10:40","10:45","10:50","10:55","11:00","11:05","11:10","11:15","11:20","11:25","11:30","11:35","11:40","11:45","11:50","11:55","12:00","12:05","12:10","12:15","12:20","12:25","12:30","12:35","12:40","12:45","12:50","12:55","13:00","13:05","13:10","13:15","13:20","13:25","13:30","13:35","13:40","13:45","13:50","13:55","14:00","14:05","14:10","14:15","14:20","14:25","14:30","14:35","14:40","14:45","14:50","14:55","15:00","15:05","15:10","15:15","15:20","15:25","15:30","15:35","15:40","15:45","15:50","15:55","16:00"],
+      c: [27.8,24.0,21.3,24.4,32.5,22.7,-10.9,-14.5,-43.6,-71.9,-88.2,-102.8,-108.8,-119.0,-147.2,-147.5,-182.6,-182.9,-192.3,-193.9,-200.5,-211.8,-208.6,-210.6,-227.7,-242.3,-261.4,-267.7,-271.3,-246.5,-219.2,-207.8,-194.8,-200.5,-206.2,-203.6,-212.4,-202.1,-198.4,-204.8,-203.7,-201.5,-195.1,-194.8,-192.3,-189.8,-189.2,-194.1,-200.7,-201.9,-205.2,-209.3,-212.2,-211.8,-204.1,-206.0,-198.7,-197.3,-201.7,-207.0,-203.0,-213.0,-212.0,-214.0,-215.5,-220.0,-224.4,-230.3,-231.3,-242.1,-253.1,-263.3,-271.6,-280.1,-284.9,-281.0,-284.0,-295.5,-294.1],
+      p: [8.1,10.4,17.5,20.1,23.4,33.5,59.0,57.8,71.5,75.4,63.8,66.9,61.8,54.7,55.7,49.0,46.8,24.8,15.7,12.9,12.2,18.8,18.1,6.6,7.8,2.2,4.9,-2.1,-1.5,-7.9,-11.5,-8.2,-3.5,-5.3,3.7,-6.0,8.2,11.7,10.8,10.1,4.1,-0.2,-4.3,-7.2,-10.6,-10.3,-14.0,-15.0,-20.7,-22.3,-24.2,-28.4,-24.0,-26.3,-30.3,-33.4,-41.4,-36.8,-34.1,-26.6,-39.5,-35.4,-39.7,-35.5,-37.7,-45.1,-38.2,-35.1,-31.4,-36.7,-39.0,-39.9,-34.5,-36.1,-43.6,-41.8,-31.5,-28.8,-25.3] },
+    curve: { tenors: ["1M","3M","6M","1Y","2Y","3Y","5Y","7Y","10Y","20Y","30Y"],
+      now: [4.04,4.24,4.33,4.50,4.81,4.94,4.98,5.06,5.17,5.54,5.49],
+      wk:  [3.97,4.14,4.24,4.44,4.76,4.83,4.86,4.93,5.01,5.38,5.34],
+      mo:  [3.79,3.86,3.95,4.01,4.17,4.25,4.35,4.48,4.64,5.16,5.17] },
+    xa: [
+      ["10-year", "5.17%", "+16 bp wk", "+53 bp mo", 4.64, 5.18, 5.17, "2007 high"],
+      ["2-year", "4.81%", "+5 bp wk", "+64 bp mo", 4.17, 4.87, 4.81, ""],
+      ["30-year", "5.49%", "+15 bp wk", "+32 bp mo", 5.16, 5.54, 5.49, "2004 high"],
+      ["MOVE", "96.0", "50d 77", "200d 73", 55.77, 115.02, 96.0, "bond vol elevated"],
+      ["VIX", "14.9", "50d 16.0", "200d 18.1", 13.38, 35.30, 14.87, "equity vol at the floor"],
+      ["Bitcoin", "$84,427", "+4.0% wk", "+6% mo", 57718, 126296, 84427, "−33% from high"],
+      ["Gold", "$4,321", "−1.9% wk", "−8.1% mo", 3785.5, 5626.8, 4321.2, "−23% from high"],
+      ["Brent", "$104.3", "−2.1% Fri", "50d $94", 58.72, 119.40, 104.32, "Hormuz premium"],
+      ["Dollar (DXY)", "101.0", "+0.8% wk", "+2.4% mo", 95.55, 101.80, 101.04, "near 52w high"],
+      ["HYG", "$77.86", "−0.9% wk", "−2.6% mo", 76.94, 81.36, 77.86, "credit near 52w low"]
+    ],
+    seas: [["SPY",0.89,61],["QQQ",1.37,61],["IWM",0.20,67],["XLK",1.58,61],["XLU",1.37,83],["XLE",1.37,56],["XLF",1.00,67],["XLI",0.79,56],["XLP",0.72,56],["XLV",0.39,56],["XLB",0.51,44],["XLY",0.05,50],["XLRE",-0.80,50],["XLC",-1.09,29]]
+  };
+  /* ===================== END DATA ===================== */
+
+  const el = id => document.getElementById(id);
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const pct = (a, b) => (a / b - 1) * 100;
+  const f1 = v => { const r = Math.round(v * 10) / 10; return (r > 0 ? "+" : "") + (r === 0 ? "0.0" : r.toFixed(1)) + "%"; };
+  const f2 = v => { const r = Math.round(v * 100) / 100; return (r > 0 ? "+" : "") + (r === 0 ? "0.00" : r.toFixed(2)) + "%"; };
+  const cls = v => v > 0.05 ? "up" : v < -0.05 ? "dn" : "";
+  const money = v => v >= 1e9 ? "$" + (v / 1e9).toFixed(1) + "B" : "$" + (v / 1e6).toFixed(0) + "M";
+  const rangePos = (v, lo, hi) => Math.max(0, Math.min(100, (v - lo) / (hi - lo) * 100));
+  const rangeBar = (v, lo, hi) => `<div class="rng"><i style="left:${rangePos(v, lo, hi).toFixed(1)}%"></i></div>`;
+
+  /* regime strip */
+  const regimes = [
+    { c: "good", k: "Equity vol", v: "At the floor", d: "VIX 14.9 · SPY IV rank 9 · IBIT rank 6" },
+    { c: "critical", k: "Bond vol", v: "At the ceiling", d: "MOVE 96 vs 77 avg · TLT IV rank 70" },
+    { c: "s1", k: "Dealer gamma", v: "Indexes pinned, bonds loose", d: "SPY, QQQ, IBIT above flip · TLT below, no put wall" },
+    { c: "warn", k: "Flow", v: "Rally sold in options", d: "Net call premium −$294M on a +0.5% day" },
+    { c: "warn", k: "Sectors", v: "Growth up, rate-sensitives at lows", d: "XLK +3.5% wk · XLU and TLT at 52-week lows, HYG near" }
+  ];
+  el("regime").innerHTML = regimes.map(r => `<div class="rg ${r.c}"><div class="rk">${r.k}</div><div class="rv">${r.v}</div><div class="rd">${r.d}</div></div>`).join("");
+
+  /* KPI tiles */
+  const idx = ["SPY", "QQQ", "IWM", "SMH", "TLT", "IBIT"];
+  el("kpis").innerHTML = idx.map(t => {
+    const p = D.px[t], k = D.kpi[t];
+    const d1 = pct(p[0], p[1]), w1 = pct(p[0], p[2]), m1 = pct(p[0], p[3]), ytd = pct(p[0], p[4]);
+    let gam = "";
+    if (k.gex) { const above = p[0] > k.gex.flip; gam = `<span class="pill ${above ? "pos" : "neg"}">${above ? "+γ" : "−γ"} · flip ${k.gex.flip}</span>`; }
+    const ivr = k.ivr == null ? "" : `<span class="pill ${k.ivr >= 60 ? "neg" : k.ivr <= 20 ? "pos" : ""}">IV rank ${k.ivr.toFixed(0)}</span>`;
+    const wk = k.wk == null ? "" : `<span class="pill">wk ±${k.wk.toFixed(k.wk >= 3 ? 1 : 2)}%</span>`;
+    return `<div class="kpi">
+      <div class="kh"><span class="tk">${t}</span><span class="kv">${t === "TLT" || t === "IBIT" ? "$" + p[0].toFixed(2) : "$" + p[0].toFixed(2)}</span></div>
+      <div class="kr"><span class="${cls(d1)}">${f2(d1)} d</span><span class="${cls(w1)}">${f1(w1)} wk</span><span class="${cls(m1)}">${f1(m1)} mo</span><span class="${cls(ytd)}">${f1(ytd)} ytd</span></div>
+      ${rangeBar(p[0], p[5], p[6])}
+      <div class="klab"><span>52w ${p[5]}</span><span>${p[6]}</span></div>
+      <div class="pills">${gam}${ivr}${wk}</div>
+    </div>`;
+  }).join("");
+
+  /* tape */
+  const T = D.tape;
+  const skew = (b, s) => (b - s) / (b + s) * 100;
+  el("tape").innerHTML = [
+    ["Call volume", (T.callVol / 1e6).toFixed(1) + "M", "vs " + (T.putVol / 1e6).toFixed(1) + "M puts"],
+    ["Put / call (volume)", (T.putVol / T.callVol).toFixed(2), "below 0.8 = call-heavy day"],
+    ["Call premium", money(T.callPrem), "vs " + money(T.putPrem) + " puts"],
+    ["SPY skew", f1(skew(T.spyBull, T.spyBear)).replace("%", ""), "bull " + money(T.spyBull) + " · bear " + money(T.spyBear)],
+    ["QQQ skew", f1(skew(T.qqqBull, T.qqqBear)).replace("%", ""), "bear " + money(T.qqqBear) + " outweighs bull"],
+    ["IWM skew", f1(skew(T.iwmBull, T.iwmBear)).replace("%", ""), "bull " + money(T.iwmBull) + " · bear " + money(T.iwmBear)]
+  ].map(r => `<div class="st"><div class="sk">${r[0]}</div><div class="sv">${r[1]}</div><div class="sd">${r[2]}</div></div>`).join("");
+
+  /* IV rank bars */
+  const ivrRows = [["TLT", 70.0], ["QQQ", 23.4], ["IWM", 12.1], ["SPY", 8.7], ["IBIT", 6.5]];
+  el("ivr").innerHTML = ivrRows.map(r => `<div class="ivrow"><span class="tk">${r[0]}</span><div class="ivbar"><i style="width:${r[1]}%;background:${r[1] >= 60 ? "var(--critical)" : r[1] <= 20 ? "var(--good)" : "var(--warn)"}"></i></div><span class="num">${r[1].toFixed(0)}</span></div>`).join("") +
+    `<div class="ivrow vix"><span class="tk">VIX</span><span class="num">${D.vol.VIX[0]}</span><span class="small">50d ${D.vol.VIX[1]} · 200d ${D.vol.VIX[2]}</span></div>` +
+    `<div class="ivrow vix"><span class="tk">VXN</span><span class="num">${D.vol.VXN[0]}</span><span class="small">50d ${D.vol.VXN[1]}</span></div>` +
+    `<div class="ivrow vix"><span class="tk">MOVE</span><span class="num dn">${D.vol.MOVE[0].toFixed(0)}</span><span class="small">50d ${D.vol.MOVE[1].toFixed(0)} · high ${D.vol.MOVE[4]}</span></div>`;
+
+  /* tide read */
+  el("tideRead").textContent = "Calls were sold from 10:00 onward on a day the S&P rose 0.5%: net call premium finished at −$294M, the low of the day at the close. Puts were bought early (+$75M by 10:15) and then sold back (−$25M). That is a rally being overwritten and hedges being lifted into quarter-end, not a rally being chased. It fits the low IV ranks: nobody is paying up for upside or protection in equities.";
+
+  /* ladders */
+  const lad = [
+    ["SPY", 771.35, D.kpi.SPY.gex, 755, 790],
+    ["QQQ", 744.5, D.kpi.QQQ.gex, 728, 765],
+    ["IWM", 281.97, D.kpi.IWM.gex, 272, 304],
+    ["TLT", 79.32, D.kpi.TLT.gex, 76, 92],
+    ["IBIT", 47.57, D.kpi.IBIT.gex, 44, 49.5]
+  ];
+  el("ladders").innerHTML = lad.map(([t, spot, g, lo, hi]) => {
+    const x = v => ((v - lo) / (hi - lo) * 100).toFixed(1) + "%";
+    const above = spot > g.flip;
+    const lv = [];
+    if (g.put) lv.push({ v: g.put, k: "put wall", c: "" });
+    lv.push({ v: g.flip, k: "flip", c: "flip" });
+    if (g.magnet && g.magnet !== g.put && g.magnet !== g.call) lv.push({ v: g.magnet, k: "magnet", c: "magnet" });
+    lv.push({ v: g.call, k: "call wall", c: "" });
+    lv.sort((a, b) => a.v - b.v);
+    const xp = v => (v - lo) / (hi - lo) * 100;
+    const thr = window.innerWidth < 700 ? 14 : 8;
+    const clusters = [];
+    lv.forEach(l => { const c = clusters[clusters.length - 1]; if (c && xp(l.v) - xp(c.items[0].v) < thr) c.items.push(l); else clusters.push({ items: [l] }); });
+    const dots = lv.map(l => `<div class="lv ${l.c}" style="left:${x(l.v)}"><div class="dot"></div></div>`).join("");
+    const labels = clusters.map((c, i) => { const mid = c.items.reduce((s, l) => s + l.v, 0) / c.items.length; return `<div class="lv lbl ${i % 2 ? "row2" : ""}" style="left:${x(mid)}"><div class="tick"></div><div class="lab">${c.items.map(l => l.k).join(" · ")}</div><div class="v">${c.items.map(l => l.v).join(" · ")}</div></div>`; }).join("");
+    const marks = dots + labels;
+    const bandL = g.put ? x(Math.min(g.put, g.flip)) : x(g.flip), bandR = x(g.call);
+    return `<div class="ladder mini">
+      <div class="head"><div class="t">${t} <span class="regime ${above ? "" : "neg"}">${above ? "positive gamma" : "negative gamma"}</span></div><div class="p">spot ${spot} · flip ${(pct(spot, g.flip)).toFixed(1) > 0 ? "+" : ""}${pct(spot, g.flip).toFixed(1)}% · ${g.put ? "put wall " + g.put : "no put wall"} · call wall ${g.call}</div></div>
+      <div class="track"><div class="band" style="left:${bandL};right:${(100 - parseFloat(bandR)).toFixed(1)}%"></div><div class="rail"></div>${marks}<div class="spot" style="left:${x(spot)}"><div class="slab">${spot}</div><div class="tri"></div></div></div>
+    </div>`;
+  }).join("");
+
+  /* sector table */
+  const secs = ["XLK", "XLC", "XLY", "XLF", "XLI", "XLV", "XLP", "XLE", "XLU", "XLB", "XLRE"];
+  const rows = secs.map(t => { const p = D.px[t], o = D.sopt[t]; return { t, name: D.names[t], last: p[0], d1: pct(p[0], p[1]), w1: pct(p[0], p[2]), m1: pct(p[0], p[3]), ytd: pct(p[0], p[4]), pos: rangePos(p[0], p[5], p[6]), cx: o[0] / o[1], pc: o[2] / o[0], sk: skew(o[4], o[5]), lo: p[5], hi: p[6] }; });
+  rows.sort((a, b) => b.w1 - a.w1);
+  const spyp = D.px.SPY, spyo = D.sopt.SPY;
+  const spyRow = { t: "SPY", name: "S&P 500", last: spyp[0], d1: pct(spyp[0], spyp[1]), w1: pct(spyp[0], spyp[2]), m1: pct(spyp[0], spyp[3]), ytd: pct(spyp[0], spyp[4]), pos: rangePos(spyp[0], spyp[5], spyp[6]), cx: spyo[0] / spyo[1], pc: spyo[2] / spyo[0], sk: skew(spyo[4], spyo[5]), lo: spyp[5], hi: spyp[6] };
+  const heat = v => `class="heat ${v > 0.05 ? "p" : v < -0.05 ? "n" : ""}"`;
+  const tr = r => `<tr${r.t === "SPY" ? ' class="bench"' : ""}><td class="tk">${r.t}<br><span class="small">${r.name}</span></td><td ${heat(r.d1)}>${f1(r.d1)}</td><td ${heat(r.w1)}>${f1(r.w1)}</td><td ${heat(r.m1)}>${f1(r.m1)}</td><td ${heat(r.ytd)}>${f1(r.ytd)}</td><td class="rc">${rangeBar(r.last, r.lo, r.hi)}<span class="small num">${r.pos.toFixed(0)}%</span></td><td class="r num ${r.cx >= 2 ? "hot" : ""}">${r.cx.toFixed(1)}×</td><td class="r num">${r.pc.toFixed(2)}</td><td class="rc"><div class="skew"><i style="${r.sk >= 0 ? "left:50%;width:" + (r.sk / 2).toFixed(1) + "%" : "right:50%;width:" + (-r.sk / 2).toFixed(1) + "%"};background:${r.sk >= 0 ? "var(--s3)" : "var(--neg)"}"></i></div><span class="small num">${r.sk > 0 ? "+" : ""}${r.sk.toFixed(0)}</span></td></tr>`;
+  el("tSectors").innerHTML = `<thead><tr><th>Sector</th><th>1d</th><th>1w</th><th>1m</th><th>YTD</th><th>52w range</th><th class="r">Call vol ×avg</th><th class="r">Put/call</th><th>Premium skew</th></tr></thead><tbody>${tr(spyRow)}${rows.map(tr).join("")}</tbody>`;
+
+  /* cross-asset */
+  el("xa").innerHTML = D.xa.map(r => `<div class="xr"><div class="xn">${r[0]}<span class="small">${r[7]}</span></div><div class="xv num">${r[1]}</div><div class="xc small">${r[2]}<br>${r[3]}</div><div class="xb">${rangeBar(r[6], r[4], r[5])}</div></div>`).join("");
+
+  /* charts */
+  let charts = [];
+  const theme = () => ({ ink: css("--ink"), ink2: css("--ink-2"), muted: css("--muted"), grid: css("--grid"), axis: css("--axis"), s1: css("--s1"), s2: css("--s2"), s3: css("--s3"), s4: css("--s4"), neg: css("--neg"), surface: css("--surface") });
+  function build() {
+    charts.forEach(c => c.destroy()); charts = [];
+    const Tm = theme(); Chart.defaults.font.family = css("--font-body"); Chart.defaults.color = Tm.ink2;
+    const base = () => ({ responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false },
+      plugins: { legend: { position: "top", align: "end", labels: { boxWidth: 8, boxHeight: 8, usePointStyle: true, pointStyle: "circle", font: { size: 11 } } }, tooltip: { backgroundColor: Tm.surface, titleColor: Tm.ink, bodyColor: Tm.ink2, borderColor: Tm.axis, borderWidth: 1 } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10.5 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, border: { color: Tm.axis } }, y: { grid: { color: Tm.grid }, ticks: { font: { size: 10.5 } }, border: { display: false } } } });
+    const line = (label, data, color, dash) => ({ label, data, borderColor: color, backgroundColor: color, borderWidth: 1.75, pointRadius: 0, tension: 0.25, borderDash: dash || [] });
+
+    let o = base(); o.scales.y.ticks.callback = v => (v > 0 ? "+" : "") + v + "M";
+    const zero = { id: "zero", afterDraw(ch) { const y = ch.scales.y.getPixelForValue(0); const c = ch.ctx; c.save(); c.strokeStyle = Tm.axis; c.lineWidth = 1; c.beginPath(); c.moveTo(ch.chartArea.left, y); c.lineTo(ch.chartArea.right, y); c.stroke(); c.restore(); } };
+    charts.push(new Chart(el("cTide"), { type: "line", data: { labels: D.tide.t, datasets: [line("Net call premium", D.tide.c, Tm.s1), line("Net put premium", D.tide.p, Tm.s2)] }, options: o, plugins: [zero] }));
+
+    o = base(); o.scales.y.ticks.callback = v => v.toFixed(2) + "%"; o.scales.x.ticks.maxTicksLimit = 11;
+    charts.push(new Chart(el("cCurve"), { type: "line", data: { labels: D.curve.tenors, datasets: [line("Sep 25", D.curve.now, Tm.s1), line("Sep 18", D.curve.wk, Tm.s3, [4, 3]), line("Aug 25", D.curve.mo, Tm.muted, [2, 3])] }, options: o }));
+
+    o = base(); o.plugins.legend.display = false; o.indexAxis = "y"; o.scales.x = { grid: { color: Tm.grid }, ticks: { font: { size: 10.5 }, callback: v => v + "%" }, border: { display: false } }; o.scales.y = { grid: { display: false }, ticks: { font: { size: 11 }, autoSkip: false }, border: { color: Tm.axis } };
+    const labelPlug = { id: "lbl", afterDatasetsDraw(ch) { const c = ch.ctx; c.save(); c.font = "10.5px " + css("--font-mono"); c.fillStyle = Tm.muted; c.textBaseline = "middle"; ch.getDatasetMeta(0).data.forEach((bar, i) => { const s = D.seas[i]; const txt = s[2] + "% up"; const xr = ch.scales.x.getPixelForValue(Math.max(s[1], 0)); c.textAlign = "left"; c.fillText(txt, xr + 6, bar.y); }); c.restore(); } };
+    charts.push(new Chart(el("cSeas"), { type: "bar", data: { labels: D.seas.map(s => s[0]), datasets: [{ data: D.seas.map(s => s[1]), backgroundColor: D.seas.map(s => s[1] >= 0 ? Tm.s1 : Tm.neg), borderRadius: 3, barPercentage: 0.7, categoryPercentage: 0.8 }] }, options: Object.assign(o, { layout: { padding: { right: 56 } } }), plugins: [labelPlug] }));
+  }
+  build();
+
+  const root = document.documentElement;
+  el("themeBtn").addEventListener("click", () => {
+    const light = matchMedia("(prefers-color-scheme: light)").matches;
+    const cur = root.getAttribute("data-theme") || (light ? "light" : "dark");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+  new MutationObserver(build).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", build);
+})();
+</script>
+
+</body>
+</html>
