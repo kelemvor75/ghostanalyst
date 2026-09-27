@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Ghost Analyst Gauntlet, Sep 28 - Oct 2, 2026: the week as a track, one column per day, every data release, Fed speech and earnings report sized by what options price, with the hot and cool branch for PCE, Micron, ISM and payrolls.">
+<meta property="og:title" content="Ghost Analyst Gauntlet: five days, four gates, and a seven-day clock">
+<meta property="og:description" content="The week of Sep 28 - Oct 2, 2026, event by event, with what each one can do to rates, the Nasdaq and bitcoin.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z' fill='%238ab4ff'/%3E%3Ccircle cx='12.4' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3Ccircle cx='19.6' cy='14.2' r='1.9' fill='%230c0f15'/%3E%3C/svg%3E">
+<title>Ghost Analyst Weekly Gauntlet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --page: #0c0f15; --surface: #151a23; --raised: #1a2029; --raised-2: #202836;
+    --ink: #eaedf3; --ink-2: #aab2c2; --muted: #7e8797;
+    --hair: #263040; --hair-2: #34405a;
+    --accent: #8ab4ff; --accent-2: #5e8ff0; --accent-ink: #0c0f15;
+    --tint: rgba(138,180,255,0.10); --tint-2: rgba(138,180,255,0.18);
+    --glow: rgba(94,143,240,0.22); --dot: rgba(255,255,255,0.045);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+    --neg: #e66767; --pos: #3987e5;
+    --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --grid: #232a37; --axis: #3a4457;
+    --negbg: rgba(230,103,103,0.16); --posbg: rgba(57,135,229,0.20);
+    --shadow-card: 0 12px 32px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.04) inset;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      color-scheme: light;
+      --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+      --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+      --hair: #dfe3ea; --hair-2: #c9cfda;
+      --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+      --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+      --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+      --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+      --neg: #e34948; --pos: #2a78d6;
+      --grid: #e6e8ee; --axis: #c3c7d1;
+      --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+      --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page: #f3f4f7; --surface: #fcfcfb; --raised: #ffffff; --raised-2: #f6f7fa;
+    --ink: #0b0d12; --ink-2: #4d5566; --muted: #7d8494;
+    --hair: #dfe3ea; --hair-2: #c9cfda;
+    --accent: #1c5cab; --accent-2: #2a78d6; --accent-ink: #ffffff;
+    --tint: rgba(28,92,171,0.08); --tint-2: rgba(28,92,171,0.14);
+    --glow: rgba(42,120,214,0.14); --dot: rgba(11,13,18,0.06);
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+    --neg: #e34948; --pos: #2a78d6;
+    --grid: #e6e8ee; --axis: #c3c7d1;
+    --negbg: rgba(227,73,72,0.14); --posbg: rgba(42,120,214,0.14);
+    --shadow-card: 0 8px 24px rgba(11,13,18,0.06), 0 1px 0 rgba(255,255,255,0.8) inset;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; position: relative; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(900px 520px at 12% -6%, var(--glow), transparent 65%), radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: auto, 22px 22px; background-color: var(--page); }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding-block: 0 56px; padding-inline: 20px; }
+  @media (min-width: 720px) { .wrap { padding-inline: 32px; } }
+
+  /* masthead */
+  .mast { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 16px 14px; border-bottom: 1px solid var(--hair); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { width: 28px; height: 28px; flex: none; filter: drop-shadow(0 0 10px var(--glow)); }
+  .brand .w { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); line-height: 1.2; }
+  .brand .w small { display: block; font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); }
+  .mast-right { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .live { display: inline-flex; align-items: center; gap: 7px; }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(12,163,12,0.18); }
+  .theme-btn { font: 500 12px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .theme-btn:hover { color: var(--ink); border-color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: 40px 8px; max-width: 860px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--accent); transform: rotate(45deg); }
+  h1 { font-family: var(--font-display); font-weight: 500; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.02; letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .dek { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 18px; text-wrap: pretty; }
+  .signals { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+  .sig { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--hair); border-radius: 999px; padding: 6px 12px 6px 10px; font-size: 13px; }
+  .sig i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .sig b { font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* the call */
+  .call { margin-top: 26px; position: relative; border-radius: 14px; padding: 22px 24px 10px;
+    background: linear-gradient(var(--raised), var(--surface)) padding-box, linear-gradient(135deg, var(--accent-2), var(--hair) 55%, var(--hair)) border-box; border: 1px solid transparent; box-shadow: var(--shadow-card); }
+  .call .eyebrow { margin-bottom: 10px; }
+  .call ol { margin: 0; padding: 0; list-style: none; max-width: 80ch; counter-reset: call; }
+  .call ol li { counter-increment: call; position: relative; padding-left: 40px; margin-bottom: 12px; }
+  .call ol li::before { content: counter(call); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 500 13px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+
+  /* tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
+  @media (min-width: 620px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 940px) { .tiles { grid-template-columns: repeat(6, 1fr); } }
+  .tile { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px 10px; min-width: 0; box-shadow: var(--shadow-card); }
+  .tile .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 6px; }
+  .tile .val { font-size: 24px; font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+  .tile .chg { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }
+  .tile .spark { display: block; width: 100%; height: 34px; margin: 6px 0 4px; }
+  .tile .bar { position: relative; height: 6px; border-radius: 3px; background: var(--hair); margin: 16px 0 12px; }
+  .tile .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--accent-2); }
+  .tile .bar em { position: absolute; top: -4px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--hair-2); }
+  .tile .sub { font-size: 12px; color: var(--ink-2); }
+
+  /* sections */
+  section { padding-block: 34px 6px; position: relative; }
+  section + section::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--accent-2), var(--hair) 45%, var(--hair)); opacity: 0.7; }
+  .sh { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; margin-bottom: 16px; }
+  .sh .idx { font-family: var(--font-display); font-size: 54px; line-height: 0.9; color: var(--accent); opacity: 0.28; font-weight: 500; padding-top: 4px; }
+  .sh .eyebrow { margin-bottom: 6px; }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3.1vw, 32px); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.005em; }
+  h3 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; display: flex; align-items: center; gap: 10px; }
+  h3::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  p { max-width: 68ch; margin: 0 0 10px; }
+  ul.tight { padding-left: 18px; margin: 0 0 10px; max-width: 74ch; }
+  ul.tight li { margin-bottom: 7px; } ul.tight li::marker { color: var(--accent); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tk { font-family: var(--font-mono); font-weight: 500; }
+  .up { color: var(--s3); } .dn { color: var(--neg); }
+  .small { font-size: 13px; color: var(--muted); }
+
+  /* cards & figures */
+  .grid2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 860px) { .grid2 { grid-template-columns: 1fr 1fr; } .grid2 .span2 { grid-column: 1 / -1; } }
+  .card { background: linear-gradient(180deg, var(--raised), var(--surface) 120px); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; min-width: 0; box-shadow: var(--shadow-card); }
+  .card h4 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+  .card .cap { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+  .chart-box { position: relative; width: 100%; } .chart-box canvas { width: 100% !important; }
+  .take { margin: 12px 0 0; font-size: 14px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+  .take b { flex: none; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--tint); border: 1px solid var(--tint-2); border-radius: 999px; padding: 2px 8px; margin-top: 2px; }
+  .read { margin-top: 12px; border: 1px solid var(--tint-2); background: var(--tint); border-radius: 10px; padding: 12px 14px 12px 44px; font-size: 13.5px; color: var(--ink-2); position: relative; }
+  .read::before { content: "?"; position: absolute; left: 14px; top: 12px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 600 12px var(--font-mono); display: flex; align-items: center; justify-content: center; }
+  .read b.k { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .read p { margin: 0 0 6px; max-width: none; } .read p:last-child { margin-bottom: 0; }
+  .read i { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  details.tbl { margin-top: 8px; }
+  details.tbl summary { cursor: pointer; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); list-style: none; padding: 4px 0; }
+  details.tbl summary::before { content: "▸ "; color: var(--accent); } details.tbl[open] summary::before { content: "▾ "; }
+  details.tbl summary::-webkit-details-marker { display: none; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; background: var(--raised-2); }
+  th:first-child { border-radius: 8px 0 0 8px; } th:last-child { border-radius: 0 8px 8px 0; }
+  td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--tint); }
+  .tblcard { background: var(--surface); border: 1px solid var(--hair); border-radius: 14px; padding: 6px 6px; box-shadow: var(--shadow-card); }
+  td.heat { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 500; }
+  td.heat.p { background: var(--posbg); } td.heat.n { background: var(--negbg); }
+
+  /* ladder */
+  .ladder { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px 12px; box-shadow: var(--shadow-card); }
+  .ladder .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; margin-bottom: 2px; }
+  .ladder .head .t { font-family: var(--font-mono); font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .ladder .head .p { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+  .regime { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--good); color: var(--good); background: rgba(12,163,12,0.10); }
+  .regime::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--good); }
+  .track { position: relative; height: 116px; margin: 8px 10px 0; }
+  .track .rail { position: absolute; left: 0; right: 0; top: 40px; height: 2px; background: var(--axis); border-radius: 2px; }
+  .track .band { position: absolute; top: 34px; height: 14px; border-radius: 4px; background: linear-gradient(90deg, rgba(217,89,38,0.22), rgba(57,135,229,0.26)); }
+  .spot { position: absolute; top: 8px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .spot .slab { font-family: var(--font-mono); font-size: 11px; color: var(--ink); white-space: nowrap; margin-bottom: 3px; background: var(--surface); border: 1px solid var(--hair-2); border-radius: 999px; padding: 1px 8px; }
+  .spot .tri { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 9px solid var(--ink); filter: drop-shadow(0 0 6px var(--accent)); }
+  .lv { position: absolute; top: 40px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; width: 0; }
+  .lv .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--s1); border: 2px solid var(--surface); margin-top: -4.5px; flex: none; box-shadow: 0 0 0 1px var(--s1); }
+  .lv .tick { width: 1px; height: 8px; background: var(--hair-2); } .lv.row2 .tick { height: 34px; }
+  .lv .lab { margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .lv .v { font-family: var(--font-mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  .lv.flip .dot { background: var(--s2); box-shadow: 0 0 0 1px var(--s2); } .lv.magnet .dot { background: var(--s3); box-shadow: 0 0 0 1px var(--s3); }
+  .legend-inline { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin: 8px 0 2px; }
+  .legend-inline span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--s1); }
+  .legend-inline .lf::before { background: var(--s2); } .legend-inline .lm::before { background: var(--s3); }
+  .legend-inline .ls::before { background: var(--ink); border-radius: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+
+  /* risk ranking */
+  .rank { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+  .rank li { display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start; background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-left: 4px solid var(--sev, var(--hair-2)); border-radius: 12px; padding: 11px 14px; font-size: 14px; box-shadow: var(--shadow-card); }
+  .rank .n { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--sev, var(--accent)); line-height: 1; padding-top: 2px; }
+  .rank .t { font-weight: 600; } .rank .d { color: var(--ink-2); }
+  .rank .sev { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sev); border: 1px solid var(--sev); border-radius: 999px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; }
+  .rank li.critical { --sev: var(--critical); } .rank li.serious { --sev: var(--serious); } .rank li.warn { --sev: var(--warn); } .rank li.low { --sev: var(--good); }
+  @media (max-width: 560px) { .rank li { grid-template-columns: 30px 1fr; } .rank .sev { grid-column: 2; justify-self: start; } }
+
+  /* tiers */
+  .two { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .two { grid-template-columns: 1fr 1fr; } }
+  .tier { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow-card); border-top: 3px solid var(--s3); }
+  .tier.b { border-top-color: var(--s2); }
+  .tier h4 { margin: 0 0 4px; font-size: 15px; }
+  .tier .why { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+  .tier ul { margin: 0; padding-left: 16px; font-size: 14px; color: var(--ink-2); } .tier li { margin-bottom: 5px; }
+
+  /* scenarios */
+  .scen { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 860px) { .scen { grid-template-columns: 1fr 1fr 1fr; } }
+  .sc { background: linear-gradient(180deg, var(--raised), var(--surface)); border: 1px solid var(--hair); border-radius: 14px; padding: 16px 16px 12px; box-shadow: var(--shadow-card); --c: var(--s1); }
+  .sc.bear { --c: var(--critical); } .sc.bull { --c: var(--good); }
+  .sc .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .sc .pr { font-size: 32px; font-weight: 600; line-height: 1; color: var(--c); }
+  .sc .gl { font-family: var(--font-mono); font-size: 22px; color: var(--c); opacity: 0.8; }
+  .sc .nm { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 4px 0 8px; }
+  .sc .pbar { height: 5px; border-radius: 3px; background: var(--hair); margin: 0 0 12px; overflow: hidden; }
+  .sc .pbar i { display: block; height: 100%; background: var(--c); border-radius: 3px; }
+  .sc p { font-size: 14px; color: var(--ink-2); margin: 0 0 6px; } .sc p b { color: var(--ink); font-weight: 500; }
+
+  /* calendar */
+  .imp { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 0; background: var(--hair-2); }
+  .imp.h { background: var(--critical); box-shadow: 0 0 0 3px rgba(208,59,59,0.18); } .imp.m { background: var(--warn); }
+  .cal td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--muted); }
+  .cal th:last-child, .cal td:last-child { width: 40%; color: var(--ink-2); }
+
+  .gloss dt { font-family: var(--font-mono); font-weight: 500; font-size: 13px; margin-top: 10px; color: var(--accent); }
+  .gloss dd { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); max-width: 72ch; }
+  .foot { border-top: 1px solid var(--hair); margin-top: 36px; padding-top: 18px; font-size: 13px; color: var(--muted); }
+  .foot ul { padding-left: 18px; margin: 8px 0; } .foot li { margin-bottom: 4px; }
+  .foot .sig-off { display: flex; align-items: center; gap: 10px; margin-top: 16px; color: var(--ink-2); }
+  .foot .sig-off svg { width: 22px; height: 22px; }
+
+  /* gauntlet */
+  .gaunt { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 900px) { .gaunt { grid-template-columns: repeat(5, 1fr); } }
+  .day { background: linear-gradient(180deg, var(--raised), var(--surface) 140px); border: 1px solid var(--hair); border-radius: 14px; padding: 12px 12px 8px; box-shadow: var(--shadow-card); min-width: 0; }
+  .day .dh { display: flex; flex-direction: column; gap: 2px; }
+  .day .dn { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .day .dd { font-family: var(--font-display); font-size: 26px; line-height: 1.05; }
+  .day .pm { font-family: var(--font-mono); font-size: 11px; color: var(--muted); white-space: nowrap; margin-top: 4px; }
+  .day .pm b { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .day .heat { height: 5px; border-radius: 3px; background: var(--hair); margin: 10px 0 8px; overflow: hidden; }
+  .day .heat i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--serious)); border-radius: 3px; }
+  .day .theme { font-size: 12.5px; color: var(--ink-2); padding-bottom: 10px; border-bottom: 1px solid var(--hair); margin-bottom: 12px; }
+  .rail { position: relative; padding-left: 20px; }
+  .rail::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 10px; width: 2px; background: var(--hair-2); border-radius: 2px; }
+  .gate { position: relative; margin: 0 0 12px; font-size: 12.5px; line-height: 1.4; --sev: var(--hair-2); }
+  .gate::before { content: ""; position: absolute; left: -20px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--sev); border: 2px solid var(--surface); box-shadow: 0 0 0 1.5px var(--sev); }
+  .gate.c { --sev: var(--critical); } .gate.h { --sev: var(--serious); } .gate.m { --sev: var(--warn); } .gate.w { --sev: var(--accent); }
+  .gate.c::before { box-shadow: 0 0 0 1.5px var(--sev), 0 0 0 5px rgba(208,59,59,0.16); }
+  .gate .t { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .gate .n { font-weight: 600; color: var(--ink); margin-top: 1px; }
+  .gate .n small { font-weight: 400; font-size: 12px; color: var(--ink-2); }
+  .gate.c .n { font-size: 14px; }
+  .gate .e { font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); margin-top: 2px; line-height: 1.45; }
+  .gate.w .n { color: var(--accent); }
+  .gate .tag { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--tint); border: 1px solid var(--tint-2); color: var(--accent); letter-spacing: 0.06em; }
+  @media (min-width: 1100px) { .gaunt { margin-inline: -70px; } }
+  .gates { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 4px; }
+  @media (min-width: 900px) { .gates { grid-template-columns: 1fr 1fr; } .gates .wide { grid-column: 1 / -1; } .gates .wide .gb { grid-template-columns: 1fr 1fr 1fr; } }
+  .gc { display: grid; grid-template-columns: 1fr; gap: 10px; background: linear-gradient(180deg, var(--raised), var(--surface) 140px); border: 1px solid var(--hair); border-radius: 14px; padding: 14px 14px 12px; box-shadow: var(--shadow-card); min-width: 0; }
+  @media (min-width: 560px) { .gc { grid-template-columns: 170px 1fr; } .gates .wide { grid-template-columns: 220px 1fr; } }
+  .gc .gl { position: relative; padding-right: 12px; }
+  @media (min-width: 560px) { .gc .gl::after { content: ""; position: absolute; right: 0; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(180deg, var(--critical), var(--hair) 50%, var(--good)); } }
+  .gc .gt { font-weight: 600; font-size: 15px; color: var(--ink); }
+  .gc .gw { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 2px 0 8px; }
+  .gc .ge { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2); line-height: 1.5; } .gc .ge b { color: var(--ink); font-weight: 500; }
+  .gc .gp { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .gb { display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .br { position: relative; border-radius: 8px; padding: 7px 10px 7px 12px; font-size: 12.5px; line-height: 1.42; color: var(--ink-2); border: 1px solid var(--hair); background: var(--raised-2); border-left: 3px solid var(--hair-2); }
+  .br b { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .br.hot { border-left-color: var(--critical); } .br.hot b { color: var(--critical); }
+  .br.cool { border-left-color: var(--good); } .br.cool b { color: var(--good); }
+  .br.mid { border-left-color: var(--hair-2); } .br.mid b { color: var(--muted); }
+  .br .rx { display: block; margin-top: 3px; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink); }
+  .after { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 10px 12px; }
+  .after .al { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
+  .after .ai { font-size: 12.5px; color: var(--ink-2); background: var(--raised-2); border: 1px solid var(--hair); border-radius: 999px; padding: 4px 10px; }
+  .after .ai b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); margin-right: 5px; }
+  #tMatrix td { font-size: 13px; } #tMatrix td.tk { white-space: nowrap; }
+  #tMatrix td.rx { font-family: var(--font-mono); font-size: 12px; line-height: 1.45; }
+  #tMatrix td.rx.n { background: var(--negbg); } #tMatrix td.rx.p { background: var(--posbg); }
+  @media (max-width: 899px) { .day .dd { font-size: 22px; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+<style>img{max-width:100%} [hidden]{display:none!important} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ghost" viewBox="0 0 32 32"><path d="M16 3c-6.1 0-10 4.6-10 10.5V27l3.4-2.6 3.3 2.6 3.3-2.6 3.3 2.6 3.3-2.6L26 27V13.5C26 7.6 22.1 3 16 3z" fill="currentColor"/><circle cx="12.4" cy="14.2" r="1.9" fill="var(--page)"/><circle cx="19.6" cy="14.2" r="1.9" fill="var(--page)"/></symbol></svg>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><svg style="color:var(--accent)"><use href="#ghost"/></svg><div class="w">Ghost Analyst<small>Research · The Gauntlet</small></div></div>
+    <div class="mast-right"><span class="live">Data: Sun Sep 27, 2026 · options as of Fri close</span><button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark theme">Theme</button></div>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Sep 28 – Oct 2, 2026 · the week, gate by gate</p>
+    <h1>Five days, four gates, and a <em>seven-day clock</em></h1>
+    <p class="dek">Options price a ±1.1% week for SPY and ±1.6% for QQQ. Friday's payrolls is the most expensive single day, Monday's open and Wednesday's PCE tie for second. Every gate below asks the same question: does 5.17% on the 10-year hold, or break?</p>
+    <div class="signals">
+      <span class="sig"><i style="background:var(--critical)"></i><b>Gates</b> PCE Wed · ISM Thu · Payrolls Fri · Micron Wed night</span>
+      <span class="sig"><i style="background:var(--accent)"></i><b>Wildcard</b> Iran's 7-day Hormuz offer runs out ≈ Fri</span>
+      <span class="sig"><i style="background:var(--warn)"></i><b>Fed</b> 16 speeches, 10 officials, no coupon auctions</span>
+      <span class="sig"><i style="background:var(--s1)"></i><b>Priced</b> SPY ±$8.2 · QQQ ±$11.8 · TLT ±1.5%</span>
+    </div>
+    <p class="meta">Sources: Unusual Whales (implied moves, earnings) · FMP (calendar, consensus) · MT Newswires · OPEC · linked reporting</p>
+  </div>
+
+  <div class="call">
+    <p class="eyebrow">The call</p>
+    <ol>
+      <li><b>Trade the week back-to-front.</b> The options market prices Friday's payrolls as the biggest day (±0.54% on SPY, ±0.75% on QQQ), with Monday's gap and Wednesday's PCE next. Tuesday is the quiet lane. Size for the gates, not the average day.</li>
+      <li><b>Hot hurts more than cool helps.</b> An October hike is already ~70% priced. A hot PCE or payrolls print locks it and pushes the 10-year through 5.20%, which hits the AI complex hardest (it is now the most rate-sensitive group: QQQ moves 1.1× TLT, semis 1.6×, Micron 2.1×). A cool print buys a relief rally but does not remove the hike. The skew into each gate is down for high beta.</li>
+      <li><b>The two things that can change rates fast sit outside the data.</b> Iran's seven-day offer to reopen Hormuz (made Friday) expires inside this week: a deal takes $8–12 off Brent and 10–15 bp off the 10-year; a lapse puts $110 Brent back in play into the Oct 6–8 coupon auctions. Wednesday's quarter-end rebalancing leans sell-stocks, buy-bonds after a quarter where the S&amp;P rose 3.3% and long bonds fell.</li>
+    </ol>
+  </div>
+
+  <div class="tiles" id="tiles">
+    <div class="tile"><div class="lbl">SPY week implied</div><div class="row"><span class="val">±1.07%</span><span class="chg">±$8.2</span></div><div class="bar"><em style="left:50%"></em></div><div class="sub">$763 – $780 · spot $771</div></div>
+    <div class="tile"><div class="lbl">QQQ week implied</div><div class="row"><span class="val">±1.59%</span><span class="chg">±$11.8</span></div><div class="bar"><em style="left:50%"></em></div><div class="sub">$733 – $756 · spot $745</div></div>
+    <div class="tile"><div class="lbl">TLT week implied</div><div class="row"><span class="val">±1.47%</span><span class="chg">±$1.17</span></div><div class="bar"><em style="left:50%"></em></div><div class="sub">≈ ±9 bp on the 30-year</div></div>
+    <div class="tile"><div class="lbl">10-year yield</div><div class="row"><span class="val">5.17%</span><span class="chg dn">2007 high</span></div><div class="bar"><i style="width:92%"></i></div><div class="sub">30-year 5.49%, highest since 2004</div></div>
+    <div class="tile"><div class="lbl">Oct 28 hike odds</div><div class="row"><span class="val">~70%</span><span class="chg">priced</span></div><div class="bar"><i style="width:70%"></i></div><div class="sub">Hot data locks it; cool data does not remove it</div></div>
+    <div class="tile"><div class="lbl">Micron implied</div><div class="row"><span class="val">±7.3%</span><span class="chg">±$79</span></div><div class="bar"><i style="width:73%"></i></div><div class="sub">Wed after close · EPS est $31.24</div></div>
+  </div>
+
+  <section>
+    <div class="sh"><div class="idx">01</div><div><p class="eyebrow">The gauntlet</p><h2>One column per day, one dot per gate, sized by what options price</h2></div></div>
+    <p class="small" style="margin:0 0 12px">All times ET. The bar under each date is that day's priced move on SPY (Friday = full width). Dots: <span class="imp h"></span>can move the tape 1%+ &nbsp;<span class="imp" style="background:var(--serious)"></span>worth a position check &nbsp;<span class="imp m"></span>context &nbsp;<span class="imp" style="background:var(--accent)"></span>wildcard, no scheduled time.</p>
+
+    <div class="gaunt">
+
+      <div class="day">
+        <div class="dh"><div class="dn">Monday</div><div class="dd">Sep 28</div><div class="pm"><b>±0.48%</b> SPY &nbsp;·&nbsp; ±0.70% QQQ</div></div>
+        <div class="heat"><i style="width:89%"></i></div>
+        <div class="theme">Weekend gap, Fed-speak begins</div>
+        <div class="rail">
+          <div class="gate w"><div class="t">Open</div><div class="n">Weekend headlines <small>Iran/Hormuz, Trump–Xi truce</small></div><div class="e">Monday carries the weekend: priced like PCE day</div></div>
+          <div class="gate m"><div class="t">8:15 · 1:30</div><div class="n">Fed: Bowman, Barkin</div><div class="e">Listen for "October" vs "December"</div></div>
+          <div class="gate l"><div class="t">10:30</div><div class="n">Dallas Fed manufacturing</div><div class="e">est 1.0 · prev 11.6</div></div>
+          <div class="gate l"><div class="t">After close</div><div class="n">JEF ±7.4% · MTN</div><div class="e">Jefferies is the first read on Q3 deal activity</div></div>
+          <div class="gate m"><div class="t">11:35 pm</div><div class="n">Japan 40-year JGB auction</div><div class="e">Global long end is the stress point; a weak tail travels to the 30-year</div></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="dh"><div class="dn">Tuesday</div><div class="dd">Sep 29</div><div class="pm"><b>±0.43%</b> SPY &nbsp;·&nbsp; ±0.63% QQQ</div></div>
+        <div class="heat"><i style="width:79%"></i></div>
+        <div class="theme">Labor preview, five Fed speakers</div>
+        <div class="rail">
+          <div class="gate l"><div class="t">Pre-open</div><div class="n">CCL ±6.0% · KMX ±10.7%</div><div class="e">Consumer read: cruise demand vs used-car credit</div></div>
+          <div class="gate h"><div class="t">10:00</div><div class="n">JOLTS openings <small>+ consumer confidence</small></div><div class="e">est 7.23M · prev 7.27M &nbsp;|&nbsp; conf est 90.0 · prev 89.4</div></div>
+          <div class="gate h"><div class="t">11:00 – 3:00</div><div class="n">Fed: Bowman, Goolsbee, Musalem, <small>Williams 2:00,</small> Waller 3:00</div><div class="e">Williams already called another hike "reasonable"; the tape trades the timing</div></div>
+          <div class="gate m"><div class="t">9:30 pm</div><div class="n">China NBS PMIs</div><div class="e">mfg est 50.1 · prev 49.8 &nbsp;|&nbsp; last data before Golden Week</div></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="dh"><div class="dn">Wednesday</div><div class="dd">Sep 30</div><div class="pm"><b>±0.48%</b> SPY &nbsp;·&nbsp; ±0.75% QQQ</div></div>
+        <div class="heat"><i style="width:88%"></i></div>
+        <div class="theme">PCE, quarter-end, Micron</div>
+        <div class="rail">
+          <div class="gate l"><div class="t">Pre-open</div><div class="n">JBL ±7.8% · CAG · FDS</div><div class="e">Jabil is an AI-server supply-chain read into Micron</div></div>
+          <div class="gate m"><div class="t">8:15</div><div class="n">ADP private payrolls</div><div class="e">est +70K · prev +38K</div></div>
+          <div class="gate c"><div class="t">8:30 <span class="tag">branches below</span></div><div class="n">Core PCE (Aug) <small>+ spending, income, Q2 GDP final</small></div><div class="e">core est +0.3% m/m · 3.4% y/y (prev 3.3%) &nbsp;|&nbsp; spending est +0.8%</div>
+          </div>
+          <div class="gate l"><div class="t">9:45</div><div class="n">Chicago PMI</div><div class="e">est 51.3 · prev 47.1</div></div>
+          <div class="gate h"><div class="t">4:00 close</div><div class="n">Quarter-end rebalancing</div><div class="e">S&amp;P +3.3% on the quarter, long bonds down: mechanical sell-stocks / buy-bonds into the bell</div></div>
+          <div class="gate l"><div class="t">1:30 · 5:10 · 6:00 pm</div><div class="n">Fed: Barkin, Goolsbee, Kashkari</div><div class="e">Post-PCE reaction speeches</div></div>
+          <div class="gate c"><div class="t">After close <span class="tag">branches below</span></div><div class="n">Micron (MU) ±7.3%</div><div class="e">EPS est $31.24 · stock +16% on the month · bar: HBM sold out into 2027, FQ1 guide</div>
+          </div>
+          <div class="gate m"><div class="t">7:50 pm</div><div class="n">Japan Tankan <small>+ BoJ Summary of Opinions</small></div><div class="e">large mfg est 25 · prev 22 &nbsp;|&nbsp; strong = more BoJ, higher JGB yields</div></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="dh"><div class="dn">Thursday</div><div class="dd">Oct 1</div><div class="pm"><b>±0.45%</b> SPY &nbsp;·&nbsp; ±0.71% QQQ</div></div>
+        <div class="heat"><i style="width:84%"></i></div>
+        <div class="theme">ISM, six Fed speakers, Nike</div>
+        <div class="rail">
+          <div class="gate l"><div class="t">Pre-open</div><div class="n">ACN ±6.6% · MKC · AYI</div><div class="e">Accenture: enterprise AI bookings vs consulting demand</div></div>
+          <div class="gate m"><div class="t">8:30</div><div class="n">Jobless claims</div><div class="e">est 199K · prev 197K · sub-200K keeps the Fed hawkish</div></div>
+          <div class="gate m"><div class="t">9:05 · 10:00</div><div class="n">Fed: Collins, Schmid, Waller</div><div class="e">Waller's second appearance of the week</div></div>
+          <div class="gate c"><div class="t">10:00 <span class="tag">branches below</span></div><div class="n">ISM Manufacturing (Sep)</div><div class="e">est 54.8 · prev 54.6 &nbsp;|&nbsp; prices paid est 72.0 · prev 71.1</div>
+          </div>
+          <div class="gate l"><div class="t">All day</div><div class="n">China Golden Week begins</div><div class="e">Mainland closed through Oct 8 · thinner Asia liquidity</div></div>
+          <div class="gate m"><div class="t">3:00 · 3:30 · 6:45 pm</div><div class="n">Fed: Bowman, <small>Williams,</small> Logan</div><div class="e">Williams, second time this week: the New York Fed sets the tone for the minutes</div></div>
+          <div class="gate m"><div class="t">After close</div><div class="n">Nike (NKE) ±7.1%</div><div class="e">EPS est $0.44 · BofA cut to Underperform Fri, PT $30 · consumer and China read</div></div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="dh"><div class="dn">Friday</div><div class="dd">Oct 2</div><div class="pm"><b>±0.54%</b> SPY &nbsp;·&nbsp; ±0.75% QQQ</div></div>
+        <div class="heat"><i style="width:100%"></i></div>
+        <div class="theme">Payrolls, EU CPI, the clock</div>
+        <div class="rail">
+          <div class="gate m"><div class="t">5:00</div><div class="n">Eurozone flash CPI (Sep)</div><div class="e">est 3.5% · prev 3.2% &nbsp;|&nbsp; core est 2.6% · energy-driven; Bunds lead Treasuries pre-open</div></div>
+          <div class="gate c"><div class="t">8:30 <span class="tag">branches below</span></div><div class="n">Payrolls (Sep) <small>+ unemployment, wages</small></div><div class="e">est +100K · prev +162K &nbsp;|&nbsp; UR est 4.2% · prev 4.1% &nbsp;|&nbsp; AHE est +0.3%</div>
+          </div>
+          <div class="gate m"><div class="t">Morning</div><div class="n">Tesla Q3 deliveries</div><div class="e">consensus ~461K (Barclays 475K, Goldman 435K)</div></div>
+          <div class="gate w"><div class="t">≈ Deadline <span class="tag">branches below</span></div><div class="n">Iran's seven-day Hormuz window</div><div class="e">Offered Fri Sep 25 at the UN; Washington's answer is the trigger</div></div>
+          <div class="gate l"><div class="t">10:00 · 3:30</div><div class="n">Factory orders · CFTC positioning</div><div class="e">orders est −0.1% &nbsp;|&nbsp; S&amp;P specs net −133K</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>The gates, branched</h3>
+    <div class="gates">
+      <div class="gc">
+        <div class="gl"><div class="gt">Core PCE (Aug)</div><div class="gw">Wed Sep 30 · 8:30</div><div class="ge">core est <b>+0.3%</b> m/m · 3.4% y/y (prev 3.3%)<br>spending est +0.8% · income +0.4%</div><div class="gp">Priced: SPY ±0.48% · QQQ ±0.75%</div></div>
+        <div class="gb">
+          <div class="br hot"><b>Hot · core ≥ 0.4%</b>Hike odds → 85–90%. 10-year toward 5.25%.<span class="rx">QQQ −1.5 to −2% · BTC −3 to −5% · USD ↑</span></div>
+          <div class="br mid"><b>In line · 0.3%</b>The tape trades spending (+0.8% est) and quarter-end flows instead.<span class="rx">Range day; watch the 4:00 rebalancing bid for bonds</span></div>
+          <div class="br cool"><b>Cool · core ≤ 0.2%</b>10-year back under 5.10%. Relief, not a pivot: the hike stays priced.<span class="rx">QQQ +1 to +1.5% · BTC +3% · gold ↑</span></div>
+        </div>
+      </div>
+      <div class="gc">
+        <div class="gl"><div class="gt">Micron (MU)</div><div class="gw">Wed Sep 30 · after close</div><div class="ge">EPS est <b>$31.24</b> · implied ±7.3% (±$79)<br>stock +16% on the month · bar: HBM sold out into 2027, FQ1 guide</div><div class="gp">Semis +13% this week (INTC, AMD, QCOM, ARM)</div></div>
+        <div class="gb">
+          <div class="br hot"><b>Miss / light guide</b>Semis −5%+ into a crowded week. The rate shock absorber cracks: nothing left to offset 5.2%.<span class="rx">QQQ −2% Thu · SOX −5% · AI names lead down</span></div>
+          <div class="br mid"><b>Beat, in-line guide</b>Sell-the-news risk after +16%; a ±7% straddle is already paid for.<span class="rx">MU ±3–5% · SOX flat · no read-through</span></div>
+          <div class="br cool"><b>Beat and raise</b>Confirms the shortage narrative (Citi $1,300, UBS: tighter into 2027). AI trade shrugs rates for a day.<span class="rx">SOX +3–5% · QQQ +1% · NVDA/AMD sympathy</span></div>
+        </div>
+      </div>
+      <div class="gc">
+        <div class="gl"><div class="gt">ISM Manufacturing</div><div class="gw">Thu Oct 1 · 10:00</div><div class="ge">PMI est <b>54.8</b> · prev 54.6<br>prices paid est 72.0 · prev 71.1</div><div class="gp">Priced: SPY ±0.45% · QQQ ±0.71%</div></div>
+        <div class="gb">
+          <div class="br hot"><b>Hot · PMI &gt; 56 or prices &gt; 74</b>Growth plus inflation: yields up, cyclicals up, rate-sensitives down.<span class="rx">10Y +5–8 bp · QQQ lags · XLI/XLE lead</span></div>
+          <div class="br mid"><b>In line · 54–56, prices &lt; 73</b>Goldilocks for a day; the payrolls setup does not change.<span class="rx">Drift; Fed speakers set the afternoon</span></div>
+          <div class="br cool"><b>Cool · PMI &lt; 53</b>First crack in the growth story; bonds bid, cyclicals give back.<span class="rx">10Y −5–8 bp · QQQ ↑ · XLI/XLE ↓</span></div>
+        </div>
+      </div>
+      <div class="gc">
+        <div class="gl"><div class="gt">Payrolls (Sep)</div><div class="gw">Fri Oct 2 · 8:30</div><div class="ge">est <b>+100K</b> · prev +162K<br>UR est 4.2% (prev 4.1%) · AHE est +0.3%</div><div class="gp">Priced: SPY ±0.54% · QQQ ±0.75% · the week's biggest day</div></div>
+        <div class="gb">
+          <div class="br hot"><b>Hot · ≥ 150K or AHE ≥ 0.4%</b>Hike locked (~95%). 10-year through 5.25%, curve bear-flattens.<span class="rx">QQQ −2% · BTC −4 to −6% · USD ↑ · gold ↓</span></div>
+          <div class="br mid"><b>In line · ~100K, UR 4.2%</b>A ±0.5% day that fades by noon. The Oct 6–8 auctions become the next test.<span class="rx">Position for the auctions, not the print</span></div>
+          <div class="br cool"><b>Cool · ≤ 50K or UR ≥ 4.3%</b>10-year −10 bp, hike odds → ~50%. Relief first; a negative print turns into a growth scare.<span class="rx">QQQ +1.5% · BTC +4% · cyclicals lag</span></div>
+        </div>
+      </div>
+      <div class="gc wide">
+        <div class="gl"><div class="gt">Hormuz: Iran's seven-day window</div><div class="gw">Any day · clock started Fri Sep 25</div><div class="ge">Araghchi at the UN: Tehran reopens the strait in seven days and resumes nuclear talks if Washington accepts the Islamabad terms. Brent $104, WTI $92.</div><div class="gp">Not on any calendar; the only thing that moves rates faster than the data</div></div>
+        <div class="gb">
+          <div class="br cool"><b>Deal · strait reopens</b>Brent −$8–12, breakevens fall, 10-year −10–15 bp. The biggest bull catalyst available this week.<span class="rx">Broad rally · airlines/transports lead · XLE −5%</span></div>
+          <div class="br mid"><b>Extended · talks continue</b>Headline chop; oil range-bound $90–105.<span class="rx">Status quo; the data decides</span></div>
+          <div class="br hot"><b>Lapse · no deal, escalation</b>Brent back above $110, 10-year 5.25%+, into the Oct 6–8 coupon auctions.<span class="rx">Everything down but XLE · BTC −5%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="after">
+      <div class="al">After the finish line</div>
+      <div class="ai"><b>Sun Oct 4</b> OPEC+ 7 meets (held October flat)</div>
+      <div class="ai"><b>Oct 6–8</b> 3-, 10-, 30-year auctions: the real test of 5%+ demand</div>
+      <div class="ai"><b>Oct 7</b> FOMC minutes</div>
+      <div class="ai"><b>Oct 14</b> CPI</div>
+      <div class="ai"><b>Oct 13–15</b> Bank earnings open Q3 season</div>
+      <div class="ai"><b>Oct 28</b> FOMC, ~70% hike priced</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">02</div><div><p class="eyebrow">Decoder</p><h2>How to read it, and how to use it</h2></div></div>
+    <div class="grid2">
+      <div class="read" style="margin-top:0"><b class="k">What the numbers mean</b>
+        <p><i>±0.48%</i> is the one-standard-deviation move options price for that day, backed out of SPY's daily expiries (each day's move is the variance the market adds between one expiry and the next). About two days in three land inside it; the gates are where the third day happens.</p>
+        <p><i>est · prev</i> is the consensus estimate and the last print (FMP). <i>Hot</i> and <i>cool</i> are the lines beyond which the market reprices the October meeting, not the lines beyond which the print is "good" or "bad".</p>
+        <p><i>Reactions</i> are rate-beta math from the Week Ahead note (QQQ moves ~1.1% per 1% move in TLT, semis ~1.6%; bitcoin moves ~2× QQQ), not forecasts. They say which way and roughly how far, not whether.</p>
+      </div>
+      <div class="read" style="margin-top:0"><b class="k">How to trade the gauntlet</b>
+        <p><i>Size for the gates.</i> Cut high-beta exposure into Wednesday 8:30, Wednesday's close, and Friday 8:30. Tuesday and Thursday are for adding, not for defending.</p>
+        <p><i>Own the move where it is cheap.</i> SPY implieds are near 11% annualized for the week; IBIT implieds sit ten points under realized. Straddles and put spreads into the gates cost less than the moves they protect against.</p>
+        <p><i>Watch the second reaction.</i> On PCE and payrolls, the first 30 minutes are the algos; the 10-year's level at 10:00 is the signal. Above 5.20% the AI complex leads down; below 5.10% it leads up.</p>
+        <p><i>Fed-speak is volume, not signal,</i> unless Williams or Waller move from "reasonable" to "October".</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh"><div class="idx">03</div><div><p class="eyebrow">Reaction matrix</p><h2>Same gates, side by side</h2></div></div>
+    <div class="tblcard scroll"><table id="tMatrix">
+      <thead><tr><th>Gate</th><th>Hot line</th><th>Tape if hot</th><th>Cool line</th><th>Tape if cool</th></tr></thead>
+      <tbody>
+        <tr><td class="tk">PCE<br><span class="small">Wed 8:30</span></td><td>core ≥ 0.4% m/m or spending ≥ 1%</td><td class="rx n">10Y ↑ 5.25% · QQQ ↓ 1.5–2% · BTC ↓ 3–5% · USD ↑</td><td>core ≤ 0.2%</td><td class="rx p">10Y ↓ 5.05–5.10 · QQQ ↑ 1–1.5% · BTC ↑ 3% · gold ↑</td></tr>
+        <tr><td class="tk">Micron<br><span class="small">Wed AMC</span></td><td>miss or FQ1 guide below street</td><td class="rx n">SOX ↓ 5% · QQQ ↓ 2% · AI names lead · rates unchanged</td><td>beat and raise, HBM sold out into 2027</td><td class="rx p">SOX ↑ 3–5% · QQQ ↑ 1% · NVDA/AMD sympathy</td></tr>
+        <tr><td class="tk">ISM mfg<br><span class="small">Thu 10:00</span></td><td>PMI &gt; 56 or prices paid &gt; 74</td><td class="rx n">10Y ↑ 5–8 bp · cyclicals ↑ · rate-sensitives ↓</td><td>PMI &lt; 53</td><td class="rx p">10Y ↓ 5–8 bp · QQQ ↑ · cyclicals ↓</td></tr>
+        <tr><td class="tk">Payrolls<br><span class="small">Fri 8:30</span></td><td>≥ 150K or AHE ≥ 0.4%</td><td class="rx n">Hike ~95% · 10Y &gt; 5.25% · QQQ ↓ 2% · BTC ↓ 4–6% · USD ↑</td><td>≤ 50K or UR ≥ 4.3%</td><td class="rx p">10Y ↓ 10 bp · hike → 50% · QQQ ↑ 1.5% · BTC ↑ 4% · below 0 = growth scare</td></tr>
+        <tr><td class="tk">Hormuz<br><span class="small">any day</span></td><td>window lapses, no deal</td><td class="rx n">Brent &gt; $110 · 10Y 5.25%+ · XLE ↑ · everything else ↓</td><td>US accepts Iran's terms, strait reopens</td><td class="rx p">Brent ↓ $8–12 · 10Y ↓ 10–15 bp · XLE ↓ 5% · broad rally, airlines/transports lead</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small" style="margin-top:10px">For information and education only; not investment advice or a solicitation. Ghost Analyst Research is not a registered investment adviser. Options involve risk and are not suitable for all investors.</p>
+  </section>
+
+  <footer class="foot">
+    <details class="tbl"><summary>Sources and data notes</summary>
+      <ul>
+        <li>Implied moves: Unusual Whales IV term structure for SPY, QQQ, TLT and IBIT as of the Sep 25 close; per-day moves are the square root of the variance added between consecutive daily expiries. Earnings dates and implied moves: Unusual Whales upcoming earnings (company-confirmed dates). Economic calendar, consensus and prior values: FMP economics calendar (US, China, Eurozone, Japan), pulled Sep 27; times converted from UTC to ET.</li>
+        <li>Market context and the Iran offer: MT Newswires (viaNexus EDGE) close reports, Sep 25. OPEC+: <a href="https://www.opec.org/pr-detail/613-6-september-2026.html">OPEC press release, 6 Sep 2026</a> (October output held; next meeting 4 Oct). Tesla deliveries date and consensus: <a href="https://www.fool.com/investing/2026/09/24/tesla-q3-sales-report-oct-2-surprises/">The Motley Fool, Sep 24</a>. October hike pricing, rate betas and the quarter-end read are from the <a href="Ghost_Analyst_Week_Ahead_2026-09-28.html">Week Ahead</a> and <a href="Ghost_Analyst_Crypto_Week_Ahead_2026-09-28.html">Crypto Week Ahead</a> notes.</li>
+        <li>Hot/cool thresholds and the reactions are Ghost Analyst judgment calibrated to the measured betas; they are illustrations of direction and rough size, not predictions.</li>
+      </ul>
+    </details>
+    <div class="sig-off"><svg style="color:var(--accent)"><use href="#ghost"/></svg><span>© 2026 Ghost Analyst Research · kelemvor75.github.io</span></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const root = document.documentElement;
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const light = matchMedia("(prefers-color-scheme: light)").matches;
+    const cur = root.getAttribute("data-theme") || (light ? "light" : "dark");
+    root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+})();
+</script>
+
+</body>
+</html>
